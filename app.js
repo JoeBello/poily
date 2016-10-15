@@ -5,7 +5,7 @@ var logger = require('morgan');
 var session = require('express-session');
 var bodyParser = require('body-parser');
 // **** bodyParser.json(): Parses the text as JSON and exposes the resulting object on req.body. ****
-var places = require('./places/placesRouter');
+var places = require('./places/placesRoutes');
 
 var app = express();
 
