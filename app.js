@@ -1,4 +1,5 @@
 var express = require('express');
+var config = require('./config')[process.env.NODE_ENV];
 var path = require('path');
 var favicon = require('serve-favicon');
 var logger = require('morgan');
@@ -61,6 +62,6 @@ app.use(function(err, req, res, next) {
 });
 
 
-app.listen(3000, function(){
-  console.log('project1 running on port 3000');
+app.listen(config.port, function(){
+  console.log(config.message);
 })
