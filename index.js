@@ -8,7 +8,6 @@ app.listen(config.port, function(){
   console.log(config.message);
 })
 
-// var favicon = require('serve-favicon');
 
 // app.use(require('node-sass-middleware')({
 //   src: path.join(__dirname, 'public'),
