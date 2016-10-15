@@ -2,14 +2,18 @@ var express = require('express');
 var app = express();
 var path = require('path');
 var api = require('./api/api');
+var public = '../public';
 
 require('./middleware/appMiddleware')(app);
 
-app.use(express.static(path.join(__dirname, '../public')));
+app.use(require('node-sass-middleware')({
+  src: path.join(__dirname, public),
+  dest: path.join(__dirname, public),
+  indentedSyntax: true,
+  sourceMap: true
+}));
 
-app.use('/', function(req, res){
-  res.sendFile(path.join(__dirname + '../public/index.html'));
-})
+app.use(express.static(path.join(__dirname, public)));
 
 app.use('/api', api);
 
