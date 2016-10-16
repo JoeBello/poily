@@ -1,7 +1,6 @@
 var router = require('express').Router();
 
-// router.use requires a middleware function
-router.use('/places', require('./places/placesRoutes.js'));
+router.use('/places', require('./places/placesRoutes'));
 
 
 module.exports = router;
