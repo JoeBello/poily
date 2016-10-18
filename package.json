@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "dev": "NODE_ENV=development nodemon index.js",
+    "dev": "NODE_ENV=development nodemon server.js",
     "test": "NODE_ENV=testing nodemon index.js",
     "prod": "NODE_ENV=production nodemon index.js"
   },
