@@ -1,7 +1,9 @@
+// TODO move api query into route
 // TODO cache and use next page token
 
 var GooglePlacesPromises = require('googleplaces-promises'),
     placesPromise = new GooglePlacesPromises(process.env.GOOGLE_API_KEY);
+
 var nodeGeocoder = require('node-geocoder'),
     nodeGeocoderOptions = {
       provider: 'google',
@@ -11,17 +13,17 @@ var nodeGeocoder = require('node-geocoder'),
     },
     geocoder = nodeGeocoder(nodeGeocoderOptions);
 
-var placesSearch = function makePlacesSearch(req, res, next){
-  geocoder.geocode(req.query.location)
-    .then(function(geoData){
-      console.log(geoData);
-      req.geoData = geoData;
-      next();
-    })
-    .catch(function(err){
-      console.log(err + '');
-    })
-};
+// var placesSearch = function makePlacesSearch(req, res, next){
+//   geocoder.geocode(req.query.location)
+//     .then(function(geoData){
+//       console.log(geoData);
+//       req.geoData = geoData;
+//       next();
+//     })
+//     .catch(function(err){
+//       console.log(err + '');
+//     })
+// };
 
 // var metersPerMile = function metersPerMile(miles){
 //   return miles * 1609.344;
@@ -71,6 +73,17 @@ var placesSearch = function makePlacesSearch(req, res, next){
 // }
 
 // Exports
-module.exports = {
-  search: placesSearch
+// module.exports = {
+//   search: placesSearch
+// }
+
+
+module.exports = function(app){
+
+  app.get('/api/places', function(req, res){
+    console.log('request received in places.');
+    // res.send(req.geoData);
+    res.end();
+  })
+
 }
