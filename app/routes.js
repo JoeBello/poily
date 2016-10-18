@@ -1,17 +1,17 @@
 // TODO move api query into route
 // TODO cache and use next page token
 
-var GooglePlacesPromises = require('googleplaces-promises'),
-    placesPromise = new GooglePlacesPromises(process.env.GOOGLE_API_KEY);
-
-var nodeGeocoder = require('node-geocoder'),
-    nodeGeocoderOptions = {
-      provider: 'google',
-      httpAdapter: 'https',
-      apiKey: process.env.GOOGLE_API_KEY,
-      formatter: null
-    },
-    geocoder = nodeGeocoder(nodeGeocoderOptions);
+// var GooglePlacesPromises = require('googleplaces-promises'),
+//     placesPromise = new GooglePlacesPromises(process.env.GOOGLE_API_KEY);
+//
+// var nodeGeocoder = require('node-geocoder'),
+//     nodeGeocoderOptions = {
+//       provider: 'google',
+//       httpAdapter: 'https',
+//       apiKey: process.env.GOOGLE_API_KEY,
+//       formatter: null
+//     },
+//     geocoder = nodeGeocoder(nodeGeocoderOptions);
 
 // var placesSearch = function makePlacesSearch(req, res, next){
 //   geocoder.geocode(req.query.location)
@@ -77,13 +77,14 @@ var nodeGeocoder = require('node-geocoder'),
 //   search: placesSearch
 // }
 
+var express = require('express');
+var router = express.Router();
+
+router.get('/api/places', function(req, res){
+  console.log('Request received in places.');
+  res.end();
+});
 
 module.exports = function(app){
-
-  app.get('/api/places', function(req, res){
-    console.log('request received in places.');
-    // res.send(req.geoData);
-    res.end();
-  })
-
+  app.use('/', router);
 }
