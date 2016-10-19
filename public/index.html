@@ -1,27 +1,58 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>Project1</title>
-    <link rel="stylesheet" type="text/css" href="stylesheets/style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1,
+      maximum-scale=1, user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content=" ">
+    <meta name="author" content="Joseph Bello">
+
+    <title>Adventuresaurus</title>
+    <link rel="stylesheet" href=" ">
   </head>
   <body>
-    <nav>
-      <ul>
-        <li>One</li>
-        <li>Two</li>
-        <li>Three</li>
-      </ul>
-    </nav>
-    <header>
-      <h1>Project1</h1>
-      <p>
-        Text
-      </p>
+    <!--Begin site header-->
+    <header role="banner">
+      <h1>Hello World!</h1>
+
     </header>
-    <main>
-      <!--TODO create templates for different views -->
+    <!--End site header-->
+
+    <!--Begin main content-->
+    <main role="main">
+      <div class="formContainer">
+        <form id="locationForm">
+          <label for="locationForm-location">Location</label>
+          <input id="locationForm-location" type="text" name="location">
+          <label for="locationForm-radius">Radius</label>
+          <input id="locationForm-radius" type=number name="radius" min="1">
+          <label for="locationForm-venue">Venue</label>
+          <input id="locationForm-venue" type="text" name="venue">
+          <input type="submit" value="Search">
+        </form>
+      </div>
+      <div class="content">
+        <script id="template" type="text/x-handlebars-template">
+          {{#places}}
+          <h2>{{name}}</h2>
+          {{/places}}
+        </script>
+      </div>
+      <input id="more" type="button" value="More Results">
     </main>
-    <script type="text/javascript" src="javascripts/bundle.js"></script>
+    <!--End main content-->
+
+    <!--Begin site footer-->
+    <footer role="contentinfo">
+
+    </footer>
+    <!--End site footer-->
+
+
+    <!-- <script src="js/bundle.js"></script> -->
+    <script src="js/JQuery2.1.4.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.5/handlebars.min.js"></script>
+    <script src="javascripts/index.js"></script>
   </body>
 </html>
