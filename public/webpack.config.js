@@ -3,9 +3,9 @@ var
   path = require('path');
 
 module.exports = {
-  entry: './js/main.js',
+  entry: './javascripts/index.js',
   output: {
-    path: __dirname + '/js',
+    path: __dirname + '/javascripts/',
     filename: 'bundle.js'
   },
   plugins: [
