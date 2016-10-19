@@ -30,8 +30,8 @@ app.use(function(req, res, next){
   next(err);
 })
 
-app.listen(config.port, function(){
-  console.log(config.message);
-})
+app.listen(config.port);
+
+console.log(config.message);
 
 module.exports = app;
