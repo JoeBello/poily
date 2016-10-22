@@ -7,3 +7,6 @@ npm-debug.log
 
 # Environment variables file
 .env
+
+# Mac OS X metadata files
+.DS_Store
