@@ -8,10 +8,16 @@ module.exports = {
     path: __dirname + '/javascripts/',
     filename: 'bundle.js'
   },
+  module: {
+    loaders: [
+      { test: /\.hbs$/, loader: "handlebars-loader" }
+    ]
+  },
   plugins: [
     new webpack.ProvidePlugin({
       $: 'jquery',
       jQuery: 'jquery'
     })
   ],
+
 }
