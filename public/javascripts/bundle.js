@@ -62,7 +62,7 @@
 	        dataType: 'json'
 	      })
 	      .done(function(response) {
-	        console.log(response);
+	        console.log('Response!' + response);
 	        var source = $('#template').html();
 	        var template = Handlebars.compile(source);
 	        $('.content').html(template({places: response}));
