@@ -21,19 +21,19 @@
 
     <!--Begin main content-->
     <main role="main">
-      <div class="formContainer">
-        <form id="locationForm">
-          <label for="locationForm-location">Location</label>
-          <input id="locationForm-location" type="text" name="location">
-          <label for="locationForm-radius">Radius</label>
-          <input id="locationForm-radius" type=number name="radius" min="1">
-          <label for="locationForm-venue">Venue</label>
-          <input id="locationForm-venue" type="text" name="venue">
-          <input type="submit" value="Search">
-        </form>
+      <div class="placesSearch-container">
+        <!-- <form id="locationForm"> -->
+          <label for="placesSearch-location">Location</label>
+          <input id="placesSearch-location" type="text" name="location">
+          <label for="placesSearch-radius">Radius</label>
+          <input id="placesSearch-radius" type=number name="radius" min="1">
+          <label for="placesSearch-venue">Venue</label>
+          <input id="placesSearch-venue" type="text" name="venue">
+          <input type="button" id="placesSearch-submit" value="Search">
+        <!-- </form> -->
       </div>
-      <div class="content">
-        <script id="template" type="text/x-handlebars-template">
+      <div class="placesResults-container">
+        <script id="placesResults-template" type="text/x-handlebars-template">
           {{#places}}
           <h2>{{name}}</h2>
           {{/places}}
