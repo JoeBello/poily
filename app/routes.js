@@ -1,7 +1,7 @@
 var express = require('express'),
     router = express.Router();
 
-var bodyParser = require('body-parser'),
+var bodyParser = require('body-parser');
 
 var GooglePlacesPromises = require('googleplaces-promises'),
     placesPromise = new GooglePlacesPromises(process.env.GOOGLE_API_KEY);

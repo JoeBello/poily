@@ -1,8 +1,6 @@
 $(function() {
-  window.alert('Index.js loaded!');
   var location, radius, type,
-      source = $('#placesResults-template').html(),
-      template = Handlebars.compile(source);
+      placesResultsTemplate = require('../views/placesResults.hbs');
 
   $('#placesSearch-submit').click(function(){
     location = $('#placesSearch-location').val();
@@ -16,13 +14,20 @@ $(function() {
 
       .done(function(response){
         console.log('Places search success!');
-        var results = response.results;
-        $('.placesResults-container').html(template({places: results}));
+
+        var placesResults = response.results;
+        $('main').append(placesResultsTemplate({
+            places: placesResults,
+            name: name
+          })
+        );
       })
 
       .fail(function(jqXHR, textStatus){
+        console.log('Places search failed!');
         console.log(textStatus);
       });
+
     });
 })
 
