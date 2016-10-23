@@ -33,7 +33,6 @@ $(function() {
         type: $('#placesSearch-venue').val()
         };
     var template = require('../views/placesResults.hbs');
-
     ajaxGet('http://localhost:3000/api/places', params, templateInjector, template);
   });
 
