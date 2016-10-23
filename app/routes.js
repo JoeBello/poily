@@ -17,6 +17,7 @@ var nodeGeocoder = require('node-geocoder'),
 
 router.use(function(req, res, next){
   console.log('Request received in places.');
+  console.log(req.query);
   next();
 });
 
@@ -26,8 +27,9 @@ router.get('/api/places', function(req, res){
       console.log('Got the geocode data');
       var params = {
           location: [geoResponse[0].latitude, geoResponse[0].longitude],
-          types: req.query.venue,
-          radius: req.query.radius * 1609.344
+          radius: req.query.radius * 1609.344,
+          type: req.query.type,
+          pagetoken: req.query.pageToken || null
           };
       return params;
     })
@@ -39,7 +41,6 @@ router.get('/api/places', function(req, res){
       res.send(placesResponse);
     })
     .catch(function(err){
-      // console.log(err + ' - places router');
       console.log(err.stack);
       res.status(500).send('Server error!');
     })
