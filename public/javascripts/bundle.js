@@ -45,64 +45,58 @@
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function($) {$(function() {
-	  var location, radius, type,
-	      placesResultsTemplate = __webpack_require__(22);
+	  var pageToken;
+
+	  var ajaxGet = function(url, params, callback, view){
+	      $.get(url, params)
+	        .done(function(response){
+	          console.log('GET success!');
+	          console.log(response);
+	          pageToken = response.next_page_token || null;
+	          callback(response, view);
+	        })
+	        .fail(function(jqXHR, textStatus){
+	          console.log('GET fail!');
+	          console.log(textStatus);
+	        });
+	  }
+
+	  var templateInjector = function(data, view){
+	    $('main').append(view({
+	      places: data.results,
+	    }));
+	  }
 
 	  $('#placesSearch-submit').click(function(){
-	    location = $('#placesSearch-location').val();
-	    radius = $('#placesSearch-radius').val();
-	    type = $('#placesSearch-venue').val();
+	    // TODO on initial search, clear main container, insert an empty container
+	    // and have templateInjector inject template into the new empty container
+	    // consider a more versatile structure for the results template
+	    $('.placesResults-Container').remove();
+	    // TODO all query params must be lower case and underscore delimited
+	    var params = {
+	        location: $('#placesSearch-location').val(),
+	        radius: $('#placesSearch-radius').val(),
+	        type: $('#placesSearch-venue').val()
+	        };
+	    var template = __webpack_require__(2);
 
-	    console.log('Places search submitted.');
+	    ajaxGet('http://localhost:3000/api/places', params, templateInjector, template);
+	  });
 
-	    $.get('http://localhost:3000/api/places',
-	          { location: location, radius: radius, venue: type })
-
-	      .done(function(response){
-	        console.log('Places search success!');
-
-	        var placesResults = response.results;
-	        $('main').append(placesResultsTemplate({
-	            places: placesResults,
-	            name: name
-	          })
-	        );
-	      })
-
-	      .fail(function(jqXHR, textStatus){
-	        console.log('Places search failed!');
-	        console.log(textStatus);
-	      });
-
-	    });
+	  $('#more').click(function(){
+	    // TODO on requesting more results, append template to already injected
+	    // template
+	    var template = __webpack_require__(2);
+	    // TODO all query params must be lower case and underscore delimited
+	    var params = {
+	        location: $('#placesSearch-location').val(),
+	        radius: $('#placesSearch-radius').val(),
+	        type: $('#placesSearch-venue').val(),
+	        pageToken: pageToken
+	    };
+	    ajaxGet('http://localhost:3000/api/places', params, templateInjector, template);
+	  });
 	})
-
-	  // $('#more').on('click', function(){
-	  //   // window.alert('HERRO');
-	  //   // turn ajax call into a function where 'data' is passed in.
-	  //   // when more results is clicked, the
-	  //   // data attribute is empty
-	  //   $.ajax({
-	  //     url: 'http://localhost:4000/hello',
-	  //     method: 'GET',
-	  //     // data: form.serialize(),
-	  //     // dataType: 'json'
-	  //   })
-	  //   .done(function(response) {
-	  //     console.log('more listings done!');
-	  //     // console.log(response);
-	  //     // var source = $('#template').html();
-	  //     // var template = Handlebars.compile(source);
-	  //     // $('.content').html(template({places: response}));
-	  //   })
-	  //   .fail(function(jqXHR, textStatus) {
-	  //     console.log(textStatus);
-	  //   })
-	  //   .always(function() {
-	  //     console.log("complete");
-	  //   });
-	  // });
-	// })
 
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
@@ -10333,7 +10327,29 @@
 
 
 /***/ },
-/* 2 */,
+/* 2 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var Handlebars = __webpack_require__(3);
+	function __default(obj) { return obj && (obj.__esModule ? obj["default"] : obj); }
+	module.exports = (Handlebars["default"] || Handlebars).template({"1":function(container,depth0,helpers,partials,data) {
+	    var helper, alias1=depth0 != null ? depth0 : {}, alias2=helpers.helperMissing, alias3="function", alias4=container.escapeExpression;
+
+	  return "    <h2>"
+	    + alias4(((helper = (helper = helpers.name || (depth0 != null ? depth0.name : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"name","hash":{},"data":data}) : helper)))
+	    + "</h2>\n    <p>\n      "
+	    + alias4(((helper = (helper = helpers.vicinity || (depth0 != null ? depth0.vicinity : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"vicinity","hash":{},"data":data}) : helper)))
+	    + "\n    </p>\n";
+	},"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
+	    var stack1, helper, options, buffer = 
+	  "<div class=\"placesResults-Container\">\n";
+	  stack1 = ((helper = (helper = helpers.places || (depth0 != null ? depth0.places : depth0)) != null ? helper : helpers.helperMissing),(options={"name":"places","hash":{},"fn":container.program(1, data, 0),"inverse":container.noop,"data":data}),(typeof helper === "function" ? helper.call(depth0 != null ? depth0 : {},options) : helper));
+	  if (!helpers.places) { stack1 = helpers.blockHelperMissing.call(depth0,stack1,options)}
+	  if (stack1 != null) { buffer += stack1; }
+	  return buffer + "</div>\n\n";
+	},"useData":true});
+
+/***/ },
 /* 3 */
 /***/ function(module, exports, __webpack_require__) {
 
@@ -11507,27 +11523,6 @@
 	//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi4uLy4uLy4uL2xpYi9oYW5kbGViYXJzL25vLWNvbmZsaWN0LmpzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiI7Ozs7O3FCQUNlLFVBQVMsVUFBVSxFQUFFOztBQUVsQyxNQUFJLElBQUksR0FBRyxPQUFPLE1BQU0sS0FBSyxXQUFXLEdBQUcsTUFBTSxHQUFHLE1BQU07TUFDdEQsV0FBVyxHQUFHLElBQUksQ0FBQyxVQUFVLENBQUM7O0FBRWxDLFlBQVUsQ0FBQyxVQUFVLEdBQUcsWUFBVztBQUNqQyxRQUFJLElBQUksQ0FBQyxVQUFVLEtBQUssVUFBVSxFQUFFO0FBQ2xDLFVBQUksQ0FBQyxVQUFVLEdBQUcsV0FBVyxDQUFDO0tBQy9CO0FBQ0QsV0FBTyxVQUFVLENBQUM7R0FDbkIsQ0FBQztDQUNIIiwiZmlsZSI6Im5vLWNvbmZsaWN0LmpzIiwic291cmNlc0NvbnRlbnQiOlsiLyogZ2xvYmFsIHdpbmRvdyAqL1xuZXhwb3J0IGRlZmF1bHQgZnVuY3Rpb24oSGFuZGxlYmFycykge1xuICAvKiBpc3RhbmJ1bCBpZ25vcmUgbmV4dCAqL1xuICBsZXQgcm9vdCA9IHR5cGVvZiBnbG9iYWwgIT09ICd1bmRlZmluZWQnID8gZ2xvYmFsIDogd2luZG93LFxuICAgICAgJEhhbmRsZWJhcnMgPSByb290LkhhbmRsZWJhcnM7XG4gIC8qIGlzdGFuYnVsIGlnbm9yZSBuZXh0ICovXG4gIEhhbmRsZWJhcnMubm9Db25mbGljdCA9IGZ1bmN0aW9uKCkge1xuICAgIGlmIChyb290LkhhbmRsZWJhcnMgPT09IEhhbmRsZWJhcnMpIHtcbiAgICAgIHJvb3QuSGFuZGxlYmFycyA9ICRIYW5kbGViYXJzO1xuICAgIH1cbiAgICByZXR1cm4gSGFuZGxlYmFycztcbiAgfTtcbn1cbiJdfQ==
 
 	/* WEBPACK VAR INJECTION */}.call(exports, (function() { return this; }())))
-
-/***/ },
-/* 22 */
-/***/ function(module, exports, __webpack_require__) {
-
-	var Handlebars = __webpack_require__(3);
-	function __default(obj) { return obj && (obj.__esModule ? obj["default"] : obj); }
-	module.exports = (Handlebars["default"] || Handlebars).template({"1":function(container,depth0,helpers,partials,data) {
-	    var helper;
-
-	  return "    <h2>"
-	    + container.escapeExpression(((helper = (helper = helpers.name || (depth0 != null ? depth0.name : depth0)) != null ? helper : helpers.helperMissing),(typeof helper === "function" ? helper.call(depth0 != null ? depth0 : {},{"name":"name","hash":{},"data":data}) : helper)))
-	    + "</h2>\n";
-	},"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
-	    var stack1, helper, options, buffer = 
-	  "<div class=\"placesResults-container\">\n";
-	  stack1 = ((helper = (helper = helpers.places || (depth0 != null ? depth0.places : depth0)) != null ? helper : helpers.helperMissing),(options={"name":"places","hash":{},"fn":container.program(1, data, 0),"inverse":container.noop,"data":data}),(typeof helper === "function" ? helper.call(depth0 != null ? depth0 : {},options) : helper));
-	  if (!helpers.places) { stack1 = helpers.blockHelperMissing.call(depth0,stack1,options)}
-	  if (stack1 != null) { buffer += stack1; }
-	  return buffer + "</div>\n";
-	},"useData":true});
 
 /***/ }
 /******/ ]);
