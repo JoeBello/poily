@@ -40,7 +40,6 @@ $(function() {
   $('#more').click(function(){
     // TODO on requesting more results, append template to already injected
     // template
-    var template = require('../views/placesResults.hbs');
     // TODO all query params must be lower case and underscore delimited
     var params = {
         location: $('#placesSearch-location').val(),
@@ -48,6 +47,7 @@ $(function() {
         type: $('#placesSearch-venue').val(),
         pageToken: pageToken
     };
+    var template = require('../views/placesResults.hbs');
     ajaxGet('http://localhost:3000/api/places', params, templateInjector, template);
   });
 })
