@@ -86,7 +86,6 @@
 	  $('#more').click(function(){
 	    // TODO on requesting more results, append template to already injected
 	    // template
-	    var template = __webpack_require__(2);
 	    // TODO all query params must be lower case and underscore delimited
 	    var params = {
 	        location: $('#placesSearch-location').val(),
@@ -94,6 +93,7 @@
 	        type: $('#placesSearch-venue').val(),
 	        pageToken: pageToken
 	    };
+	    var template = __webpack_require__(2);
 	    ajaxGet('http://localhost:3000/api/places', params, templateInjector, template);
 	  });
 	})
