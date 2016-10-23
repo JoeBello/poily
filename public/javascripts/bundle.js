@@ -79,7 +79,6 @@
 	        type: $('#placesSearch-venue').val()
 	        };
 	    var template = __webpack_require__(2);
-
 	    ajaxGet('http://localhost:3000/api/places', params, templateInjector, template);
 	  });
 
