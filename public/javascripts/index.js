@@ -13,7 +13,7 @@ $(function() {
         console.log('GET fail!');
         console.log(textStatus);
       });
-  };
+  }
 
   var templateInjector = function(data, view){
     $('main').append(view({
@@ -28,14 +28,6 @@ $(function() {
     $('.placesResults-Container').remove();
     // TODO all query params must be lower case and underscore delimited
     var params = {
-<<<<<<< HEAD
-        location: $('#placesSearch-location').val(),
-        radius: $('#placesSearch-radius').val(),
-        type: $('#placesSearch-venue').val()
-        };
-    var template = require('../views/placesResults.hbs');
-    ajaxGet('http://localhost:3000/api/places', params, templateInjector, template);
-=======
       url: 'http://localhost:3000/api/places',
       searchCriteria: {
           location: $('#placesSearch-location').val(),
@@ -46,7 +38,6 @@ $(function() {
       callback: templateInjector
     };
     ajaxGet(params);
->>>>>>> develop
   });
 
   $('#more').click(function(){
@@ -64,11 +55,6 @@ $(function() {
       view: require('../views/placesResults.hbs'),
       callback: templateInjector
     };
-<<<<<<< HEAD
-    var template = require('../views/placesResults.hbs');
-    ajaxGet('http://localhost:3000/api/places', params, templateInjector, template);
-=======
     ajaxGet(params);
->>>>>>> develop
   });
 })

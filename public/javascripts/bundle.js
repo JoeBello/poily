@@ -74,14 +74,6 @@
 	    $('.placesResults-Container').remove();
 	    // TODO all query params must be lower case and underscore delimited
 	    var params = {
-<<<<<<< HEAD
-	        location: $('#placesSearch-location').val(),
-	        radius: $('#placesSearch-radius').val(),
-	        type: $('#placesSearch-venue').val()
-	        };
-	    var template = __webpack_require__(2);
-	    ajaxGet('http://localhost:3000/api/places', params, templateInjector, template);
-=======
 	      url: 'http://localhost:3000/api/places',
 	      searchCriteria: {
 	          location: $('#placesSearch-location').val(),
@@ -92,7 +84,6 @@
 	      callback: templateInjector
 	    };
 	    ajaxGet(params);
->>>>>>> develop
 	  });
 
 	  $('#more').click(function(){
@@ -110,12 +101,7 @@
 	      view: __webpack_require__(2),
 	      callback: templateInjector
 	    };
-<<<<<<< HEAD
-	    var template = __webpack_require__(2);
-	    ajaxGet('http://localhost:3000/api/places', params, templateInjector, template);
-=======
 	    ajaxGet(params);
->>>>>>> develop
 	  });
 	})
 
@@ -10362,7 +10348,7 @@
 	    + alias4(((helper = (helper = helpers.vicinity || (depth0 != null ? depth0.vicinity : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"vicinity","hash":{},"data":data}) : helper)))
 	    + "\n    </p>\n";
 	},"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
-	    var stack1, helper, options, buffer = 
+	    var stack1, helper, options, buffer =
 	  "<div class=\"placesResults-Container\">\n";
 	  stack1 = ((helper = (helper = helpers.places || (depth0 != null ? depth0.places : depth0)) != null ? helper : helpers.helperMissing),(options={"name":"places","hash":{},"fn":container.program(1, data, 0),"inverse":container.noop,"data":data}),(typeof helper === "function" ? helper.call(depth0 != null ? depth0 : {},options) : helper));
 	  if (!helpers.places) { stack1 = helpers.blockHelperMissing.call(depth0,stack1,options)}
