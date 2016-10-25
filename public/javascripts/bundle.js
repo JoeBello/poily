@@ -47,25 +47,25 @@
 	/* WEBPACK VAR INJECTION */(function($) {$(function() {
 	  var pageToken;
 
-	  var ajaxGet = function(url, params, callback, view){
-	      $.get(url, params)
-	        .done(function(response){
-	          console.log('GET success!');
-	          console.log(response);
-	          pageToken = response.next_page_token || null;
-	          callback(response, view);
-	        })
-	        .fail(function(jqXHR, textStatus){
-	          console.log('GET fail!');
-	          console.log(textStatus);
-	        });
-	  }
+	  var ajaxGet = function(params){
+	    $.get(params.url, params.searchCriteria)
+	      .done(function(response){
+	        console.log('GET success!');
+	        console.log(response);
+	        pageToken = response.next_page_token || null;
+	        params.callback(response, params.view);
+	      })
+	      .fail(function(jqXHR, textStatus){
+	        console.log('GET fail!');
+	        console.log(textStatus);
+	      });
+	  };
 
 	  var templateInjector = function(data, view){
 	    $('main').append(view({
 	      places: data.results,
 	    }));
-	  }
+	  };
 
 	  $('#placesSearch-submit').click(function(){
 	    // TODO on initial search, clear main container, insert an empty container
@@ -74,27 +74,34 @@
 	    $('.placesResults-Container').remove();
 	    // TODO all query params must be lower case and underscore delimited
 	    var params = {
-	        location: $('#placesSearch-location').val(),
-	        radius: $('#placesSearch-radius').val(),
-	        type: $('#placesSearch-venue').val()
-	        };
-	    var template = __webpack_require__(2);
-
-	    ajaxGet('http://localhost:3000/api/places', params, templateInjector, template);
+	      url: 'http://localhost:3000/api/places',
+	      searchCriteria: {
+	          location: $('#placesSearch-location').val(),
+	          radius: $('#placesSearch-radius').val(),
+	          type: $('#placesSearch-venue').val()
+	        },
+	      view: __webpack_require__(2),
+	      callback: templateInjector
+	    };
+	    ajaxGet(params);
 	  });
 
 	  $('#more').click(function(){
 	    // TODO on requesting more results, append template to already injected
 	    // template
-	    var template = __webpack_require__(2);
 	    // TODO all query params must be lower case and underscore delimited
 	    var params = {
-	        location: $('#placesSearch-location').val(),
-	        radius: $('#placesSearch-radius').val(),
-	        type: $('#placesSearch-venue').val(),
-	        pageToken: pageToken
+	      url: 'http://localhost:3000/api/places',
+	      searchCriteria: {
+	          location: $('#placesSearch-location').val(),
+	          radius: $('#placesSearch-radius').val(),
+	          type: $('#placesSearch-venue').val(),
+	          pageToken: pageToken
+	        },
+	      view: __webpack_require__(2),
+	      callback: templateInjector
 	    };
-	    ajaxGet('http://localhost:3000/api/places', params, templateInjector, template);
+	    ajaxGet(params);
 	  });
 	})
 
@@ -10346,7 +10353,7 @@
 	  stack1 = ((helper = (helper = helpers.places || (depth0 != null ? depth0.places : depth0)) != null ? helper : helpers.helperMissing),(options={"name":"places","hash":{},"fn":container.program(1, data, 0),"inverse":container.noop,"data":data}),(typeof helper === "function" ? helper.call(depth0 != null ? depth0 : {},options) : helper));
 	  if (!helpers.places) { stack1 = helpers.blockHelperMissing.call(depth0,stack1,options)}
 	  if (stack1 != null) { buffer += stack1; }
-	  return buffer + "</div>\n\n";
+	  return buffer + "    <input type=\"button\" id=\"more\" value=\"More Results\">\n</div>\n";
 	},"useData":true});
 
 /***/ },
