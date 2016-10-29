@@ -1,5 +1,4 @@
 $(function(){
-
   // receive API response data from searchController
   var render = function(controllerData){
     // acquire template for searchView
