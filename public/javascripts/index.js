@@ -11,12 +11,13 @@ $(function(){
     // cache form properties
     var form = $(this),
     // TODO all query params must be lower case and underscore delimited
+    // TODO input validation
      formParams = {
       url: form.attr('action'),
       queryParams: form.serialize()
     };
 
-    // call SearchController searchStart with form properties
+    // call SearchController start with form properties
     searchController.start(formParams);
   });
 }());
