@@ -22,7 +22,7 @@ app.use(sassMiddleware({
 
 app.use(express.static(path.join(__dirname + '/public')));
 
-// app.use('/api', api);
+
 require('./app/routes')(app);
 
 app.use(function(req, res, next){
