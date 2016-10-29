@@ -22,13 +22,15 @@ router.use(function(req, res, next){
 });
 
 router.get('/api/places', function(req, res){
+  console.log('get recieved');
+  console.log(req.query);
   geocoder.geocode(req.query.location)
     .then(function parseGeocodeResponse(geoResponse){
       console.log('Got the geocode data');
       var params = {
           location: [geoResponse[0].latitude, geoResponse[0].longitude],
           radius: req.query.radius * 1609.344,
-          type: req.query.type,
+          type: req.query.venue,
           pagetoken: req.query.pageToken || null
           };
       return params;
@@ -45,6 +47,10 @@ router.get('/api/places', function(req, res){
       res.status(500).send('Server error!');
     })
 });
+
+router.get('*', function(req, res){
+  res.sendfile('./public/index.html');
+})
 
 module.exports = function(app){
   app.use('/', router);
