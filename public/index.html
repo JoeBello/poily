@@ -15,15 +15,22 @@
       <h1>Hello World!</h1>
     </header>
     <main role="main">
-      <div class="placesSearch-container">
+      <form id="placesSearch" method="get" action='http://localhost:3000/api/places'>
         <label for="placesSearch-location">Location</label>
-        <input id="placesSearch-location" type="text" name="location">
-        <label for="placesSearch-radius">Radius</label>
-        <input id="placesSearch-radius" type=number name="radius" min="1">
+        <input id="placesSearch-location" type="text" name="location"></input>
+        <label for="placesSearch-radius" type="text">Radius</label>
+        <input id="placesSearch-radius" type="text" name="radius">
         <label for="placesSearch-venue">Venue</label>
-        <input id="placesSearch-venue" type="text" name="venue">
-        <input type="button" id="placesSearch-submit" value="Search">
-      </div>
+        <input id="placesSearch-venue" type="text" name="venue"></input>
+        <input id="category" name="category_filter" type="hidden"></input>
+        <input type="submit" value="Go"></input>
+      </form>
+      <section id="placesResults" class="placesResults-container">
+        <a id="placesResultsMore" class="placesResults-More"
+          href="http://localhost:3000/api/places">
+          More Results
+        </a>
+      </section>
     </main>
     <footer role="contentinfo">
     </footer>
