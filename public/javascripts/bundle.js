@@ -79,11 +79,9 @@
 	      queryParams: form.serialize() + "&pagetoken=" + localStorage.pagetoken,
 	      newSearch: false
 	    };
-	    console.log('queryparams');
-	    console.log(formProps.queryParams);
 
 	    // call SearchController start() with form properties
-	    searchController.start(formParams);
+	    searchController.start(formProps);
 	  })
 	}());
 
@@ -10322,7 +10320,6 @@
 	/* WEBPACK VAR INJECTION */(function($) {$(function(){
 	  // acquire searchView view
 	  var searchView = __webpack_require__(3);
-	  // receive event properties from main and query RESTful API
 
 	  var clear = function(){
 	    // remove link for more results
@@ -10336,10 +10333,11 @@
 
 	  };
 
+	// receive form properties from index.js and query API
 	  var start = function(params){
 
 	    if (params.newSearch) {
-	      // clear everything from previous search
+	      // if this is a new search, clear everything from previous search
 	      clear()
 	    }
 
@@ -10386,7 +10384,6 @@
 	    // if a page token was saved to local storage, display a link to get
 	    // more results from the last search
 	    if (localStorage.pagetoken !== 'null'){
-	      // alert(moreLinkTemplate);
 	        $('#moreResults').append(moreLinkTemplate);
 	    }
 	  }
