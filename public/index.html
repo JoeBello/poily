@@ -21,15 +21,12 @@
         <label for="placesSearch-radius" type="text">Radius</label>
         <input id="placesSearch-radius" type="text" name="radius">
         <label for="placesSearch-venue">Venue</label>
-        <input id="placesSearch-venue" type="text" name="venue"></input>
-        <input id="category" name="category_filter" type="hidden"></input>
+        <input id="placesSearch-venue" type="text" name="type"></input>
+        <!-- <input id="placeSearch-category" name="category_filter" type="hidden"></input> -->
         <input type="submit" value="Go"></input>
       </form>
       <section id="placesResults" class="placesResults-container">
-        <a id="placesResultsMore" class="placesResults-More"
-          href="http://localhost:3000/api/places">
-          More Results
-        </a>
+        <div id="moreResults" class="moreResults-container"></div>
       </section>
     </main>
     <footer role="contentinfo">
