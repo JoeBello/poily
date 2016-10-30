@@ -1,22 +1,23 @@
 $(function(){
   // acquire the template for searchView
-  var template = require('../../templates/placesResults-place.hbs');
+  var resultTemplate = require('../../templates/placesResults-place.hbs');
+  var moreLinkTemplate = require('../../templates/moreResults.hbs');
 
   // receive API response data from searchController
   var render = function(controllerData){
+
+    // insert all results before the "more results" div
+    $(resultTemplate({ places: controllerData })).insertBefore('#moreResults');
+
     // if a page token was saved to local storage, display a link to get
     // more results from the last search
     if (localStorage.pagetoken !== 'null'){
-      $('.placesResults-More').css('display', 'block');
+        $('#moreResults').append(moreLinkTemplate);
     }
-
-    // insert all results before the "'"more results" link
-    $('#placesResultsMore').before(template({
-      places: controllerData
-    }));
   }
 
   module.exports = {
     render: render
   }
+
 }())
