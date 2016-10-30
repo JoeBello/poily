@@ -2,16 +2,23 @@ $(function(){
   // acquire searchView view
   var searchView = require('../views/searchView');
 
-  var clear = function(){
-    // remove link for more results
-    $('#getMoreResults').remove();
+  var clear = function(toClear){
+    if (toClear === 'all') {
+      // remove old search results
+      $('.placesResults-place').remove();
 
-    // remove old search results
-    $('.placesResults-place').remove();
+      // remove old link for more results
+      $('#getMoreResults').remove();
 
-    // clear previously cached page token
-    localStorage.pagetoken = null;
+      // clear previously cached page token
+      localStorage.pagetoken = null;
+    } else {
+      // remove link for more results
+      $('#getMoreResults').remove();
 
+      // clear previously cached page token
+      localStorage.pagetoken = null;
+    }
   };
 
 // receive form properties from index.js and query API
@@ -19,6 +26,10 @@ $(function(){
 
     if (params.newSearch) {
       // if this is a new search, clear everything from previous search
+      clear('all')
+    } else {
+      // if this is not a new search, remove the original link for more results
+      // and clear the previously cached page token
       clear()
     }
 
