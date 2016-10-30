@@ -33,10 +33,8 @@ $(function(){
       queryParams: form.serialize() + "&pagetoken=" + localStorage.pagetoken,
       newSearch: false
     };
-    console.log('queryparams');
-    console.log(formProps.queryParams);
 
     // call SearchController start() with form properties
-    searchController.start(formParams);
+    searchController.start(formProps);
   })
 }());
