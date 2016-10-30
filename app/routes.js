@@ -29,8 +29,8 @@ router.get('/api/places', function(req, res){
       var params = {
           location: [geoResponse[0].latitude, geoResponse[0].longitude],
           radius: req.query.radius * 1609.344,
-          type: req.query.venue,
-          pagetoken: req.query.pageToken || null
+          type: req.query.type,
+          pagetoken: req.query.pagetoken || null
           };
       return params;
     })
