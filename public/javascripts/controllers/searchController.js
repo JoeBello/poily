@@ -1,7 +1,6 @@
 $(function(){
   // acquire searchView view
   var searchView = require('../views/searchView');
-  // receive event properties from main and query RESTful API
 
   var clear = function(){
     // remove link for more results
@@ -15,10 +14,11 @@ $(function(){
 
   };
 
+// receive form properties from index.js and query API
   var start = function(params){
 
     if (params.newSearch) {
-      // clear everything from previous search
+      // if this is a new search, clear everything from previous search
       clear()
     }
 
