@@ -48,24 +48,43 @@
 	  // acquire SearchController
 	  var searchController = __webpack_require__(2);
 	  $('#placesSearch').submit(function(event) {
+
 	    // prevent default behavior
 	    event.preventDefault();
-
-	    // remove old search results
-	    $('.placesResults-Result').remove();
 
 	    // cache form properties
 	    var form = $(this),
 	    // TODO all query params must be lower case and underscore delimited
 	    // TODO input validation
-	     formParams = {
+	     formProps = {
 	      url: form.attr('action'),
-	      queryParams: form.serialize()
+	      queryParams: form.serialize(),
+	      newSearch: true
 	    };
 
-	    // call SearchController start with form properties
-	    searchController.start(formParams);
+	    // call SearchController start() with form properties
+	    searchController.start(formProps);
 	  });
+
+	  $('#placesMoreResults').on('click', function(event) {
+	    // prevent default behavior
+	    event.preventDefault();
+
+	    // cache form properties
+	    var form = $('#placesSearch'),
+	    // TODO all query params must be lower case and underscore delimited
+	    // TODO input validation
+	     formProps = {
+	      url: form.attr('action'),
+	      queryParams: form.serialize() + "&pagetoken=" + localStorage.pagetoken,
+	      newSearch: false
+	    };
+	    console.log('queryparams');
+	    console.log(formProps.queryParams);
+
+	    // call SearchController start() with form properties
+	    searchController.start(formParams);
+	  })
 	}());
 
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
@@ -10304,13 +10323,30 @@
 	  // acquire searchView view
 	  var searchView = __webpack_require__(3);
 	  // receive event properties from main and query RESTful API
+
+	  var clear = function(){
+	    // remove link for more results
+	    $('#getMoreResults').remove();
+
+	    // remove old search results
+	    $('.placesResults-place').remove();
+
+	    // clear previously cached page token
+	    localStorage.pagetoken = null;
+
+	  };
+
 	  var start = function(params){
+
+	    if (params.newSearch) {
+	      // clear everything from previous search
+	      clear()
+	    }
+
 	    $.get(params.url, params.queryParams)
 	      .done(function(response){
-	        // if respones yields a pagetoken cache it in browser memory, otherwise
-	        // set the pagetoken property to null
-	        localStorage.pagetoken = null;
 
+	        // if respones yields a pagetoken cache it in browser memory
 	        if (response.next_page_token) {
 	          localStorage.pagetoken = response.next_page_token;
 	        }
@@ -10338,36 +10374,36 @@
 
 	/* WEBPACK VAR INJECTION */(function($) {$(function(){
 	  // acquire the template for searchView
-	  var template = __webpack_require__(6);
+	  var resultTemplate = __webpack_require__(4);
+	  var moreLinkTemplate = __webpack_require__(24);
 
 	  // receive API response data from searchController
 	  var render = function(controllerData){
+
+	    // insert all results before the "more results" div
+	    $(resultTemplate({ places: controllerData })).insertBefore('#moreResults');
+
 	    // if a page token was saved to local storage, display a link to get
 	    // more results from the last search
 	    if (localStorage.pagetoken !== 'null'){
-	      $('.placesResults-More').css('display', 'block');
+	      // alert(moreLinkTemplate);
+	        $('#moreResults').append(moreLinkTemplate);
 	    }
-
-	    // insert all results before the "'"more results" link
-	    $('#placesResultsMore').before(template({
-	      places: controllerData
-	    }));
 	  }
 
 	  module.exports = {
 	    render: render
 	  }
+
 	}())
 
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ },
-/* 4 */,
-/* 5 */,
-/* 6 */
+/* 4 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var Handlebars = __webpack_require__(7);
+	var Handlebars = __webpack_require__(5);
 	function __default(obj) { return obj && (obj.__esModule ? obj["default"] : obj); }
 	module.exports = (Handlebars["default"] || Handlebars).template({"1":function(container,depth0,helpers,partials,data) {
 	    var helper, alias1=depth0 != null ? depth0 : {}, alias2=helpers.helperMissing, alias3="function", alias4=container.escapeExpression;
@@ -10387,16 +10423,16 @@
 	},"useData":true});
 
 /***/ },
-/* 7 */
+/* 5 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// Create a simple path alias to allow browserify to resolve
 	// the runtime on a supported path.
-	module.exports = __webpack_require__(8)['default'];
+	module.exports = __webpack_require__(6)['default'];
 
 
 /***/ },
-/* 8 */
+/* 6 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -10410,30 +10446,30 @@
 
 	function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj['default'] = obj; return newObj; } }
 
-	var _handlebarsBase = __webpack_require__(9);
+	var _handlebarsBase = __webpack_require__(7);
 
 	var base = _interopRequireWildcard(_handlebarsBase);
 
 	// Each of these augment the Handlebars object. No need to setup here.
 	// (This is done to easily share code between commonjs and browse envs)
 
-	var _handlebarsSafeString = __webpack_require__(23);
+	var _handlebarsSafeString = __webpack_require__(21);
 
 	var _handlebarsSafeString2 = _interopRequireDefault(_handlebarsSafeString);
 
-	var _handlebarsException = __webpack_require__(11);
+	var _handlebarsException = __webpack_require__(9);
 
 	var _handlebarsException2 = _interopRequireDefault(_handlebarsException);
 
-	var _handlebarsUtils = __webpack_require__(10);
+	var _handlebarsUtils = __webpack_require__(8);
 
 	var Utils = _interopRequireWildcard(_handlebarsUtils);
 
-	var _handlebarsRuntime = __webpack_require__(24);
+	var _handlebarsRuntime = __webpack_require__(22);
 
 	var runtime = _interopRequireWildcard(_handlebarsRuntime);
 
-	var _handlebarsNoConflict = __webpack_require__(25);
+	var _handlebarsNoConflict = __webpack_require__(23);
 
 	var _handlebarsNoConflict2 = _interopRequireDefault(_handlebarsNoConflict);
 
@@ -10468,7 +10504,7 @@
 
 
 /***/ },
-/* 9 */
+/* 7 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -10479,17 +10515,17 @@
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 
-	var _utils = __webpack_require__(10);
+	var _utils = __webpack_require__(8);
 
-	var _exception = __webpack_require__(11);
+	var _exception = __webpack_require__(9);
 
 	var _exception2 = _interopRequireDefault(_exception);
 
-	var _helpers = __webpack_require__(12);
+	var _helpers = __webpack_require__(10);
 
-	var _decorators = __webpack_require__(20);
+	var _decorators = __webpack_require__(18);
 
-	var _logger = __webpack_require__(22);
+	var _logger = __webpack_require__(20);
 
 	var _logger2 = _interopRequireDefault(_logger);
 
@@ -10578,7 +10614,7 @@
 
 
 /***/ },
-/* 10 */
+/* 8 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -10708,7 +10744,7 @@
 
 
 /***/ },
-/* 11 */
+/* 9 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -10754,7 +10790,7 @@
 
 
 /***/ },
-/* 12 */
+/* 10 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -10765,31 +10801,31 @@
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 
-	var _helpersBlockHelperMissing = __webpack_require__(13);
+	var _helpersBlockHelperMissing = __webpack_require__(11);
 
 	var _helpersBlockHelperMissing2 = _interopRequireDefault(_helpersBlockHelperMissing);
 
-	var _helpersEach = __webpack_require__(14);
+	var _helpersEach = __webpack_require__(12);
 
 	var _helpersEach2 = _interopRequireDefault(_helpersEach);
 
-	var _helpersHelperMissing = __webpack_require__(15);
+	var _helpersHelperMissing = __webpack_require__(13);
 
 	var _helpersHelperMissing2 = _interopRequireDefault(_helpersHelperMissing);
 
-	var _helpersIf = __webpack_require__(16);
+	var _helpersIf = __webpack_require__(14);
 
 	var _helpersIf2 = _interopRequireDefault(_helpersIf);
 
-	var _helpersLog = __webpack_require__(17);
+	var _helpersLog = __webpack_require__(15);
 
 	var _helpersLog2 = _interopRequireDefault(_helpersLog);
 
-	var _helpersLookup = __webpack_require__(18);
+	var _helpersLookup = __webpack_require__(16);
 
 	var _helpersLookup2 = _interopRequireDefault(_helpersLookup);
 
-	var _helpersWith = __webpack_require__(19);
+	var _helpersWith = __webpack_require__(17);
 
 	var _helpersWith2 = _interopRequireDefault(_helpersWith);
 
@@ -10806,14 +10842,14 @@
 
 
 /***/ },
-/* 13 */
+/* 11 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
 	exports.__esModule = true;
 
-	var _utils = __webpack_require__(10);
+	var _utils = __webpack_require__(8);
 
 	exports['default'] = function (instance) {
 	  instance.registerHelper('blockHelperMissing', function (context, options) {
@@ -10851,7 +10887,7 @@
 
 
 /***/ },
-/* 14 */
+/* 12 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -10861,9 +10897,9 @@
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 
-	var _utils = __webpack_require__(10);
+	var _utils = __webpack_require__(8);
 
-	var _exception = __webpack_require__(11);
+	var _exception = __webpack_require__(9);
 
 	var _exception2 = _interopRequireDefault(_exception);
 
@@ -10951,7 +10987,7 @@
 
 
 /***/ },
-/* 15 */
+/* 13 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -10961,7 +10997,7 @@
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 
-	var _exception = __webpack_require__(11);
+	var _exception = __webpack_require__(9);
 
 	var _exception2 = _interopRequireDefault(_exception);
 
@@ -10982,14 +11018,14 @@
 
 
 /***/ },
-/* 16 */
+/* 14 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
 	exports.__esModule = true;
 
-	var _utils = __webpack_require__(10);
+	var _utils = __webpack_require__(8);
 
 	exports['default'] = function (instance) {
 	  instance.registerHelper('if', function (conditional, options) {
@@ -11017,7 +11053,7 @@
 
 
 /***/ },
-/* 17 */
+/* 15 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -11049,7 +11085,7 @@
 
 
 /***/ },
-/* 18 */
+/* 16 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -11067,14 +11103,14 @@
 
 
 /***/ },
-/* 19 */
+/* 17 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
 	exports.__esModule = true;
 
-	var _utils = __webpack_require__(10);
+	var _utils = __webpack_require__(8);
 
 	exports['default'] = function (instance) {
 	  instance.registerHelper('with', function (context, options) {
@@ -11106,7 +11142,7 @@
 
 
 /***/ },
-/* 20 */
+/* 18 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -11117,7 +11153,7 @@
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 
-	var _decoratorsInline = __webpack_require__(21);
+	var _decoratorsInline = __webpack_require__(19);
 
 	var _decoratorsInline2 = _interopRequireDefault(_decoratorsInline);
 
@@ -11128,14 +11164,14 @@
 
 
 /***/ },
-/* 21 */
+/* 19 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
 	exports.__esModule = true;
 
-	var _utils = __webpack_require__(10);
+	var _utils = __webpack_require__(8);
 
 	exports['default'] = function (instance) {
 	  instance.registerDecorator('inline', function (fn, props, container, options) {
@@ -11163,14 +11199,14 @@
 
 
 /***/ },
-/* 22 */
+/* 20 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
 	exports.__esModule = true;
 
-	var _utils = __webpack_require__(10);
+	var _utils = __webpack_require__(8);
 
 	var logger = {
 	  methodMap: ['debug', 'info', 'warn', 'error'],
@@ -11216,7 +11252,7 @@
 
 
 /***/ },
-/* 23 */
+/* 21 */
 /***/ function(module, exports) {
 
 	// Build out our basic SafeString type
@@ -11237,7 +11273,7 @@
 
 
 /***/ },
-/* 24 */
+/* 22 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -11257,15 +11293,15 @@
 
 	function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj['default'] = obj; return newObj; } }
 
-	var _utils = __webpack_require__(10);
+	var _utils = __webpack_require__(8);
 
 	var Utils = _interopRequireWildcard(_utils);
 
-	var _exception = __webpack_require__(11);
+	var _exception = __webpack_require__(9);
 
 	var _exception2 = _interopRequireDefault(_exception);
 
-	var _base = __webpack_require__(9);
+	var _base = __webpack_require__(7);
 
 	function checkRevision(compilerInfo) {
 	  var compilerRevision = compilerInfo && compilerInfo[0] || 1,
@@ -11535,7 +11571,7 @@
 
 
 /***/ },
-/* 25 */
+/* 23 */
 /***/ function(module, exports) {
 
 	/* WEBPACK VAR INJECTION */(function(global) {/* global window */
@@ -11560,6 +11596,16 @@
 	//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi4uLy4uLy4uL2xpYi9oYW5kbGViYXJzL25vLWNvbmZsaWN0LmpzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiI7Ozs7O3FCQUNlLFVBQVMsVUFBVSxFQUFFOztBQUVsQyxNQUFJLElBQUksR0FBRyxPQUFPLE1BQU0sS0FBSyxXQUFXLEdBQUcsTUFBTSxHQUFHLE1BQU07TUFDdEQsV0FBVyxHQUFHLElBQUksQ0FBQyxVQUFVLENBQUM7O0FBRWxDLFlBQVUsQ0FBQyxVQUFVLEdBQUcsWUFBVztBQUNqQyxRQUFJLElBQUksQ0FBQyxVQUFVLEtBQUssVUFBVSxFQUFFO0FBQ2xDLFVBQUksQ0FBQyxVQUFVLEdBQUcsV0FBVyxDQUFDO0tBQy9CO0FBQ0QsV0FBTyxVQUFVLENBQUM7R0FDbkIsQ0FBQztDQUNIIiwiZmlsZSI6Im5vLWNvbmZsaWN0LmpzIiwic291cmNlc0NvbnRlbnQiOlsiLyogZ2xvYmFsIHdpbmRvdyAqL1xuZXhwb3J0IGRlZmF1bHQgZnVuY3Rpb24oSGFuZGxlYmFycykge1xuICAvKiBpc3RhbmJ1bCBpZ25vcmUgbmV4dCAqL1xuICBsZXQgcm9vdCA9IHR5cGVvZiBnbG9iYWwgIT09ICd1bmRlZmluZWQnID8gZ2xvYmFsIDogd2luZG93LFxuICAgICAgJEhhbmRsZWJhcnMgPSByb290LkhhbmRsZWJhcnM7XG4gIC8qIGlzdGFuYnVsIGlnbm9yZSBuZXh0ICovXG4gIEhhbmRsZWJhcnMubm9Db25mbGljdCA9IGZ1bmN0aW9uKCkge1xuICAgIGlmIChyb290LkhhbmRsZWJhcnMgPT09IEhhbmRsZWJhcnMpIHtcbiAgICAgIHJvb3QuSGFuZGxlYmFycyA9ICRIYW5kbGViYXJzO1xuICAgIH1cbiAgICByZXR1cm4gSGFuZGxlYmFycztcbiAgfTtcbn1cbiJdfQ==
 
 	/* WEBPACK VAR INJECTION */}.call(exports, (function() { return this; }())))
+
+/***/ },
+/* 24 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var Handlebars = __webpack_require__(5);
+	function __default(obj) { return obj && (obj.__esModule ? obj["default"] : obj); }
+	module.exports = (Handlebars["default"] || Handlebars).template({"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
+	    return "<a id=\"getMoreResults\"\n  class=\"moreResults-link\"\n  href=\"http://localhost:3000/api/places\">\n  More Results\n</a>\n";
+	},"useData":true});
 
 /***/ }
 /******/ ]);
