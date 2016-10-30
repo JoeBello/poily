@@ -52,21 +52,33 @@
 	    // prevent default behavior
 	    event.preventDefault();
 
+	    // TODO input validation
+
+	    // cache value for place search type and replace white space with
+	    // underscore
+	    var placeType = $('#placesSearch-type').val(),
+	      placeTypeUnderscored = placeType.replace(/ /g, '_');
+
+	    // set value of place search type property to underscore delimited value
+	    $('#placesSearch-type').val(placeTypeUnderscored);
+
 	    // cache form properties
 	    var form = $(this),
-	    // TODO all query params must be lower case and underscore delimited
-	    // TODO input validation
-	     formProps = {
-	      url: form.attr('action'),
-	      queryParams: form.serialize(),
-	      newSearch: true
-	    };
+	      formProps = {
+	        url: form.attr('action'),
+	        queryParams: form.serialize().toLowerCase(),
+	        newSearch: true
+	      };
+
+	    console.log(formProps.queryParams);
 
 	    // call SearchController start() with form properties
 	    searchController.start(formProps);
 	  });
 
-	  $('#placesMoreResults').on('click', function(event) {
+	  // add event listener to body, to be binded to #getMoreResults link
+	  // if/when added
+	  $('body').on('click', '#getMoreResults', function(event) {
 	    // prevent default behavior
 	    event.preventDefault();
 
@@ -10321,16 +10333,23 @@
 	  // acquire searchView view
 	  var searchView = __webpack_require__(3);
 
-	  var clear = function(){
-	    // remove link for more results
-	    $('#getMoreResults').remove();
+	  var clear = function(toClear){
+	    if (toClear === 'all') {
+	      // remove old search results
+	      $('.placesResults-place').remove();
 
-	    // remove old search results
-	    $('.placesResults-place').remove();
+	      // remove old link for more results
+	      $('#getMoreResults').remove();
 
-	    // clear previously cached page token
-	    localStorage.pagetoken = null;
+	      // clear previously cached page token
+	      localStorage.pagetoken = null;
+	    } else {
+	      // remove link for more results
+	      $('#getMoreResults').remove();
 
+	      // clear previously cached page token
+	      localStorage.pagetoken = null;
+	    }
 	  };
 
 	// receive form properties from index.js and query API
@@ -10338,6 +10357,10 @@
 
 	    if (params.newSearch) {
 	      // if this is a new search, clear everything from previous search
+	      clear('all')
+	    } else {
+	      // if this is not a new search, remove the original link for more results
+	      // and clear the previously cached page token
 	      clear()
 	    }
 
