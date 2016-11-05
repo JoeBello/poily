@@ -1,52 +1,70 @@
 $(function(){
-  // acquire SearchController
-  var searchController = require('./controllers/searchController');
-  $('#placesSearch').submit(function(event) {
+  var router = function(container, appRoutes) {
+    var storage = localStorage,
+      container = container,
+      routes = appRoutes || {};
+    routes.pageNotFound = require('../templates/404.hbs');
 
-    // prevent default behavior
-    event.preventDefault();
-
-    // TODO input validation
-
-    // cache value for place search type and replace white space with
-    // underscore
-    var placeType = $('#placesSearch-type').val(),
-      placeTypeUnderscored = placeType.replace(/ /g, '_');
-
-    // set value of place search type property to underscore delimited value
-    $('#placesSearch-type').val(placeTypeUnderscored);
-
-    // cache form properties
-    var form = $(this),
-      formProps = {
-        url: form.attr('action'),
-        queryParams: form.serialize().toLowerCase(),
-        newSearch: true
-      };
-
-    console.log(formProps.queryParams);
-
-    // call SearchController start() with form properties
-    searchController.start(formProps);
-  });
-
-  // add event listener to body, to be binded to #getMoreResults link
-  // if/when added
-  $('body').on('click', '#getMoreResults', function(event) {
-    // prevent default behavior
-    event.preventDefault();
-
-    // cache form properties
-    var form = $('#placesSearch'),
-    // TODO all query params must be lower case and underscore delimited
-    // TODO input validation
-     formProps = {
-      url: form.attr('action'),
-      queryParams: form.serialize() + "&pagetoken=" + localStorage.pagetoken,
-      newSearch: false
+    var _render = function(location) {
+      // if the current location exists in the routes map render the
+      // appropriate view in the application container, otherwise render the
+      //  404 view
+      if (routes[location]){
+        container.empty().append(routes[location]);;
+      } else {
+        container.empty().append(routes['pageNotFound']);;
+      }
     };
 
-    // call SearchController start() with form properties
-    searchController.start(formProps);
-  })
-}());
+    var _watch = function() {
+      // initial call to _render() will reload the view on page reloads
+      _render(window.location.hash);
+
+      // when a hashchange occurs call _render()
+      $(window).on('hashchange', function() {
+        _render(window.location.hash);
+      });
+
+      // when the user attempts to leave, cache the hash for their current
+      // location in the reference to localStorage
+      $(window).on('beforeunload', function(){
+        storage.currentLocation = window.location.hash;
+      })
+    };
+
+    var init = function() {
+      console.log('Router initialized!');
+
+      // get the first route in the _routes map, which should be the 'home'
+      // route
+      for (var startView in routes) break;
+
+      // watch for hashchanges
+      _watch();
+
+      // check the reference to localStorage for a valid hash from the user's
+      // previous visit
+      // if a valid hash exists, use it to trigger a hashchange, otherwise
+      // use the cached route
+      if (routes.hasOwnProperty(storage.currentLocation)) {
+        window.location.hash = storage.currentLocation;
+      } else {
+        window.location.hash = startView;
+      }
+    };
+
+    return {
+      init: init
+    };
+  };
+
+  var project1Routes = {
+    '#home': require('../templates/home.hbs'),
+    '#search': require('../templates/search.hbs')
+  };
+
+  var container = $('main');
+  var router = router(container, project1Routes);
+  router.init();
+
+});
