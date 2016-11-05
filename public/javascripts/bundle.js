@@ -104,15 +104,15 @@
 	    };
 	  };
 
-	  var project1Routes = {
-	    '#home': __webpack_require__(22),
-	    '#search': __webpack_require__(23)
-	  };
+	  var container = $('main'),
+	    project1Routes = {
+	      '#home': __webpack_require__(22),
+	      '#search': __webpack_require__(23)
+	    };
 
-	  var container = $('main');
-	  var router = router(container, project1Routes);
-	  router.init();
+	  var spaRouter = router(container, project1Routes);
 
+	  spaRouter.init();
 	});
 
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
