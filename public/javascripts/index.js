@@ -58,13 +58,13 @@ $(function(){
     };
   };
 
-  var project1Routes = {
-    '#home': require('../templates/home.hbs'),
-    '#search': require('../templates/search.hbs')
-  };
+  var container = $('main'),
+    project1Routes = {
+      '#home': require('../templates/home.hbs'),
+      '#search': require('../templates/search.hbs')
+    };
 
-  var container = $('main');
-  var router = router(container, project1Routes);
-  router.init();
+  var spaRouter = router(container, project1Routes);
 
+  spaRouter.init();
 });
