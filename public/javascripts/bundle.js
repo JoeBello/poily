@@ -45,57 +45,75 @@
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function($) {$(function(){
-	  // acquire SearchController
-	  var searchController = __webpack_require__(2);
-	  $('#placesSearch').submit(function(event) {
+	  var router = function(container, appRoutes) {
+	    var storage = localStorage,
+	      container = container,
+	      routes = appRoutes || {};
+	    routes.pageNotFound = __webpack_require__(2);
 
-	    // prevent default behavior
-	    event.preventDefault();
-
-	    // TODO input validation
-
-	    // cache value for place search type and replace white space with
-	    // underscore
-	    var placeType = $('#placesSearch-type').val(),
-	      placeTypeUnderscored = placeType.replace(/ /g, '_');
-
-	    // set value of place search type property to underscore delimited value
-	    $('#placesSearch-type').val(placeTypeUnderscored);
-
-	    // cache form properties
-	    var form = $(this),
-	      formProps = {
-	        url: form.attr('action'),
-	        queryParams: form.serialize().toLowerCase(),
-	        newSearch: true
-	      };
-
-	    console.log(formProps.queryParams);
-
-	    // call SearchController start() with form properties
-	    searchController.start(formProps);
-	  });
-
-	  // add event listener to body, to be binded to #getMoreResults link
-	  // if/when added
-	  $('body').on('click', '#getMoreResults', function(event) {
-	    // prevent default behavior
-	    event.preventDefault();
-
-	    // cache form properties
-	    var form = $('#placesSearch'),
-	    // TODO all query params must be lower case and underscore delimited
-	    // TODO input validation
-	     formProps = {
-	      url: form.attr('action'),
-	      queryParams: form.serialize() + "&pagetoken=" + localStorage.pagetoken,
-	      newSearch: false
+	    var _render = function(location) {
+	      // if the current location exists in the routes map render the
+	      // appropriate view in the application container, otherwise render the
+	      //  404 view
+	      if (routes[location]){
+	        container.empty().append(routes[location]);;
+	      } else {
+	        container.empty().append(routes['pageNotFound']);;
+	      }
 	    };
 
-	    // call SearchController start() with form properties
-	    searchController.start(formProps);
-	  })
-	}());
+	    var _watch = function() {
+	      // initial call to _render() will reload the view on page reloads
+	      _render(window.location.hash);
+
+	      // when a hashchange occurs call _render()
+	      $(window).on('hashchange', function() {
+	        _render(window.location.hash);
+	      });
+
+	      // when the user attempts to leave, cache the hash for their current
+	      // location in the reference to localStorage
+	      $(window).on('beforeunload', function(){
+	        storage.currentLocation = window.location.hash;
+	      })
+	    };
+
+	    var init = function() {
+	      console.log('Router initialized!');
+
+	      // get the first route in the _routes map, which should be the 'home'
+	      // route
+	      for (var startView in routes) break;
+
+	      // watch for hashchanges
+	      _watch();
+
+	      // check the reference to localStorage for a valid hash from the user's
+	      // previous visit
+	      // if a valid hash exists, use it to trigger a hashchange, otherwise
+	      // use the cached route
+	      if (routes.hasOwnProperty(storage.currentLocation)) {
+	        window.location.hash = storage.currentLocation;
+	      } else {
+	        window.location.hash = startView;
+	      }
+	    };
+
+	    return {
+	      init: init
+	    };
+	  };
+
+	  var project1Routes = {
+	    '#home': __webpack_require__(22),
+	    '#search': __webpack_require__(23)
+	  };
+
+	  var container = $('main');
+	  var router = router(container, project1Routes);
+	  router.init();
+
+	});
 
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
@@ -10329,130 +10347,23 @@
 /* 2 */
 /***/ function(module, exports, __webpack_require__) {
 
-	/* WEBPACK VAR INJECTION */(function($) {$(function(){
-	  // acquire searchView view
-	  var searchView = __webpack_require__(3);
-
-	  var clear = function(toClear){
-	    if (toClear === 'all') {
-	      // remove old search results
-	      $('.placesResults-place').remove();
-
-	      // remove old link for more results
-	      $('#getMoreResults').remove();
-
-	      // clear previously cached page token
-	      localStorage.pagetoken = null;
-	    } else {
-	      // remove link for more results
-	      $('#getMoreResults').remove();
-
-	      // clear previously cached page token
-	      localStorage.pagetoken = null;
-	    }
-	  };
-
-	// receive form properties from index.js and query API
-	  var start = function(params){
-
-	    if (params.newSearch) {
-	      // if this is a new search, clear everything from previous search
-	      clear('all')
-	    } else {
-	      // if this is not a new search, remove the original link for more results
-	      // and clear the previously cached page token
-	      clear()
-	    }
-
-	    $.get(params.url, params.queryParams)
-	      .done(function(response){
-
-	        // if respones yields a pagetoken cache it in browser memory
-	        if (response.next_page_token) {
-	          localStorage.pagetoken = response.next_page_token;
-	        }
-	        // render reponse data with searchView view
-	        searchView.render(response.results);
-	      })
-	      .fail(function(jqXHR, textStatus){
-	        console.log('GET fail!');
-	        console.log(textStatus);
-	        alert('Sorry, there was a problem!');
-	      });
-	  };
-
-	  module.exports = {
-	    start: start
-	  }
-
-	}());
-
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
+	var Handlebars = __webpack_require__(3);
+	function __default(obj) { return obj && (obj.__esModule ? obj["default"] : obj); }
+	module.exports = (Handlebars["default"] || Handlebars).template({"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
+	    return "<section>\n  <h1>Sorry, we couldn't find the page you were looking for...</h1>\n</section>\n";
+	},"useData":true});
 
 /***/ },
 /* 3 */
 /***/ function(module, exports, __webpack_require__) {
 
-	/* WEBPACK VAR INJECTION */(function($) {$(function(){
-	  // acquire the template for searchView
-	  var resultTemplate = __webpack_require__(4);
-	  var moreLinkTemplate = __webpack_require__(24);
+	// Create a simple path alias to allow browserify to resolve
+	// the runtime on a supported path.
+	module.exports = __webpack_require__(4)['default'];
 
-	  // receive API response data from searchController
-	  var render = function(controllerData){
-
-	    // insert all results before the "more results" div
-	    $(resultTemplate({ places: controllerData })).insertBefore('#moreResults');
-
-	    // if a page token was saved to local storage, display a link to get
-	    // more results from the last search
-	    if (localStorage.pagetoken !== 'null'){
-	        $('#moreResults').append(moreLinkTemplate);
-	    }
-	  }
-
-	  module.exports = {
-	    render: render
-	  }
-
-	}())
-
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ },
 /* 4 */
-/***/ function(module, exports, __webpack_require__) {
-
-	var Handlebars = __webpack_require__(5);
-	function __default(obj) { return obj && (obj.__esModule ? obj["default"] : obj); }
-	module.exports = (Handlebars["default"] || Handlebars).template({"1":function(container,depth0,helpers,partials,data) {
-	    var helper, alias1=depth0 != null ? depth0 : {}, alias2=helpers.helperMissing, alias3="function", alias4=container.escapeExpression;
-
-	  return "<div class=\"placesResults-place\">\n    <h2>"
-	    + alias4(((helper = (helper = helpers.name || (depth0 != null ? depth0.name : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"name","hash":{},"data":data}) : helper)))
-	    + "</h2>\n    <p>\n      "
-	    + alias4(((helper = (helper = helpers.vicinity || (depth0 != null ? depth0.vicinity : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"vicinity","hash":{},"data":data}) : helper)))
-	    + "\n    </p>\n</div>\n";
-	},"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
-	    var stack1, helper, options, buffer = "";
-
-	  stack1 = ((helper = (helper = helpers.places || (depth0 != null ? depth0.places : depth0)) != null ? helper : helpers.helperMissing),(options={"name":"places","hash":{},"fn":container.program(1, data, 0),"inverse":container.noop,"data":data}),(typeof helper === "function" ? helper.call(depth0 != null ? depth0 : {},options) : helper));
-	  if (!helpers.places) { stack1 = helpers.blockHelperMissing.call(depth0,stack1,options)}
-	  if (stack1 != null) { buffer += stack1; }
-	  return buffer;
-	},"useData":true});
-
-/***/ },
-/* 5 */
-/***/ function(module, exports, __webpack_require__) {
-
-	// Create a simple path alias to allow browserify to resolve
-	// the runtime on a supported path.
-	module.exports = __webpack_require__(6)['default'];
-
-
-/***/ },
-/* 6 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -10466,30 +10377,30 @@
 
 	function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj['default'] = obj; return newObj; } }
 
-	var _handlebarsBase = __webpack_require__(7);
+	var _handlebarsBase = __webpack_require__(5);
 
 	var base = _interopRequireWildcard(_handlebarsBase);
 
 	// Each of these augment the Handlebars object. No need to setup here.
 	// (This is done to easily share code between commonjs and browse envs)
 
-	var _handlebarsSafeString = __webpack_require__(21);
+	var _handlebarsSafeString = __webpack_require__(19);
 
 	var _handlebarsSafeString2 = _interopRequireDefault(_handlebarsSafeString);
 
-	var _handlebarsException = __webpack_require__(9);
+	var _handlebarsException = __webpack_require__(7);
 
 	var _handlebarsException2 = _interopRequireDefault(_handlebarsException);
 
-	var _handlebarsUtils = __webpack_require__(8);
+	var _handlebarsUtils = __webpack_require__(6);
 
 	var Utils = _interopRequireWildcard(_handlebarsUtils);
 
-	var _handlebarsRuntime = __webpack_require__(22);
+	var _handlebarsRuntime = __webpack_require__(20);
 
 	var runtime = _interopRequireWildcard(_handlebarsRuntime);
 
-	var _handlebarsNoConflict = __webpack_require__(23);
+	var _handlebarsNoConflict = __webpack_require__(21);
 
 	var _handlebarsNoConflict2 = _interopRequireDefault(_handlebarsNoConflict);
 
@@ -10524,7 +10435,7 @@
 
 
 /***/ },
-/* 7 */
+/* 5 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -10535,17 +10446,17 @@
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 
-	var _utils = __webpack_require__(8);
+	var _utils = __webpack_require__(6);
 
-	var _exception = __webpack_require__(9);
+	var _exception = __webpack_require__(7);
 
 	var _exception2 = _interopRequireDefault(_exception);
 
-	var _helpers = __webpack_require__(10);
+	var _helpers = __webpack_require__(8);
 
-	var _decorators = __webpack_require__(18);
+	var _decorators = __webpack_require__(16);
 
-	var _logger = __webpack_require__(20);
+	var _logger = __webpack_require__(18);
 
 	var _logger2 = _interopRequireDefault(_logger);
 
@@ -10634,7 +10545,7 @@
 
 
 /***/ },
-/* 8 */
+/* 6 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -10764,7 +10675,7 @@
 
 
 /***/ },
-/* 9 */
+/* 7 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -10810,7 +10721,7 @@
 
 
 /***/ },
-/* 10 */
+/* 8 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -10821,31 +10732,31 @@
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 
-	var _helpersBlockHelperMissing = __webpack_require__(11);
+	var _helpersBlockHelperMissing = __webpack_require__(9);
 
 	var _helpersBlockHelperMissing2 = _interopRequireDefault(_helpersBlockHelperMissing);
 
-	var _helpersEach = __webpack_require__(12);
+	var _helpersEach = __webpack_require__(10);
 
 	var _helpersEach2 = _interopRequireDefault(_helpersEach);
 
-	var _helpersHelperMissing = __webpack_require__(13);
+	var _helpersHelperMissing = __webpack_require__(11);
 
 	var _helpersHelperMissing2 = _interopRequireDefault(_helpersHelperMissing);
 
-	var _helpersIf = __webpack_require__(14);
+	var _helpersIf = __webpack_require__(12);
 
 	var _helpersIf2 = _interopRequireDefault(_helpersIf);
 
-	var _helpersLog = __webpack_require__(15);
+	var _helpersLog = __webpack_require__(13);
 
 	var _helpersLog2 = _interopRequireDefault(_helpersLog);
 
-	var _helpersLookup = __webpack_require__(16);
+	var _helpersLookup = __webpack_require__(14);
 
 	var _helpersLookup2 = _interopRequireDefault(_helpersLookup);
 
-	var _helpersWith = __webpack_require__(17);
+	var _helpersWith = __webpack_require__(15);
 
 	var _helpersWith2 = _interopRequireDefault(_helpersWith);
 
@@ -10862,14 +10773,14 @@
 
 
 /***/ },
-/* 11 */
+/* 9 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
 	exports.__esModule = true;
 
-	var _utils = __webpack_require__(8);
+	var _utils = __webpack_require__(6);
 
 	exports['default'] = function (instance) {
 	  instance.registerHelper('blockHelperMissing', function (context, options) {
@@ -10907,7 +10818,7 @@
 
 
 /***/ },
-/* 12 */
+/* 10 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -10917,9 +10828,9 @@
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 
-	var _utils = __webpack_require__(8);
+	var _utils = __webpack_require__(6);
 
-	var _exception = __webpack_require__(9);
+	var _exception = __webpack_require__(7);
 
 	var _exception2 = _interopRequireDefault(_exception);
 
@@ -11007,7 +10918,7 @@
 
 
 /***/ },
-/* 13 */
+/* 11 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -11017,7 +10928,7 @@
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 
-	var _exception = __webpack_require__(9);
+	var _exception = __webpack_require__(7);
 
 	var _exception2 = _interopRequireDefault(_exception);
 
@@ -11038,14 +10949,14 @@
 
 
 /***/ },
-/* 14 */
+/* 12 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
 	exports.__esModule = true;
 
-	var _utils = __webpack_require__(8);
+	var _utils = __webpack_require__(6);
 
 	exports['default'] = function (instance) {
 	  instance.registerHelper('if', function (conditional, options) {
@@ -11073,7 +10984,7 @@
 
 
 /***/ },
-/* 15 */
+/* 13 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -11105,7 +11016,7 @@
 
 
 /***/ },
-/* 16 */
+/* 14 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -11123,14 +11034,14 @@
 
 
 /***/ },
-/* 17 */
+/* 15 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
 	exports.__esModule = true;
 
-	var _utils = __webpack_require__(8);
+	var _utils = __webpack_require__(6);
 
 	exports['default'] = function (instance) {
 	  instance.registerHelper('with', function (context, options) {
@@ -11162,7 +11073,7 @@
 
 
 /***/ },
-/* 18 */
+/* 16 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -11173,7 +11084,7 @@
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 
-	var _decoratorsInline = __webpack_require__(19);
+	var _decoratorsInline = __webpack_require__(17);
 
 	var _decoratorsInline2 = _interopRequireDefault(_decoratorsInline);
 
@@ -11184,14 +11095,14 @@
 
 
 /***/ },
-/* 19 */
+/* 17 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
 	exports.__esModule = true;
 
-	var _utils = __webpack_require__(8);
+	var _utils = __webpack_require__(6);
 
 	exports['default'] = function (instance) {
 	  instance.registerDecorator('inline', function (fn, props, container, options) {
@@ -11219,14 +11130,14 @@
 
 
 /***/ },
-/* 20 */
+/* 18 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
 	exports.__esModule = true;
 
-	var _utils = __webpack_require__(8);
+	var _utils = __webpack_require__(6);
 
 	var logger = {
 	  methodMap: ['debug', 'info', 'warn', 'error'],
@@ -11272,7 +11183,7 @@
 
 
 /***/ },
-/* 21 */
+/* 19 */
 /***/ function(module, exports) {
 
 	// Build out our basic SafeString type
@@ -11293,7 +11204,7 @@
 
 
 /***/ },
-/* 22 */
+/* 20 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -11313,15 +11224,15 @@
 
 	function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj['default'] = obj; return newObj; } }
 
-	var _utils = __webpack_require__(8);
+	var _utils = __webpack_require__(6);
 
 	var Utils = _interopRequireWildcard(_utils);
 
-	var _exception = __webpack_require__(9);
+	var _exception = __webpack_require__(7);
 
 	var _exception2 = _interopRequireDefault(_exception);
 
-	var _base = __webpack_require__(7);
+	var _base = __webpack_require__(5);
 
 	function checkRevision(compilerInfo) {
 	  var compilerRevision = compilerInfo && compilerInfo[0] || 1,
@@ -11591,7 +11502,7 @@
 
 
 /***/ },
-/* 23 */
+/* 21 */
 /***/ function(module, exports) {
 
 	/* WEBPACK VAR INJECTION */(function(global) {/* global window */
@@ -11618,13 +11529,23 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, (function() { return this; }())))
 
 /***/ },
-/* 24 */
+/* 22 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var Handlebars = __webpack_require__(5);
+	var Handlebars = __webpack_require__(3);
 	function __default(obj) { return obj && (obj.__esModule ? obj["default"] : obj); }
 	module.exports = (Handlebars["default"] || Handlebars).template({"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
-	    return "<a id=\"getMoreResults\"\n  class=\"moreResults-link\"\n  href=\"http://localhost:3000/api/places\">\n  More Results\n</a>\n";
+	    return "<section>\n  <h1>Welcome Home</h1>\n</section>\n";
+	},"useData":true});
+
+/***/ },
+/* 23 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var Handlebars = __webpack_require__(3);
+	function __default(obj) { return obj && (obj.__esModule ? obj["default"] : obj); }
+	module.exports = (Handlebars["default"] || Handlebars).template({"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
+	    return "<form id=\"placesSearch\" method=\"get\" action='http://localhost:3000/api/places'>\n  <label for=\"placesSearch-location\">Location</label>\n  <input id=\"placesSearch-location\" type=\"text\" name=\"location\"></input>\n  <label for=\"placesSearch-radius\">Radius</label>\n  <input id=\"placesSearch-radius\" type=\"number\" min=\"1\" name=\"radius\"> miles</input\n  <label for=\"placesSearch-type\">Venue</label>\n  <input id=\"placesSearch-type\" type=\"text\" name=\"type\"></input>\n  <!-- <input id=\"placeSearch-category\" name=\"category_filter\" type=\"hidden\"></input> -->\n  <input type=\"submit\" value=\"Go\"></input>\n</form>\n<section id=\"placesResults\" class=\"placesResults-container\">\n  <div id=\"moreResults\" class=\"moreResults-container\"></div>\n</section>\n";
 	},"useData":true});
 
 /***/ }
