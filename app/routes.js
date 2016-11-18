@@ -23,6 +23,7 @@ router.use(function(req, res, next){
 
 router.get('/api/places', function(req, res){
   console.log('GET request received');
+  console.log(req.query);
   geocoder.geocode(req.query.location)
     .then(function parseGeocodeResponse(geoResponse){
       console.log('Got the geocode data!');
@@ -31,7 +32,7 @@ router.get('/api/places', function(req, res){
           radius: req.query.radius * 1609.344,
           type: req.query.type,
           pagetoken: req.query.pagetoken || null
-          };
+        };
       return params;
     })
     .then(function searchPlaces(searchParams){
