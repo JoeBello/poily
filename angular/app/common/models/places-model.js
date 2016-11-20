@@ -5,7 +5,7 @@ angular.module('project1.common')
     var service = this;
 
     function getUrl(searchParams) {
-      return ENDPOINT + '/places?' + $httpParamSerializer(searchParams);
+      return ENDPOINT + '/userPlaces?' + $httpParamSerializer(searchParams);
     }
 
     function extract(result) {
