@@ -7,3 +7,22 @@ body {
   padding-left: 2em;
   padding-top: 1em;
 }
+
+.cta {
+  margin-top: 10%;
+  margin-bottom: 10%;
+}
+
+.cta-header {
+  padding: 1em 0;
+}
+
+.about {
+  margin-top: 10%;
+  margin-bottom: 10%;
+}
+
+.about-section {
+  margin-top: 10%;
+  margin-bottom: 10%;
+}
