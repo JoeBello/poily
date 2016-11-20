@@ -11,9 +11,9 @@ angular.module('project1', [
     $stateProvider
       .state('home', {
         url: '/',
-        templateUrl: 'app/main/main.tmpl.html',
-        controller: 'MainCtrl',
-        controllerAs: 'main'
+        templateUrl: 'app/home/home.tmpl.html',
+        controller: 'HomeCtrl',
+        controllerAs: 'home'
       })
       .state('explore', {
         url: '/explore',
