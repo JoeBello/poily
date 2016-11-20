@@ -1,21 +1,26 @@
 <div class="row">
   <div class="col-md-6 col-md-offset-3 text-center cta">
-    <h1 class="cta-header">{{ home.title }}<h1>
-    <button class="btn btn-success cta-button">{{ home.ctaButton }}</button>
+    <h1 class="cta-header">Explore your world.<h1>
+    <button class="btn btn-success cta-button">What's around?</button>
   </div>
 </div>
 <div class="row">
   <div class="col-md-4 col-md-offset-4 text-center about top-buffer">
-    <a href=" " class="about-link">{{ home.aboutLink }}</a>
+    <a href=" " class="about-link">LEARN ABOUT PROJECT1</a>
   </div>
 </div>
-<div ng-repeat="heading in home.aboutSections" class="row">
-  <div
-    ng-class="{
-      'col-md-4 col-md-offset-8 text-center about-section': $even,
-      'col-md-4 text-center about-section': $odd
-    }"
-  >
-    <h2>{{heading.heading}}</h2>
+<div class="row">
+  <div class="col-md-4 col-md-offset-8 text-center about-section">
+    <h2>Discover.</h2>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-4 text-center about-section">
+    <h2>Landmark.</h2>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-4 col-md-offset-8 text-center about-section">
+    <h2>Experience.</h2>
   </div>
 </div>
