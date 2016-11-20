@@ -1,3 +1,9 @@
-div.content {
-  border: 1px solid red;
+body {
+  background-color: rgb(228, 224, 235);
+}
+
+.navbar-right a {
+  display: inline-block;
+  padding-left: 2em;
+  padding-top: 1em;
 }
