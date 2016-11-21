@@ -1,26 +1,42 @@
 'use strict';
 
 angular.module('project1.common')
-  .service('PlacesModel', function ($http, $httpParamSerializer, ENDPOINT) {
-    var service = this;
+  .service('PlacesModel', function ($window, $q, $http, $httpParamSerializer, ENDPOINT) {
+    var service = this,
+        geocoder = $window.navigator.geolocation;
 
     function getUrl(searchParams) {
       return ENDPOINT + '/userPlaces?' + $httpParamSerializer(searchParams);
-    }
-
-    function extract(result) {
-      // console.log(result.data);
-      return result.data;
-    }
-
-    service.check = function (str) {
-      alert(str);
     };
 
-    service.search = function (searchParams) {
+    function extract(result) {
+      return result.data;
+    };
+
+    function geocodeUser () {
+      var coordinates = {},
+          deferred = $q.defer();
+
+      geocoder.getCurrentPosition(function (position) {
+        coordinates.latitude = position.coords.latitude;
+        coordinates.longitude = position.coords.longitude;
+        deferred.resolve(coordinates);
+      })
+
+      return deferred.promise
+    };
+
+    service.defaultSearch = function() {
+      return geocodeUser().then(function(results) {
+          var url = getUrl(results);
+          return $http.get(url).then(extract);
+      });
+    };
+
+    service.customSearch = function (searchParams) {
       var url = getUrl(searchParams);
       console.log(url);
       return $http.get(url).then(extract);
       };
 
-  })
+  });
