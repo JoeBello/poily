@@ -1,14 +1,10 @@
 <div class="row">
-  <h3 class="text-center">{{ explore.header }}</h3>
-
+  <a ng-click="explore.geo()">Click ME</a>
   <div class="place col-md-8 col-md-offset-2 well" ng-repeat="item in explore.results">
     <img class="place-image img-responsive col-md-3"src="{{ item.icon }}" />
     <div class="place-text col-md-9">
       <h3 class="text-center">{{ item.name }}</h3>
       <p class="text-center">{{ item.vicinity }}</p>
     </div>
-
-
   </div>
-
 </div>
