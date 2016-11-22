@@ -1,10 +1,9 @@
 <div class="row">
-  <a ng-click="explore.geo()">Click ME</a>
-  <div class="place col-md-8 col-md-offset-2 well" ng-repeat="item in explore.results">
-    <img class="place-image img-responsive col-md-3"src="{{ item.icon }}" />
+  <div class="place col-md-7 col-md-offset-4 well" ng-repeat="place in explore.places">
+    <img class="place-image img-responsive col-md-3"src="{{ place.icon }}" />
     <div class="place-text col-md-9">
-      <h3 class="text-center">{{ item.name }}</h3>
-      <p class="text-center">{{ item.vicinity }}</p>
+      <h3 class="text-center">{{ place.name }}</h3>
+      <p class="text-center">{{ place.vicinity }}</p>
     </div>
   </div>
 </div>
