@@ -27,9 +27,13 @@ angular.module('project1.common')
     };
 
     service.defaultSearch = function() {
-      return geocodeUser().then(function(results) {
-          var url = getUrl(results);
-          return $http.get(url).then(extract);
+      return geocodeUser()
+      .then(function (coordinates) {
+          var url = getUrl(coordinates);
+          return url;
+      })
+      .then(function (url) {
+        return $http.get(url).then(extract);
       });
     };
 
