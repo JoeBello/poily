@@ -1,26 +1,21 @@
 'use strict';
 
 angular.module('project1')
-  .controller('ExploreCtrl', function (PlacesModel) {
+  .controller('ExploreCtrl', function (PlacesModel, places) {
     var explore = this;
+
+    explore.places = places.results;
+
+    explore.nextpagetoken = places.next_page_token;
 
     explore.userSearch = {
       latitude: '',
       longitude: '',
       radius: '',
-      type: ''
+      type: '',
+      nextpagetoken: ''
     };
 
-    explore.results = {};
-
-    explore.geo = function () {
-      PlacesModel.defaultSearch()
-      .then(function (result) {
-        console.log('SUCCESS!');
-        console.log(result);
-      });
 
 
-    };
-    
   });
