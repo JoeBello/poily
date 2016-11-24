@@ -1,12 +1,8 @@
 'use strict';
 
 angular.module('project1')
-  .controller('ExploreCtrl', function (PlacesModel, places) {
+  .controller('ExploreCtrl', function () {
     var explore = this;
-
-    explore.places = places.results;
-
-    explore.nextpagetoken = places.next_page_token;
 
     explore.userSearch = {
       latitude: '',
