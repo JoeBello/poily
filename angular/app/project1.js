@@ -17,16 +17,25 @@ angular.module('project1', ['ui.router', 'project1.common'])
         templateUrl: 'app/explore/explore.tmpl.html',
         controller: 'ExploreCtrl',
         controllerAs: 'explore',
+      })
+// TODO configure states and views for places results and schedule 
+      .state('explore.places', {
+        url: '.places',
+        templateUrl: 'app/places/places.tmpl.html',
+        controller: 'PlacesCtrl',
+        controllerAs: 'places',
         resolve: {
-          places: function (PlacesModel) {
+          placesResolved: function (PlacesModel) {
             return PlacesModel.defaultSearch();
           }
         }
       })
       .state('explore.schedule', {
-        // url: '/schedule',
+        url: '.schedule',
         templateUrl: 'app/schedule/schedule.tmpl.html',
         controller: 'ScheduleCtrl',
         controllerAs: 'schedule'
-      });
+        // resolve: {
+        // }
+      })
   });
