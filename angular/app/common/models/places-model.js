@@ -12,25 +12,40 @@ angular.module('project1.common')
     function extract(result) {
       return result.data;
     };
-
+// TODO create geolocation service
     function geocodeUser () {
-      var coordinates = {},
-          deferred = $q.defer();
 
-      geocoder.getCurrentPosition(function (position) {
-        coordinates.latitude = position.coords.latitude;
-        coordinates.longitude = position.coords.longitude;
+      if ("geolocation" in navigator) {
+
+        var coordinates = {},
+            deferred = $q.defer();
+
+        geocoder.getCurrentPosition(
+          function (position) {
+          coordinates.latitude = position.coords.latitude;
+          coordinates.longitude = position.coords.longitude;
+          deferred.resolve(coordinates);
+        },
+          function() {
+            // do something if user denies permission
+          }
+      )
+        return deferred.promise
+      } else {
+        coordinates.error = 'geolocation failed.'
         deferred.resolve(coordinates);
-      })
-
-      return deferred.promise
+      }
     };
 
     service.defaultSearch = function() {
       return geocodeUser()
       .then(function (coordinates) {
-          var url = getUrl(coordinates);
-          return url;
+          if (!coordinates.error) {
+            var url = getUrl(coordinates);
+            return url;
+          } else {
+            // do something else, go to a different state
+          }
       })
       .then(function (url) {
         return $http.get(url).then(extract);
