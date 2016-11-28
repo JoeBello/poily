@@ -1,0 +1,10 @@
+<div class="schedule">
+  <h2>Schedule</h2>
+  <button ng-click="schedule.putAway()">Hide</button>
+  <div ng-repeat="item in schedule.items">
+    <h3>{{ item.name }}</h3>
+    <span>{{ item.id }}</span>
+    <button ng-click="schedule.remove(item)">Remove</button>
+  </div>
+
+</div>
