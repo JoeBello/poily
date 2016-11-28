@@ -5,7 +5,6 @@ var app = express();
 var path = require('path');
 var morgan = require('morgan');
 var session = require('express-session');
-var sassMiddleware = require('node-sass-middleware');
 var bodyParser = require('body-parser');
 // **** bodyParser.json(): Parses the text as JSON and exposes the resulting object on req.body. ****
 
@@ -13,17 +12,10 @@ var bodyParser = require('body-parser');
 // var logger = require('./server/util/logger')
 
 
-app.use(sassMiddleware({
-  src: path.join(__dirname + '/sass'),
-  dest: path.join(__dirname + '/public'),
-  debug: true,
-  outputStyle: 'compressed'
-}));
-
-app.use(express.static(path.join(__dirname + '/angular')));
+app.use(express.static(path.join(__dirname + '/app')));
 
 
-require('./app/routes')(app);
+require('./api/routes')(app);
 
 app.use(function(req, res, next){
   var err = new Error('Not found');
