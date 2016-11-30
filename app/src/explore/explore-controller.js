@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('project1')
-  .controller('ExploreCtrl', function (placesResolved, ScheduleModel, $state) {
+  .controller('ExploreCtrl', function (placesResolved, AgendaModel, $state) {
     var explore = this;
 
     explore.userSearch = {
@@ -25,8 +25,8 @@ angular.module('project1')
         id: place.id
       };
 
-      ScheduleModel.addItem(placeStore);
+      AgendaModel.addItem(placeStore);
     }
 
-    // ScheduleModel.addItem()
+    // AgendaModel.addItem()
   });

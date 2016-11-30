@@ -29,8 +29,8 @@ angular.module('project1', [
       })
       .state('explore.schedule', {
         url: '/schedule',
-        templateUrl: 'src/schedule/schedule.tmpl.html',
-        controller: 'ScheduleCtrl',
-        controllerAs: 'schedule'
+        templateUrl: 'src/agenda/agenda.tmpl.html',
+        controller: 'AgendaCtrl',
+        controllerAs: 'agenda'
       })
   });
