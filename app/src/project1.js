@@ -12,10 +12,8 @@ angular.module('project1', [
     $stateProvider
       .state('home', {
         url: '/',
-        templateUrl: 'src/home/home.tmpl.html',
-        controller: 'HomeCtrl',
-        controllerAs: 'home'
-      })
+        component: 'mainNavigation'
+        })
       .state('explore', {
         url: '/explore',
         templateUrl: 'src/explore/explore.tmpl.html',
