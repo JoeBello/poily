@@ -16,7 +16,7 @@ angular.module('project1', [
         })
       .state('explore', {
         url: '/explore',
-        templateUrl: 'src/explore/explore.tmpl.html',
+        templateUrl: 'app/explore/explore.tmpl.html',
         controller: 'ExploreCtrl',
         controllerAs: 'explore',
         resolve: {
@@ -27,7 +27,7 @@ angular.module('project1', [
       })
       .state('explore.schedule', {
         url: '/schedule',
-        templateUrl: 'src/agenda/agenda.tmpl.html',
+        templateUrl: 'app/agenda/agenda.tmpl.html',
         controller: 'AgendaCtrl',
         controllerAs: 'agenda'
       })

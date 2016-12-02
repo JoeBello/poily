@@ -1,5 +1,5 @@
 var mainNavigation = {
-  templateUrl: 'src/components/mainNavigation.html',
+  templateUrl: 'app/components/mainNavigation.html',
   controller: function () {
     this.brand = 'Project 1',
 
