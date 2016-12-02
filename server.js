@@ -12,7 +12,7 @@ var bodyParser = require('body-parser');
 // var logger = require('./server/util/logger')
 
 
-app.use(express.static(path.join(__dirname + '/app')));
+app.use(express.static(path.join(__dirname + '/src')));
 
 
 require('./api/routes')(app);
