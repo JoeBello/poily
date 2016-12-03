@@ -1,9 +1,10 @@
 'use strict';
 
-angular.module('project1', [
+angular.module('root', [
   'ui.router',
   'ngAnimate',
-  'project1.common'
+
+  // 'project1.common'
 ])
   .constant('ENDPOINT', 'http://localhost:3000/api')
   .config(function ($stateProvider, $urlRouterProvider) {
@@ -11,8 +12,8 @@ angular.module('project1', [
 
     $stateProvider
       .state('home', {
-        url: '/',
-        component: 'mainNavigation'
+        url: '/hello',
+        component: 'navigation.component'
         })
       .state('explore', {
         url: '/explore',
