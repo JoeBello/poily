@@ -1,30 +1,28 @@
 <!DOCTYPE html>
-<html>
+<html ng-app="root">
   <head>
     <meta charset="utf-8">
     <title>Project 1</title>
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
     <link rel="stylesheet" href="css/project1.css" media="screen">
+  </head>
+  <body>
+
+    <root></root>
 
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
+
     <script src="https://code.angularjs.org/1.5.6/angular-animate.min.js"></script>
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/1.0.0-beta.3/angular-ui-router.js"></script>
 
 
+    <script src="app/root.module.js"></script>
+    <script src="app/root.component.js"></script>
+    <script src="app/common/app.module.js"></script>
+    <script src="app/common/app.component.js"></script>
+    <script src="app/common/app-nav.component.js"></script>
 
-    <script src="app/project1.js"></script>
-    <script src="app/components/mainNavigationComponent.js"></script>
-    <script src="app/common/common.js"></script>
-    <script src="app/common/models/places-model.js"></script>
-    <script src="app/common/models/agenda-model.js"></script>
-
-    <script src="app/home/home-controller.js"></script>
-    <script src="app/explore/explore-controller.js"></script>
-    <script src="app/search/search-controller.js"></script>
-    <script src="app/agenda/agenda-controller.js"></script>
-  </head>
-  <body ng-app="project1">
-    <main ui-view></main>
   </body>
 </html>
