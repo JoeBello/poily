@@ -1,5 +1,9 @@
 var places = {
-  templateUrl: 'app/components/place/places/places.html'
+  bindings: {
+    places: '<'
+  },
+  templateUrl: 'app/components/place/places/places.html',
+  controller: 'PlacesController'
 };
 
 angular
@@ -10,6 +14,12 @@ angular
       .state('places', {
         parent: 'app',
         url: '/places',
-        component: 'places'
+        component: 'places',
+        resolve: {
+          places: function (PlaceService) {
+            console.log('incoming data...');
+            return PlaceService.getPlaceTest();
+          }
+        }
       });
   });
