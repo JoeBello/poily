@@ -1,4 +1,5 @@
 angular
   .module('root', [
-    'common'
+    'common',
+    'components'
   ]);
