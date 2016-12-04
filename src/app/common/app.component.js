@@ -1,6 +1,6 @@
 var app = {
-  template: '<app-nav></app-nav>'
-}
+  templateUrl: 'app/common/app.html'
+};
 
 angular
   .module('common')
@@ -10,5 +10,5 @@ angular
       .state('app', {
         url: '/app',
         component: 'app'
-    })
+    });
   });
