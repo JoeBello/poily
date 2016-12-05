@@ -9,7 +9,9 @@ angular
     'places': 'http://localhost:3000/api/places?',
     'userPlaces': 'http://localhost:3000/api/userPlaces?'
   })
-  .config(function ($stateProvider) {
+  .config(function ($stateProvider, $urlRouterProvider) {
+    $urlRouterProvider.otherwise('/app');
+
     $stateProvider
       .state('app', {
         url: '/app',
