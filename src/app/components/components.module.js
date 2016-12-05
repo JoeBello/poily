@@ -1,4 +1,5 @@
 angular
   .module('components', [
-    'components.place'
+    'components.place',
+    'components.activity'
   ]);
