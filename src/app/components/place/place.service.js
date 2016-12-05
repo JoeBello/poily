@@ -1,6 +1,7 @@
 function PlaceService ($window, $q, $http, $httpParamSerializer, API) {
 
   // TODO break geocoder into seperate service
+  // TODO cache next_page_token
   function geocodeUser () {
     var geocoder = $window.navigator.geolocation;
 
