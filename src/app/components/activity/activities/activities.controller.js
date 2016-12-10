@@ -1,6 +1,8 @@
 function ActivitesController () {
   var ctrl = this;
-  var results;
+
+
+
 }
 
 angular
