@@ -35,7 +35,6 @@ function PlaceService ($window, $q, $http, $httpParamSerializer, API) {
   };
 
   function extractPlaces(response) {
-    console.log(response.data)
     return response.data.results;
   };
 
@@ -55,7 +54,7 @@ function PlaceService ($window, $q, $http, $httpParamSerializer, API) {
     });
   };
 
-  // TODO custom search
+  // TODO custom search and return object operations
 
 // RETURN OBJECT
   return {
