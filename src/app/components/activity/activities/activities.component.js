@@ -1,4 +1,7 @@
 var activities = {
+  bindings: {
+    activities: '<'
+  },
   templateUrl: 'app/components/activity/activities/activities.html',
   controller: 'ActivitesController'
 };
@@ -11,6 +14,12 @@ angular
       .state('activities', {
         parent: 'app',
         url: '/activities',
-        component: 'activities'
+        component: 'activities',
+        resolve: {
+          activities: function (ActivityService) {
+            console.log('incoming activities...')
+            return ActivityService.getActivityList();
+          }
+        }
       });
   });
