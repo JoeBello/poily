@@ -1,8 +1,7 @@
 var place = {
   bindings: {
     place: '<',
-    onSelect: '&',
-    onRemove: '&'
+    onSelect: '&'
   },
   templateUrl: 'app/components/place/place/place.html',
   controller: 'PlaceController'
