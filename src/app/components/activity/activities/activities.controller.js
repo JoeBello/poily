@@ -1,6 +1,6 @@
 function ActivitesController () {
   var ctrl = this;
-
+  var activities = ctrl.activities;
 
 
 }
