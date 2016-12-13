@@ -9,14 +9,6 @@ function PlaceController() {
     })
   };
 
-  ctrl.removeActivity = function () {
-    this.onRemove({
-      $event: {
-        place: this.place
-      }
-    })
-  };
-
 }
 
 
