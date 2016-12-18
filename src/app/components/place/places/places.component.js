@@ -9,6 +9,10 @@ var places = {
 angular
   .module('components.place')
   .component('places', places)
+  .constant('API', {
+    'places': 'http://localhost:3000/api/places?',
+    'userPlaces': 'http://localhost:3000/api/userPlaces?'
+  })
   .config(function ($stateProvider) {
     $stateProvider
       .state('places', {
