@@ -6,6 +6,8 @@ var express = require('express');
 var app = express();
 var api = require('./api/api');
 var source = express.static('src');
+var mongoose = require('mongoose');
+mongoose.connect('mongodb://localhost:27017/project1');
 
 // setup the api
 app.use('/api', api);
