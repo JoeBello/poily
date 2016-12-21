@@ -1,4 +1,4 @@
-var config = require('./server/config/server.config')[process.env.NODE_ENV];
+var config = require('./server/config/config.server')[process.env.NODE_ENV];
 require('dotenv').config();
 var app = require('./server/server');
 
