@@ -30,8 +30,10 @@ function PlaceService ($window, $q, $http, $httpParamSerializer, API) {
   };
 
   function getUrl(searchParams, type) {
-    var url = API[type];
-    return  url + $httpParamSerializer(searchParams);
+    var uri = API[type];
+    console.log(uri + $httpParamSerializer(searchParams));
+    return  uri + $httpParamSerializer(searchParams);
+
   };
 
   function extractPlaces(response) {
@@ -43,7 +45,7 @@ function PlaceService ($window, $q, $http, $httpParamSerializer, API) {
     return geocodeUser()
     .then(function (coordinates) {
         if (!coordinates.error) {
-          var url = getUrl(coordinates, 'userPlaces');
+          var url = getUrl(coordinates, 'places');
           return url;
         } else {
           // TODO do something else, go to a different state
@@ -55,6 +57,7 @@ function PlaceService ($window, $q, $http, $httpParamSerializer, API) {
   };
 
   // TODO custom search and return object operations
+  // TODO modify search urls to accomodate refactored backend
 
 // RETURN OBJECT
   return {
@@ -64,7 +67,7 @@ function PlaceService ($window, $q, $http, $httpParamSerializer, API) {
     getPlaceByCity: function (city) {
       return data[0].City === city;
     },
-    getPlaceTest: function () {
+    getPlaces: function () {
       return defaultSearch();
     }
   };
