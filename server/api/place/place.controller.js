@@ -7,7 +7,7 @@ exports.get = function (req, res, next) {
     type: req.query.type || null,
     pagetoken: req.query.pagetoken || null
   };
-
+  
   placesPromise.placeSearch(searchParams)
     .then(function extractPlaces(placesResponse){
       res.send(placesResponse);
