@@ -6,14 +6,15 @@ var express = require('express');
 var app = express();
 var api = require('./api/api');
 var source = express.static('src');
-var mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost:27017/project1');
+// var mongoose = require('mongoose');
+// mongoose.connect('mongodb://localhost:27017/project1');
+
+// serve application and pass routing off to AngularJS and UI-Router
+app.use(source);
 
 // setup the api
 app.use('/api', api);
 
-// serve application and pass routing off to AngularJS and UI-Router
-app.use(source);
 
 // global error handling
 app.use(function(req, res, next){
