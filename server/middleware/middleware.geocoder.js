@@ -7,12 +7,14 @@ var geocoder = NodeGeocoder({
     });
 
 var geocodeLocation = function (req, res, next) {
-  if (req.query.coordinates) {
-    req.searchLocation = req.query.coordinates;
+  if (req.query.latitude && req.query.longitude) {
+    req.searchLocation = [
+      req.query.latitude,
+      req.query.longitude
+    ];
     next();
-  }
-
-  geocoder.geocode(req.query.location)
+  } else {
+    geocoder.geocode(req.query.location)
     .then(function parseGeocodeResponse(geoResponse){
       req.searchLocation = [
         geoResponse[0].latitude,
@@ -20,6 +22,8 @@ var geocodeLocation = function (req, res, next) {
       ];
       next();
     });
+  }
+
 };
 
 module.exports = geocodeLocation;
