@@ -1,25 +1,38 @@
-function ActivityService () {
-  var testStorage = [];
+function ActivityService ($localStorage) {
+  var storage;
+
+  if ($localStorage.activities) {
+    storage = $localStorage.activities;
+  } else {
+    storage = $localStorage.activities = [];
+  }
 
   function showActivities () {
-    for (var i = 0; i < testStorage.length; i++) {
+    for (var i = 0; i < storage.length; i++) {
         showActivity(i);
     }
   }
 
   function showActivity(num) {
-    console.log(testStorage[num]);
+    console.log(storage[num]);
+  }
+
+  function clearStorage() {
+    $localStorage.$reset();
   }
 
   return {
     getActivityList: function () {
-      return testStorage;
+      return storage;
     },
     addActivity: function (activity) {
-      testStorage.push(activity);
+      storage.push(activity);
     },
     listActivities: function () {
-      showActivities();
+      return showActivities();
+    },
+    clearList: function () {
+      return clearStorage();
     }
   }
 }
