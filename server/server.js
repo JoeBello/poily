@@ -1,6 +1,5 @@
 // TODO implement a logger
 // var logger = require('./server/util/logger')
-// TODO body-parser for post requests
 
 var express = require('express');
 var app = express();
