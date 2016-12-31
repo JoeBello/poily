@@ -14,6 +14,5 @@ exports.post = function (req, res, next) {
 
 
 exports.post = function (req, res, next) {
-  // TODO 
-  // var activity = new activity(req.body);
+  // TODO var activity = new activity(req.body);
 }
