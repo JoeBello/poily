@@ -1,7 +1,14 @@
 <div class="col-md-12 text-center">
   <h1>Your Activities</h1>
-</div>
+
 <div class="col-md-8 col-md-offset-2 well" ng-repeat="activity in $ctrl.activities">
   <!-- <activity activity="activity"></activity> -->
   {{activity.name}}
+  <a href="" ng-click="$ctrl.removeActivity(activity)">
+    <button class="btn btn-small btn-danger">Remove</button>
+  </a>
+</div>
+  <a href="" ng-click="$ctrl.removeActivities()">
+    <button class="btn btn-small btn-danger">Clear List</button>
+  </a>
 </div>
