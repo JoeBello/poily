@@ -16,10 +16,7 @@ function PlaceService ($window, $q, $http, $httpParamSerializer, API) {
         coordinates.longitude = position.coords.longitude;
         deferred.resolve(coordinates);
       }
-        // TODO
-        // function() {
-        //   // do something if user denies permission
-        // }
+        // TODO do something if user denies permission
     )
       return deferred.promise
 
@@ -57,9 +54,7 @@ function PlaceService ($window, $q, $http, $httpParamSerializer, API) {
   };
 
   // TODO custom search and return object operations
-  // TODO modify search urls to accomodate refactored backend
 
-// RETURN OBJECT
   return {
     getPlaceList: function () {
       return data;
