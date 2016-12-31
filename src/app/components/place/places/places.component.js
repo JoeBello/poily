@@ -15,6 +15,7 @@ angular
         parent: 'app',
         url: '/places',
         component: 'places',
+        // TODO resolve causes geolocating even when using back button, find alternative
         resolve: {
           places: function (PlaceService) {
             return PlaceService.getPlaces();
