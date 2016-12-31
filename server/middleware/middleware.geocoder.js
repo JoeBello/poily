@@ -15,10 +15,10 @@ var geocodeLocation = function (req, res, next) {
     next();
   } else {
     geocoder.geocode(req.query.location)
-    .then(function parseGeocodeResponse(geoResponse){
+    .then(function parseGeocodeResponse(geocodeResponse){
       req.searchLocation = [
-        geoResponse[0].latitude,
-        geoResponse[0].longitude
+        geocodeResponse[0].latitude,
+        geocodeResponse[0].longitude
       ];
       next();
     });
