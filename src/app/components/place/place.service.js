@@ -1,35 +1,13 @@
-function PlaceService ($window, $q, $http, $httpParamSerializer, API) {
+function PlaceService ($http, $httpParamSerializer, $state, PlaceGeocoderService, placesAPI) {
 
-  // TODO break geocoder into seperate service
-  // TODO cache next_page_token
-  function geocodeUser () {
-    var geocoder = $window.navigator.geolocation;
-
-    if ("geolocation" in navigator) {
-
-      var coordinates = {},
-          deferred = $q.defer();
-
-      geocoder.getCurrentPosition(
-        function (position) {
-        coordinates.latitude = position.coords.latitude;
-        coordinates.longitude = position.coords.longitude;
-        deferred.resolve(coordinates);
-      }
-        // TODO do something if user denies permission
-    )
-      return deferred.promise
-
-    } else {
-      coordinates.error = 'geolocation failed.'
-      deferred.resolve(coordinates);
-    }
-  };
+  if (PlaceGeocoderService.supported === true) {
+    var geocoder = PlaceGeocoderService.geocoder;
+  }
 
   function getUrl(searchParams, type) {
-    var uri = API[type];
-    console.log(uri + $httpParamSerializer(searchParams));
-    return  uri + $httpParamSerializer(searchParams);
+    var endpoint = placesAPI;
+    console.log(endpoint + $httpParamSerializer(searchParams));
+    return  endpoint + $httpParamSerializer(searchParams);
 
   };
 
@@ -39,17 +17,33 @@ function PlaceService ($window, $q, $http, $httpParamSerializer, API) {
 
 
   function defaultSearch () {
-    return geocodeUser()
-    .then(function (coordinates) {
-        if (!coordinates.error) {
-          var url = getUrl(coordinates, 'places');
-          return url;
-        } else {
-          // TODO do something else, go to a different state
-        }
+    return geocoder()
+    .then(function(geocoderResponse) {
+      // handle error
+      if (geocoderResponse.error) {
+        // go to search form state
+        var url = 'poo';
+        // $state.go('app');
+        // return null;
+      } else {
+        var coordinates = geocoderResponse.position.coords;
+        var coordinateParams = {
+          latitude: coordinates.latitude,
+          longitude: coordinates.longitude
+        };
+        // handle response
+        var url = getUrl(coordinateParams, 'places');
+      }
+      console.log(url);
+      return url;
     })
     .then(function (url) {
-      return $http.get(url).then(extractPlaces);
+      if (url === 'poo') {
+        // $state.go('app');
+        // return url;
+      } else {
+        // return $http.get(url).then(extractPlaces);
+      }
     });
   };
 
