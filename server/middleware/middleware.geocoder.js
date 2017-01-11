@@ -14,7 +14,12 @@ var geocodeLocation = function (req, res, next) {
     ];
     next();
   } else {
-    geocoder.geocode(req.query.location)
+    var geocodeRequest = {
+      address: ' ',
+      country: 'UnitedStates',
+      zipcode: req.query.zipcode
+    };
+    geocoder.geocode(geocodeRequest)
     .then(function parseGeocodeResponse(geocodeResponse){
       req.searchLocation = [
         geocodeResponse[0].latitude,
