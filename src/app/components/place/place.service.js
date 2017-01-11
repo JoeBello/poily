@@ -1,68 +1,70 @@
-function PlaceService ($http, $httpParamSerializer, $state, PlaceGeocoderService, placesAPI) {
+function PlaceService ($http, $httpParamSerializer, $state, PlaceServiceGeocoder, API) {
+  var geocoder;
 
-  if (PlaceGeocoderService.supported === true) {
-    var geocoder = PlaceGeocoderService.geocoder;
+  if (PlaceServiceGeocoder.supported === true) {
+    geocoder = PlaceServiceGeocoder.geocoder;
   }
 
   function getUrl(searchParams, type) {
-    var endpoint = placesAPI;
-    console.log(endpoint + $httpParamSerializer(searchParams));
-    return  endpoint + $httpParamSerializer(searchParams);
-
+    var endpoint = API[type],
+        params = $httpParamSerializer(searchParams);
+    return  endpoint + params;
   };
 
-  function extractPlaces(response) {
-    return response.data.results;
+  function extractPlaces(responseObject) {
+    return responseObject.data.results;
   };
 
+  function geolocatePlaces() {
+    if (geocoder === undefined) {
+      var errorObject = { error: 'geolocation service unavailable' };
+      return errorObject;
+    }
 
-  function defaultSearch () {
     return geocoder()
-    .then(function(geocoderResponse) {
-      // handle error
-      if (geocoderResponse.error) {
-        // go to search form state
-        var url = 'poo';
-        // $state.go('app');
-        // return null;
-      } else {
-        var coordinates = geocoderResponse.position.coords;
-        var coordinateParams = {
-          latitude: coordinates.latitude,
-          longitude: coordinates.longitude
-        };
-        // handle response
-        var url = getUrl(coordinateParams, 'places');
-      }
-      console.log(url);
-      return url;
-    })
-    .then(function (url) {
-      if (url === 'poo') {
-        // $state.go('app');
-        // return url;
-      } else {
-        // return $http.get(url).then(extractPlaces);
-      }
-    });
+      .then(function(geocoderResponse) {
+        var geoObject = {
+              latitude: geocoderResponse.position.coords.latitude,
+              longitude: geocoderResponse.position.coords.longitude
+            },
+            url = getUrl(geoObject, 'places');
+
+        return url;
+      })
+      .then(function (url) {
+          return $http.get(url).then(extractPlaces);
+       })
+      .catch(function(error) {
+        return error;
+      });
   };
 
-  // TODO custom search and return object operations
+  function searchPlaces(placesParams) {
+    // replace with filters for search form
+    for (key in placesParams) {
+      placesParams[key] = placesParams[key].toLowerCase();
+      placesParams[key] = placesParams[key].replace(/\s/g, '');
+    }
+
+    var url = getUrl(placesParams, 'places');
+
+    return $http.get(url)
+      .then(function (placesResponse) {
+        return extractPlaces(placesResponse);
+      })
+      .catch(function(error) {
+        console.log(error);
+      });
+  }
+
 
   return {
-    getPlaceList: function () {
-      return data;
-    },
-    getPlaceByCity: function (city) {
-      return data[0].City === city;
-    },
-    getPlaces: function () {
-      return defaultSearch();
-    }
+    geolocatePlaces: geolocatePlaces,
+    searchPlaces: searchPlaces
   };
 
 }
 
 angular
   .module('components.place')
-  .service('PlaceService', PlaceService);
+  .factory('PlaceService', PlaceService);
