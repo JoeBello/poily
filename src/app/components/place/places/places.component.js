@@ -9,16 +9,24 @@ var places = {
 angular
   .module('components.place')
   .component('places', places)
-  .config(function ($stateProvider) {
+  .config(function($stateProvider) {
     $stateProvider
       .state('places', {
         parent: 'app',
-        url: '/places',
+        url: '/places?adress&zipcode&radius&type',
         component: 'places',
-        // TODO resolve causes geolocating even when using back button, find alternative
         resolve: {
-          places: function (PlaceService) {
-            return PlaceService.getPlaces();
+          places: function($stateParams, PlaceService) {
+            if ($stateParams.zipcode) {
+              var placesParams = {
+                zipcode: $stateParams.zipcode,
+                radius: $stateParams.radius || '',
+                type: $stateParams.type || ''
+              };
+              return PlaceService.searchPlaces(placesParams);
+            } else {
+              return PlaceService.geolocatePlaces();
+            }
           }
         }
       });
