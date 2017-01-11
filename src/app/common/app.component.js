@@ -1,5 +1,6 @@
 var app = {
-  templateUrl: 'app/common/app.html'
+  templateUrl: 'app/common/app.html',
+  controller: 'AppController'
 };
 
 angular
@@ -12,5 +13,5 @@ angular
       .state('app', {
         url: '/app',
         component: 'app'
-    });
+        });
   });
