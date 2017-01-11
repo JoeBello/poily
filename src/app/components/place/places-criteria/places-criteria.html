@@ -1,0 +1,24 @@
+<form name="testForm">
+  <label>Address</label>
+  <input
+    type="text"
+    name="adress"
+    ng-model="$ctrl.criteria.address">
+  <label>Zipcode</label>
+  <input
+    type="text"
+    name="zipcode"
+    ng-model="$ctrl.criteria.zipcode">
+  <label>Radius</label>
+  <input
+    type="text"
+    name="radius"
+    ng-model="$ctrl.criteria.radius">
+  <label>Type</label>
+  <input
+    type="text"
+    name="type"
+    ng-model="$ctrl.criteria.type">
+
+    <button ng-click="$ctrl.submitCriteria()">Search</button>
+</form>
