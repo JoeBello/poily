@@ -1,6 +1,5 @@
 var app = {
-  templateUrl: 'app/common/app.html',
-  controller: 'AppController'
+  templateUrl: 'app/common/app.html'
 };
 
 angular
@@ -14,4 +13,7 @@ angular
         url: '/app',
         component: 'app'
         });
+  })
+  .run(function($localStorage) {
+    $localStorage.project1 = $localStorage.project1 || {};
   });
