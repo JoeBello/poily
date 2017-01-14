@@ -22,4 +22,8 @@ angular
           }
         }
       });
+  })
+  .run(function($localStorage) {
+    var project1 = $localStorage.project1;
+    project1.activities = project1.activities || {};
   });
