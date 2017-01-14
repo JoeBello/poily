@@ -1,5 +1,5 @@
 var placesSearch = {
-  templateUrl:  'app/components/place/places-search/places-search.html',
+  templateUrl:  'app/components/place/place-search/place-search.html',
   controller: 'PlacesSearchController'
 };
 

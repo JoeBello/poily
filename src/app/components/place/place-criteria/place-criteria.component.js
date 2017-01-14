@@ -2,7 +2,7 @@ var placesCriteria = {
   bindings: {
     onSubmit: '&'
   },
-  templateUrl: 'app/components/place/places-criteria/places-criteria.html',
+  templateUrl: 'app/components/place/place-criteria/place-criteria.html',
   controller: 'PlacesCriteriaController'
 };
 
