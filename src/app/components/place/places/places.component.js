@@ -13,7 +13,7 @@ angular
     $stateProvider
       .state('places', {
         parent: 'app',
-        url: '/places?adress&zipcode&radius&type',
+        url: '/places?zipcode&radius&type',
         component: 'places',
         resolve: {
           places: function($stateParams, PlaceService) {
@@ -30,4 +30,8 @@ angular
           }
         }
       });
+  })
+  .run(function($localStorage) {
+    var project1 = $localStorage.project1;
+    project1.coordinates = project1.coordinates || [];
   });
