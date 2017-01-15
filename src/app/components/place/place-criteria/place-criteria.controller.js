@@ -1,8 +1,7 @@
 var PlacesCriteriaController = function () {
   var ctrl = this;
 
-  ctrl.submitCriteria = function () {
-    console.log('ctrl.submitCriteria');
+  ctrl.submitForm = function () {
     ctrl.onSubmit({
       $event: {
         criteria: ctrl.criteria
