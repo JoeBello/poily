@@ -1,16 +1,27 @@
-var placesSearch = {
+var placeSearch = {
+  bindings: {
+    error: '<'
+  },
   templateUrl:  'app/components/place/place-search/place-search.html',
-  controller: 'PlacesSearchController'
+  controller: 'PlaceSearchController'
 };
 
 angular
   .module('components.place')
-  .component('placesSearch', placesSearch)
+  .component('placeSearch', placeSearch)
   .config(function($stateProvider) {
     $stateProvider
       .state('search', {
         parent: 'app',
         url: '/search',
-        component: 'placesSearch'
+        component: 'placeSearch',
+        params: {
+          error: null
+        },
+        resolve: {
+          error: function ($stateParams) {
+            return $stateParams.error;
+          }
+        }
       });
   });
