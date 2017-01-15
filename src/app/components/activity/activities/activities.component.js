@@ -3,7 +3,7 @@ var activities = {
     activities: '<'
   },
   templateUrl: 'app/components/activity/activities/activities.html',
-  controller: 'ActivitesController'
+  controller: 'ActivitiesController'
 };
 
 angular
@@ -17,13 +17,12 @@ angular
         component: 'activities',
         resolve: {
           activities: function (ActivityService) {
-            console.log('incoming activities...')
-            return ActivityService.getActivityList();
+            return ActivityService.getActivities();
           }
         }
       });
   })
   .run(function($localStorage) {
     var project1 = $localStorage.project1;
-    project1.activities = project1.activities || {};
+    project1.activities = project1.activities || [];
   });
