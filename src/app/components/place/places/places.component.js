@@ -19,8 +19,8 @@ angular
             if ($stateParams.zipcode) {
               var placesParams = {
                 zipcode: $stateParams.zipcode,
-                radius: $stateParams.radius || '',
-                type: $stateParams.type || ''
+                radius: $stateParams.radius,
+                type: $stateParams.type
               };
               return PlaceService.searchPlaces(placesParams);
             } else {
@@ -30,7 +30,7 @@ angular
         },
         views: {
           'filters': {
-            template: '<a ui-sref="activities">Activities</a><a ui-sref="search">Search</a>'
+            template: 'filters'
           },
           'main':{
             component: 'places'
