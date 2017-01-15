@@ -1,18 +1,18 @@
-function ActivitesController (ActivityService) {
+function ActivitiesController (ActivityService) {
   var ctrl = this;
   var activities = ctrl.activities;
 
-  // TODO refactor clearList() in activity service
-  ctrl.removeActivities = function () {
-    ActivityService.clearList();
+  ctrl.clearActivities = function () {
+    ActivityService.clearActivities();
   };
 
-  ctrl.removeActivity = function (activity) {
+  ctrl.removeActivity = function (event) {
+    var activity = event.activity;
     ActivityService.removeActivity(activity);
-  }
+  };
 
 }
 
 angular
   .module('components.activity')
-  .controller('ActivitesController', ActivitesController);
+  .controller('ActivitiesController', ActivitiesController);
