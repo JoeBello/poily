@@ -1,24 +1,45 @@
-<form name="testForm">
-  <label>Address</label>
-  <input
-    type="text"
-    name="adress"
-    ng-model="$ctrl.criteria.address">
-  <label>Zipcode</label>
-  <input
-    type="text"
-    name="zipcode"
-    ng-model="$ctrl.criteria.zipcode">
-  <label>Radius</label>
-  <input
-    type="text"
-    name="radius"
-    ng-model="$ctrl.criteria.radius">
-  <label>Type</label>
-  <input
-    type="text"
-    name="type"
-    ng-model="$ctrl.criteria.type">
-
-    <button ng-click="$ctrl.submitCriteria()">Search</button>
+<form name="criteriaForm" ng-submit="$ctrl.submitForm()" novalidate>
+  <div class="form-group">
+    <label>Zipcode</label>
+    <input
+      class="form-control"
+      type="text"
+      name="zipcode"
+      ng-minlength="5"
+      ng-maxlength="5"
+      ng-trim="false"
+      ng-pattern="/^(\d{5}(-\d{4})?|[A-Z]\d[A-Z] *\d[A-Z]\d)$/"
+      ng-model="$ctrl.criteria.zipcode"
+      required>
+      <p ng-show="criteriaForm.zipcode.$invalid" class="help-block">
+        A valid zipcode is required.
+      </p>
+  </div>
+  <div class="form-group">
+    <label>Radius</label>
+    <input
+      class="form-control"
+      type="number"
+      name="radius"
+      min="0"
+      ng-model="$ctrl.criteria.radius">
+  </div>
+  <div class="form-group">
+    <label>Type</label>
+    <select class="custom-select" ng-model="$ctrl.criteria.type" required>
+      <option value="">No type, let's see it all !</option>
+      <option value="amusement_park">Amusement Park</option>
+      <option value="art_gallery">Art Gallery</option>
+      <option value="bank">Bank</option>
+      <option value="movie_theater">Movie Theater</option>
+      <option value="museum">Museum</option>
+      <option value="cafe">Cafe</option>
+      <option value="campground">Campground</option>
+      <option value="gas_station">Gas Station</option>
+      <option value="train_station">Train Station</option>
+      <option value="zoo">Zoo</option>
+    </select>
+  </div>
+    <!-- <button ng-click="$ctrl.submitCriteria()">Search</button> -->
+    <button type="submit" class="btn btn-primary" ng-disabled="criteriaForm.$invalid">Submit</button>
 </form>
