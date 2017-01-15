@@ -1,53 +1,32 @@
-  function ActivityService ($localStorage) {
-    var storage;
+function ActivityService ($localStorage) {
+  var storage = $localStorage.project1.activities;
 
-    if ($localStorage.activities) {
-      storage = $localStorage.activities;
-    } else {
-      storage = $localStorage.activities = [];
-    }
+  // method to save save an activity
+  this.saveActivity = function(activity) {
+    storage.push(activity);
+  };
 
-    function showActivities () {
-      for (var i = 0; i < storage.length; i++) {
-          showActivity(i);
+  // method to return all stored activities
+  this.getActivities = function () {
+    return storage;
+  };
+
+  // method to remove an activity
+  this.removeActivity = function(activity) {
+    for (var i = 0; i < storage.length; i++) {
+      if (storage[i].name === activity.name) {
+        storage.splice(i, 1);
       }
     }
+  };
 
-    function showActivity(num) {
-      console.log(storage[num]);
-    }
+  // method to remove all activities
+  this.clearActivities = function () {
+    storage.splice(0, storage.length);
+    console.log(storage);
+  };
+}
 
-    function removeActivity(activity) {
-      for (var i = 0; i < storage.length; i++) {
-        if (storage[i].name === activity.name) {
-          storage.splice(i, 1);
-        }
-      }
-    }
-
-    function clearStorage() {
-      $localStorage.$reset();
-    }
-
-    return {
-      getActivityList: function () {
-        return storage;
-      },
-      addActivity: function (activity) {
-        storage.push(activity);
-      },
-      removeActivity: function (activity) {
-        return removeActivity(activity);
-      },
-      listActivities: function () {
-        return showActivities();
-      },
-      clearList: function () {
-        return clearStorage();
-      }
-    }
-  }
-
-  angular
-    .module('components.activity')
-    .service('ActivityService', ActivityService);
+angular
+  .module('components.activity')
+  .service('ActivityService', ActivityService);
