@@ -40,10 +40,8 @@ function PlaceService ($http, $httpParamSerializer, $state, PlaceServiceGeocoder
   };
 
   function searchPlaces(placesParams) {
-    // replace with filters for search form
-    for (key in placesParams) {
-      placesParams[key] = placesParams[key].toLowerCase();
-      placesParams[key] = placesParams[key].replace(/\s/g, '');
+    if (!placesParams.radius) {
+      placesParams.radius = 5;
     }
 
     var url = getUrl(placesParams, 'places');
