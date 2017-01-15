@@ -1,5 +1,6 @@
 var placesCriteria = {
   bindings: {
+    options: '<',
     onSubmit: '&'
   },
   templateUrl: 'app/components/place/place-criteria/place-criteria.html',
