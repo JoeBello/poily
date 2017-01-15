@@ -1,9 +1,20 @@
 <nav class="navbar navbar-default">
-  <div>
+  <div class="container-fluid">
     <div class="navbar-header">
-      <a class="navbar-brand" ui-sref="home">Project1</a>
+      <a class="navbar-brand" href=" " ui-sref="app">Project1</a>
     </div>
     <div class="collapse navbar-collapse">
+      <ul class="nav navbar-nav">
+        <li>
+          <a href=" " ui-sref="places">Places</a>
+        </li>
+        <li>
+          <a href=" " ui-sref="activities">Activities</a>
+        </li>
+        <li>
+          <a href=" " ui-sref="search">Search</a>
+        </li>
+      </ul>
       <ul class="nav navbar-right">
         <li>
           <a href=" ">Sign Up</a>
@@ -12,6 +23,9 @@
           <a href=" ">Log In</a>
         </li>
       </ul>
+      <div ui-view="filters"></div>
+      <!-- <place-filter></place-filter> -->
     </div>
   </div>
 </nav>
+<place-filter></place-filter>
