@@ -8,7 +8,7 @@ function PlaceService ($http, $httpParamSerializer, $state, PlaceServiceGeocoder
   function getUrl(searchParams, type) {
     var endpoint = API[type],
         params = $httpParamSerializer(searchParams);
-    return  endpoint + params;
+    return  endpoint.concat(params);
   };
 
   function extractPlaces(responseObject) {
