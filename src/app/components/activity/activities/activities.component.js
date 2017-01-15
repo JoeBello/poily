@@ -14,10 +14,14 @@ angular
       .state('activities', {
         parent: 'app',
         url: '/activities',
-        component: 'activities',
         resolve: {
           activities: function (ActivityService) {
             return ActivityService.getActivities();
+          }
+        },
+        views: {
+          'main': {
+            component: 'activities'
           }
         }
       });

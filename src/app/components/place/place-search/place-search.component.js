@@ -14,13 +14,17 @@ angular
       .state('search', {
         parent: 'app',
         url: '/search',
-        component: 'placeSearch',
         params: {
           error: null
         },
         resolve: {
           error: function ($stateParams) {
             return $stateParams.error;
+          }
+        },
+        views: {
+          'main': {
+            component: 'placeSearch'  
           }
         }
       });
