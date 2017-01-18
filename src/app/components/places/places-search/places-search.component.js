@@ -1,14 +1,14 @@
-var placeSearch = {
+var placesSearch = {
   bindings: {
     error: '<'
   },
-  templateUrl:  'app/components/place/place-search/place-search.html',
-  controller: 'PlaceSearchController'
+  templateUrl:  'app/components/places/places-search/places-search.html',
+  controller: 'PlacesSearchController'
 };
 
 angular
-  .module('components.place')
-  .component('placeSearch', placeSearch)
+  .module('components.places')
+  .component('placesSearch', placesSearch)
   .config(function($stateProvider) {
     $stateProvider
       .state('search', {
@@ -24,7 +24,7 @@ angular
         },
         views: {
           'main': {
-            component: 'placeSearch'  
+            component: 'placesSearch'
           }
         }
       });

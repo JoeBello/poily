@@ -3,10 +3,10 @@ var place = {
     place: '<',
     onSelect: '&'
   },
-  templateUrl: 'app/components/place/place/place.html',
+  templateUrl: 'app/components/places/place/place.html',
   controller: 'PlaceController'
 };
 
 angular
-  .module('components.place')
+  .module('components.places')
   .component('place', place)

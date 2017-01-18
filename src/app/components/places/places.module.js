@@ -1,5 +1,5 @@
 angular
-  .module('components.place', [
+  .module('components.places', [
     'ui.router'
   ])
   .constant('API', {

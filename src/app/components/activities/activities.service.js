@@ -1,4 +1,4 @@
-function ActivityService ($localStorage) {
+function ActivitiesService ($localStorage) {
   var storage = $localStorage.project1.activities;
 
   // method to save save an activity
@@ -28,5 +28,5 @@ function ActivityService ($localStorage) {
 }
 
 angular
-  .module('components.activity')
-  .service('ActivityService', ActivityService);
+  .module('components.activities')
+  .service('ActivitiesService', ActivitiesService);

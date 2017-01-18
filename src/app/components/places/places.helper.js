@@ -1,4 +1,4 @@
-function PlaceHelper() {
+function PlacesHelper() {
 
   function zeroPad(num, length) {
       num = num || '';
@@ -21,5 +21,5 @@ function PlaceHelper() {
 }
 
 angular
-  .module('components.place')
-  .factory('PlaceHelper', PlaceHelper);
+  .module('components.places')
+  .factory('PlacesHelper', PlacesHelper);

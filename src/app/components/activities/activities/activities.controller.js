@@ -1,18 +1,18 @@
-function ActivitiesController (ActivityService) {
+function ActivitiesController (ActivitiesService) {
   var ctrl = this;
   var activities = ctrl.activities;
 
   ctrl.clearActivities = function () {
-    ActivityService.clearActivities();
+    ActivitiesService.clearActivities();
   };
 
   ctrl.removeActivity = function (event) {
     var activity = event.activity;
-    ActivityService.removeActivity(activity);
+    ActivitiesService.removeActivity(activity);
   };
 
 }
 
 angular
-  .module('components.activity')
+  .module('components.activities')
   .controller('ActivitiesController', ActivitiesController);

@@ -1,4 +1,4 @@
-function PlaceSearchController ($state) {
+function PlacesSearchController ($state) {
   var ctrl = this;
 
 
@@ -25,5 +25,5 @@ function PlaceSearchController ($state) {
 }
 
 angular
-  .module('components.place')
-  .controller('PlaceSearchController', PlaceSearchController)
+  .module('components.places')
+  .controller('PlacesSearchController', PlacesSearchController)
