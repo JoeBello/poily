@@ -3,10 +3,10 @@ var placesCriteria = {
     options: '<',
     onSubmit: '&'
   },
-  templateUrl: 'app/components/place/place-criteria/place-criteria.html',
+  templateUrl: 'app/components/places/places-criteria/places-criteria.html',
   controller: 'PlacesCriteriaController'
 };
 
 angular
-  .module('components.place')
+  .module('components.places')
   .component('placesCriteria', placesCriteria);

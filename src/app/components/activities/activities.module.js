@@ -1,5 +1,5 @@
 angular
-  .module('components.activity', [
+  .module('components.activities', [
     'ngStorage',
     'ui.router'
   ]);

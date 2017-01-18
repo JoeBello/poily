@@ -2,12 +2,12 @@ var places = {
   bindings: {
     places: '<'
   },
-  templateUrl: 'app/components/place/places/places.html',
+  templateUrl: 'app/components/places/places/places.html',
   controller: 'PlacesController'
 };
 
 angular
-  .module('components.place')
+  .module('components.places')
   .component('places', places)
   .config(function($stateProvider) {
     $stateProvider
@@ -15,16 +15,16 @@ angular
         parent: 'app',
         url: '/places?zipcode&radius&type',
         resolve: {
-          places: function($stateParams, PlaceService) {
+          places: function($stateParams, PlacesService) {
             if ($stateParams.zipcode) {
               var placesParams = {
                 zipcode: $stateParams.zipcode,
                 radius: $stateParams.radius,
                 type: $stateParams.type
               };
-              return PlaceService.searchPlaces(placesParams);
+              return PlacesService.searchPlaces(placesParams);
             } else {
-              return PlaceService.geolocatePlaces();
+              return PlacesService.geolocatePlaces();
             }
           }
         },

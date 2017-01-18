@@ -11,5 +11,5 @@ function ActivityController () {
 };
 
 angular
-  .module('components.activity')
+  .module('components.activities')
   .controller('ActivityController', ActivityController);

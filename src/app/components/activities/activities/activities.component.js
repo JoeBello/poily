@@ -2,12 +2,12 @@ var activities = {
   bindings: {
     activities: '<'
   },
-  templateUrl: 'app/components/activity/activities/activities.html',
+  templateUrl: 'app/components/activities/activities/activities.html',
   controller: 'ActivitiesController'
 };
 
 angular
-  .module('components.activity')
+  .module('components.activities')
   .component('activities', activities)
   .config(function ($stateProvider) {
     $stateProvider
@@ -15,8 +15,8 @@ angular
         parent: 'app',
         url: '/activities',
         resolve: {
-          activities: function (ActivityService) {
-            return ActivityService.getActivities();
+          activities: function (ActivitiesService) {
+            return ActivitiesService.getActivities();
           }
         },
         views: {

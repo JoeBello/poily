@@ -3,10 +3,10 @@ var activity = {
     activity: '<',
     onRemove: '&'
   },
-  templateUrl: 'app/components/activity/activity/activity.html',
+  templateUrl: 'app/components/activities/activity/activity.html',
   controller: 'ActivityController'
 };
 
 angular
-  .module('components.activity')
+  .module('components.activities')
   .component('activity', activity);

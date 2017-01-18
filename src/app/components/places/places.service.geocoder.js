@@ -1,4 +1,4 @@
-function PlaceServiceGeocoder ($window, $q,) {
+function PlacesServiceGeocoder ($window, $q,) {
   var supported = false,
       geocoder;
 
@@ -62,5 +62,5 @@ function PlaceServiceGeocoder ($window, $q,) {
 
 
 angular
-  .module('components.place')
-  .factory('PlaceServiceGeocoder', PlaceServiceGeocoder);
+  .module('components.places')
+  .factory('PlacesServiceGeocoder', PlacesServiceGeocoder);

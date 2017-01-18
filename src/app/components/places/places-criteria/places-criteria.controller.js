@@ -12,5 +12,5 @@ var PlacesCriteriaController = function() {
 };
 
 angular
-  .module('components.place')
+  .module('components.places')
   .controller('PlacesCriteriaController', PlacesCriteriaController);

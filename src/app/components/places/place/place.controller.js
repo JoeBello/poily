@@ -13,5 +13,5 @@ function PlaceController() {
 
 
 angular
-  .module('components.place')
+  .module('components.places')
   .controller('PlaceController', PlaceController);

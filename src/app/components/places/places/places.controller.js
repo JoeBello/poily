@@ -1,4 +1,4 @@
-function PlacesController (ActivityService, $state) {
+function PlacesController (ActivitiesService, $state) {
   // TODO $onInit
   var ctrl = this,
       places = ctrl.places;
@@ -14,11 +14,11 @@ function PlacesController (ActivityService, $state) {
           location: place.vicinity,
           id: place.place_id
         };
-    
-    ActivityService.saveActivity(activity);
+
+    ActivitiesService.saveActivity(activity);
   };
 }
 
 angular
-  .module('components.place')
+  .module('components.places')
   .controller('PlacesController', PlacesController);

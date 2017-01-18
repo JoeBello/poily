@@ -1,8 +1,8 @@
-function PlaceService ($http, $httpParamSerializer, $state, PlaceServiceGeocoder, API) {
+function PlacesService ($http, $httpParamSerializer, $state, PlacesServiceGeocoder, API) {
   var geocoder;
 
-  if (PlaceServiceGeocoder.supported === true) {
-    geocoder = PlaceServiceGeocoder.geocoder;
+  if (PlacesServiceGeocoder.supported === true) {
+    geocoder = PlacesServiceGeocoder.geocoder;
   }
 
   function getUrl(searchParams, type) {
@@ -40,8 +40,12 @@ function PlaceService ($http, $httpParamSerializer, $state, PlaceServiceGeocoder
   };
 
   function searchPlaces(placesParams) {
-    if (!placesParams.radius) {
-      placesParams.radius = 5;
+    // TODO input validation
+    for (key in placesParams) {
+      if (placesParams[key]) {
+        placesParams[key] = placesParams[key].toLowerCase();
+        placesParams[key] = placesParams[key].replace(/\s/g, '');
+      }
     }
 
     var url = getUrl(placesParams, 'places');
@@ -64,5 +68,5 @@ function PlaceService ($http, $httpParamSerializer, $state, PlaceServiceGeocoder
 }
 
 angular
-  .module('components.place')
-  .factory('PlaceService', PlaceService);
+  .module('components.places')
+  .factory('PlacesService', PlacesService);
