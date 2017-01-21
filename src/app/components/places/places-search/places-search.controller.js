@@ -1,7 +1,6 @@
 function PlacesSearchController ($state) {
   var ctrl = this;
 
-
   ctrl.searchPlaces = function(event) {
     var criteria = event.criteria;
     $state.go('places', {
