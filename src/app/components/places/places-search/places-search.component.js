@@ -28,4 +28,7 @@ angular
           }
         }
       });
-  });
+  })
+  .run(function($localStorage) {
+    $localStorage.project1.places.lastSearch = $localStorage.project1.places.lastSearch || [];
+  })
