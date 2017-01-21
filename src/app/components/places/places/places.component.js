@@ -13,16 +13,13 @@ angular
     $stateProvider
       .state('places', {
         parent: 'app',
-        url: '/places?zipcode&radius&type',
+        url: '/places?zipcode&lat&lng&radius&type',
         resolve: {
           places: function($stateParams, PlacesService) {
-            if ($stateParams.zipcode) {
-              var placesParams = {
-                zipcode: $stateParams.zipcode,
-                radius: $stateParams.radius,
-                type: $stateParams.type
-              };
-              return PlacesService.searchPlaces(placesParams);
+            console.log($stateParams);
+            if ($stateParams.zipcode || ($stateParams.lat && $stateParams.lng))
+            {
+              return PlacesService.searchPlaces($stateParams);
             } else {
               return PlacesService.geolocatePlaces();
             }
@@ -30,7 +27,7 @@ angular
         },
         views: {
           'filters': {
-            template: 'filters'
+            component: 'placesFilters'
           },
           'main':{
             component: 'places'
@@ -39,6 +36,5 @@ angular
       });
   })
   .run(function($localStorage) {
-    var project1 = $localStorage.project1;
-    project1.coordinates = project1.coordinates || [];
+    $localStorage.project1.places = $localStorage.project1.places || {};
   });
