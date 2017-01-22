@@ -13,11 +13,11 @@ angular
     $stateProvider
       .state('places', {
         parent: 'app',
-        url: '/places?zipcode&lat&lng&radius&type',
+        url: '/places?zipcode&latitude&longitude&radius&type',
         resolve: {
           places: function($stateParams, PlacesService) {
             console.log($stateParams);
-            if ($stateParams.zipcode || ($stateParams.lat && $stateParams.lng))
+            if ($stateParams.zipcode || ($stateParams.latitude && $stateParams.longitude))
             {
               return PlacesService.searchPlaces($stateParams);
             } else {
