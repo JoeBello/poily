@@ -1,11 +1,13 @@
-function PlacesController (ActivitiesService, $state) {
+function PlacesController (PlacesService, ActivitiesService, $state, $localStorage) {
   // TODO $onInit
   var ctrl = this,
-      places = ctrl.places;
+      lastSearch = $localStorage.project1.places.lastSearch;
 
-  if (places.error) {
-    $state.go('search', {error: places.error});
+  if (ctrl.places.error) {
+    $state.go('search', {error: ctrl.places.error});
   }
+
+  ctrl.pageToken = lastSearch.pageToken || false;
 
   ctrl.addActivity = function (event) {
     var place = event.place,
@@ -17,6 +19,23 @@ function PlacesController (ActivitiesService, $state) {
 
     ActivitiesService.saveActivity(activity);
   };
+
+  ctrl.nextPage = function () {
+    PlacesService.searchPlaces({
+      pageToken: lastSearch.pageToken || '',
+      latitude: lastSearch.latitude || '',
+      longitude: lastSearch.longitude || '',
+      zipcode: lastSearch.zipcode || '',
+      radius: lastSearch.radius || '',
+      type: lastSearch.type || ''
+    })
+    .then(function(response) {
+      ctrl.places = ctrl.places.concat(response);
+    })
+    .catch(function(error) {
+      $state.go('search', {error: error});
+    });
+  }
 }
 
 angular
