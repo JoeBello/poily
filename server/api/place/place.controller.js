@@ -5,7 +5,7 @@ exports.get = function (req, res, next) {
     location: req.searchLocation,
     radius: req.query.radius * 1609.344 || null,
     type: req.query.type || null,
-    pagetoken: req.query.pagetoken || null
+    pagetoken: req.query.pageToken || null
   };
   // TODO handle next page token
   placesPromise.placeSearch(searchParams)
