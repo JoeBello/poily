@@ -3,7 +3,7 @@ function ActivitiesService ($localStorage) {
 
   // method to save save an activity
   this.saveActivity = function(activity) {
-    storage.push(activity);
+    return storage.push(activity);
   };
 
   // method to return all stored activities
@@ -15,15 +15,14 @@ function ActivitiesService ($localStorage) {
   this.removeActivity = function(activity) {
     for (var i = 0; i < storage.length; i++) {
       if (storage[i].name === activity.name) {
-        storage.splice(i, 1);
+        return storage.splice(i, 1);
       }
     }
   };
 
   // method to remove all activities
   this.clearActivities = function () {
-    storage.splice(0, storage.length);
-    console.log(storage);
+    return storage.splice(0, storage.length);
   };
 }
 
