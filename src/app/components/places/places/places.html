@@ -1,7 +1,11 @@
 <!--use ng-if to determine if sidebar is docked and adjust widths accordingly  -->
 <div class="col-md-12 text-center">
   <h1>Near you...</h1>
+  <div class="col-md-8 col-md-offset-2 well" ng-repeat="place in $ctrl.places">
+    <place place="place" on-select="$ctrl.addActivity($event)"></place>
+  </div>
+
 </div>
-<div class="col-md-8 col-md-offset-2 well" ng-repeat="place in $ctrl.places">
-  <place place="place" on-select="$ctrl.addActivity($event)"></place>
+<div class="col-md-12 text-center" ng-if="$ctrl.pageToken">
+  <a href="" ng-click="$ctrl.nextPage()">More Results...</a>
 </div>
