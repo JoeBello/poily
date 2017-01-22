@@ -26,7 +26,8 @@ function PlacesService ($http, $httpParamSerializer, $localStorage, API,
       .then(function(geocoderResponse) {
         return searchPlaces({
               latitude: geocoderResponse.position.coords.latitude,
-              longitude: geocoderResponse.position.coords.longitude
+              longitude: geocoderResponse.position.coords.longitude,
+              pageToken: null
             });
       })
       .catch(function(error) {
@@ -36,12 +37,12 @@ function PlacesService ($http, $httpParamSerializer, $localStorage, API,
 
   function searchPlaces(searchParams) {
     var searchDetails = {
-      pageToken: searchParams.pageToken || '',
-      latitude: searchParams.latitude || '',
-      longitude: searchParams.longitude || '',
-      zipcode: searchParams.zipcode || '',
-      radius: searchParams.radius || '',
-      type: searchParams.type || ''
+      pageToken: searchParams.pageToken || null,
+      latitude: searchParams.latitude || null,
+      longitude: searchParams.longitude || null,
+      zipcode: searchParams.zipcode || null,
+      radius: searchParams.radius || null,
+      type: searchParams.type || null
     };
 
     storage.lastSearch = searchDetails;
