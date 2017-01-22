@@ -1,13 +1,15 @@
 function PlacesController (PlacesService, ActivitiesService, $state, $localStorage) {
   // TODO $onInit
-  var ctrl = this,
-      lastSearch = $localStorage.project1.places.lastSearch;
+  var ctrl = this;
 
-  if (ctrl.places.error) {
-    $state.go('search', {error: ctrl.places.error});
+  ctrl.$onInit = function() {
+    if (ctrl.places.error) {
+      $state.go('search', {error: ctrl.places.error});
+    }
+    ctrl.lastSearch = $localStorage.project1.places.lastSearch;
+    ctrl.pageToken = ctrl.lastSearch.pageToken || null;
   }
 
-  ctrl.pageToken = lastSearch.pageToken || false;
 
   ctrl.addActivity = function (event) {
     var place = event.place,
@@ -21,20 +23,15 @@ function PlacesController (PlacesService, ActivitiesService, $state, $localStora
   };
 
   ctrl.nextPage = function () {
-    PlacesService.searchPlaces({
-      pageToken: lastSearch.pageToken || '',
-      latitude: lastSearch.latitude || '',
-      longitude: lastSearch.longitude || '',
-      zipcode: lastSearch.zipcode || '',
-      radius: lastSearch.radius || '',
-      type: lastSearch.type || ''
-    })
-    .then(function(response) {
-      ctrl.places = ctrl.places.concat(response);
-    })
-    .catch(function(error) {
-      $state.go('search', {error: error});
-    });
+    ctrl.lastSearch.pageToken = ctrl.pageToken || null;
+
+    PlacesService.searchPlaces(ctrl.lastSearch)
+      .then(function(response) {
+        ctrl.places = ctrl.places.concat(response);
+      })
+      .catch(function(error) {
+        $state.go('search', {error: error});
+      });
   }
 }
 
