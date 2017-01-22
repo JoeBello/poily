@@ -12,7 +12,7 @@ function PlacesSearchController ($state) {
 
 
   ctrl.typeOptions = [
-      {type: ' ', value: 'Let\'s see it all !'},
+      {type: null, value: 'Let\'s see it all !'},
       {type: 'amusement_park', value: 'Amusement Park'},
       {type: 'art_gallery', value: 'Art Gallery'},
       {type: 'bank', value: 'Bank'},
