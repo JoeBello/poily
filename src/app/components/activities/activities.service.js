@@ -1,28 +1,23 @@
-function ActivitiesService ($localStorage) {
-  var storage = $localStorage.project1.activities;
+function ActivitiesService (AppStorageService) {
 
-  // method to save save an activity
+  // save an activity
   this.saveActivity = function(activity) {
-    return storage.push(activity);
+    return AppStorageService.saveActivity(activity);
   };
 
-  // method to return all stored activities
+  // retrieve all activities
   this.getActivities = function () {
-    return storage;
+    return AppStorageService.getActivities();
   };
 
-  // method to remove an activity
+  // remove an activity
   this.removeActivity = function(activity) {
-    for (var i = 0; i < storage.length; i++) {
-      if (storage[i].name === activity.name) {
-        return storage.splice(i, 1);
-      }
-    }
+    return AppStorageService.destroyActivity(activity);
   };
 
-  // method to remove all activities
+  // remove all activities
   this.clearActivities = function () {
-    return storage.splice(0, storage.length);
+    return AppStorageService.destroyActivities();
   };
 }
 
