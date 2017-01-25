@@ -16,7 +16,6 @@ angular
         url: '/places?zipcode&latitude&longitude&radius&type',
         resolve: {
           places: function($stateParams, PlacesService) {
-            console.log($stateParams);
             if ($stateParams.zipcode || ($stateParams.latitude && $stateParams.longitude))
             {
               return PlacesService.searchPlaces($stateParams);
@@ -34,7 +33,4 @@ angular
           }
         }
       });
-  })
-  .run(function($localStorage) {
-    $localStorage.project1.places = $localStorage.project1.places || {};
   });
