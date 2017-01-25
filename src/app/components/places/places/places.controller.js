@@ -1,12 +1,12 @@
-function PlacesController (PlacesService, ActivitiesService, $state, $localStorage) {
+function PlacesController (PlacesService, ActivitiesService, $state) {
   var ctrl = this;
 
   ctrl.$onInit = function() {
     if (ctrl.places.error) {
       $state.go('search', {error: ctrl.places.error});
     } else {
-      ctrl.lastSearch = $localStorage.project1.places.lastSearch;
-      ctrl.pageToken = ctrl.lastSearch.pageToken || null;
+      ctrl.lastSearch = PlacesService.getLastSearch();
+      ctrl.pageToken = PlacesService.getLastPageToken();
     }
   }
 
