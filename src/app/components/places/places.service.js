@@ -1,19 +1,18 @@
-function PlacesService ($http, $httpParamSerializer, $localStorage, API,
+function PlacesService ($http, $httpParamSerializer, AppStorageService, API,
   PlacesServiceGeocoder) {
 
-  var storage = $localStorage.project1.places,
-      endpoint = API['places'];
+  var endpoint = API['places'];
 
   if (PlacesServiceGeocoder.supported === true) {
     var geocoder = PlacesServiceGeocoder.geocoder;
   }
 
   function buildUrl(searchParams, type) {
-    return  endpoint.concat($httpParamSerializer(searchParams));
+    return endpoint.concat($httpParamSerializer(searchParams));
   }
 
   function extractResults(responseObject) {
-    storage.lastSearch.pageToken = responseObject.data.next_page_token
+    AppStorageService.savePageToken(responseObject.data.next_page_token);
     return responseObject.data.results;
   }
 
@@ -45,7 +44,7 @@ function PlacesService ($http, $httpParamSerializer, $localStorage, API,
       type: searchParams.type || null
     };
 
-    storage.lastSearch = searchDetails;
+    AppStorageService.saveLastSearch(searchDetails);
 
     return $http.get(buildUrl(searchDetails))
       .then(function (placesResponse) {
@@ -56,9 +55,19 @@ function PlacesService ($http, $httpParamSerializer, $localStorage, API,
       });
   }
 
+  function getLastSearch() {
+    return AppStorageService.getLastSearch();
+  }
+
+  function getLastPageToken() {
+    return AppStorageService.getLastPageToken();
+  }
+
   return {
     geolocatePlaces: geolocatePlaces,
-    searchPlaces: searchPlaces
+    searchPlaces: searchPlaces,
+    getLastSearch: getLastSearch,
+    getLastPageToken: getLastPageToken
   };
 
 }
