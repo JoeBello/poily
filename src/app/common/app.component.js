@@ -16,8 +16,4 @@ angular
         url: '/app',
         component: 'app'
         });
-  })
-  .run(function($localStorage) {
-    $localStorage.project1 = $localStorage.project1 || {};
-    // $localStorage.$reset();
   });
