@@ -1,4 +1,4 @@
-function PlacesServiceGeocoder ($window, $q,) {
+function PlacesServiceGeocoder ($window, $q) {
   var supported = false,
       geocoder;
 
