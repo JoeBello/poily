@@ -1,7 +1,7 @@
 function PlaceController() {
   var ctrl = this;
 
-  ctrl.selectActivity = function () {
+  ctrl.selectPlace = function () {
     this.onSelect({
       $event: {
         place: this.place
