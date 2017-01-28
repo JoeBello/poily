@@ -1,11 +1,6 @@
 function ActivitiesService (AppStorageService) {
 
   return {
-    // save an activity
-    saveActivity: function(activity) {
-      return AppStorageService.saveActivity(activity);
-    },
-
     // retrieve all activities
     getActivities: function () {
       return AppStorageService.getActivities();
