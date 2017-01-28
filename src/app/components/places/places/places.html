@@ -1,8 +1,8 @@
 <!--use ng-if to determine if sidebar is docked and adjust widths accordingly  -->
-<div class="col-md-12 text-center" ng-if="$ctrl.places.length === 0">
+<div class="col-md-12 text-center" ng-hide="$ctrl.hasPlaces()">
   <span>:c( Sorry, there were no places found that fit your criteria.</span>
 </div>
-<div class="col-md-12 text-center" ng-if="$ctrl.places.length > 0">
+<div class="col-md-12 text-center" ng-show="$ctrl.hasPlaces()">
   <h1>Near you...</h1>
   <div class="col-md-8 col-md-offset-2 well" ng-repeat="place in $ctrl.places">
     <place place="place" on-select="$ctrl.addActivity($event)"></place>
