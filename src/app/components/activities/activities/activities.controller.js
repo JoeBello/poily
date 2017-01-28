@@ -1,6 +1,9 @@
 function ActivitiesController (ActivitiesService) {
   var ctrl = this;
-  var activities = ctrl.activities;
+
+  ctrl.hasActivities = function() {
+    return ctrl.activities.length > 0;
+  };
 
   ctrl.clearActivities = function () {
     ActivitiesService.clearActivities();
