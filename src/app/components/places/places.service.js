@@ -63,11 +63,16 @@ function PlacesService ($http, $httpParamSerializer, AppStorageService, API,
     return AppStorageService.getLastPageToken();
   }
 
+  function makeActivity(place) {
+    return AppStorageService.saveActivity(place);
+  }
+
   return {
     geolocatePlaces: geolocatePlaces,
     searchPlaces: searchPlaces,
     getLastSearch: getLastSearch,
-    getLastPageToken: getLastPageToken
+    getLastPageToken: getLastPageToken,
+    makeActivity: makeActivity
   };
 
 }
