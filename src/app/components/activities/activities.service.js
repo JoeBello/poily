@@ -1,23 +1,25 @@
 function ActivitiesService (AppStorageService) {
 
-  // save an activity
-  this.saveActivity = function(activity) {
-    return AppStorageService.saveActivity(activity);
-  };
+  return {
+    // save an activity
+    saveActivity: function(activity) {
+      return AppStorageService.saveActivity(activity);
+    },
 
-  // retrieve all activities
-  this.getActivities = function () {
-    return AppStorageService.getActivities();
-  };
+    // retrieve all activities
+    getActivities: function () {
+      return AppStorageService.getActivities();
+    },
 
-  // remove an activity
-  this.removeActivity = function(activity) {
-    return AppStorageService.destroyActivity(activity);
-  };
+    // remove an activity
+    removeActivity: function(activity) {
+      return AppStorageService.destroyActivity(activity);
+    },
 
-  // remove all activities
-  this.clearActivities = function () {
-    return AppStorageService.destroyActivities();
+    // remove all activities
+    clearActivities: function () {
+      return AppStorageService.destroyActivities();
+    }
   };
 }
 
