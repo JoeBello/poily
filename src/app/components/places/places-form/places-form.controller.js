@@ -1,4 +1,4 @@
-var PlacesCriteriaController = function() {
+var PlacesFormController = function() {
   var ctrl = this;
 
   ctrl.submitForm = function() {
@@ -13,4 +13,4 @@ var PlacesCriteriaController = function() {
 
 angular
   .module('components.places')
-  .controller('PlacesCriteriaController', PlacesCriteriaController);
+  .controller('PlacesFormController', PlacesFormController);

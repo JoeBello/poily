@@ -1,4 +1,4 @@
-<form name="criteriaForm" ng-submit="$ctrl.submitForm()" novalidate>
+<form name="placesForm" ng-submit="$ctrl.submitForm()" novalidate>
   <div class="form-group">
     <label>Zipcode</label>
     <input
@@ -11,7 +11,7 @@
       ng-pattern="/^(\d{5}(-\d{4})?|[A-Z]\d[A-Z] *\d[A-Z]\d)$/"
       ng-model="$ctrl.criteria.zipcode"
       required>
-      <p ng-show="criteriaForm.zipcode.$invalid" class="help-block">
+      <p ng-show="placesForm.zipcode.$invalid" class="help-block">
         A valid zipcode is required.
       </p>
   </div>
@@ -36,7 +36,7 @@
     <button
       type="submit"
       class="btn btn-primary"
-      ng-disabled="criteriaForm.$invalid"
+      ng-disabled="placesForm.$invalid"
     >
       Submit
     </button>
