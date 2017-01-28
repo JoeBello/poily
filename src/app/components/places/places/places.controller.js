@@ -1,4 +1,4 @@
-function PlacesController (PlacesService, ActivitiesService, $state) {
+function PlacesController (PlacesService, $state) {
   var ctrl = this;
 
   ctrl.$onInit = function() {
@@ -14,7 +14,7 @@ function PlacesController (PlacesService, ActivitiesService, $state) {
     return ctrl.places.length > 0;
   };
 
-  ctrl.addActivity = function (event) {
+  ctrl.addToActivities = function (event) {
     var place = event.place,
         activity = {
           name: place.name,
@@ -22,7 +22,7 @@ function PlacesController (PlacesService, ActivitiesService, $state) {
           id: place.place_id
         };
 
-    ActivitiesService.saveActivity(activity);
+    PlacesService.makeActivity(activity);
   };
 
   ctrl.nextPage = function () {
