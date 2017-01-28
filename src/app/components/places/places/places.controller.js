@@ -8,8 +8,11 @@ function PlacesController (PlacesService, ActivitiesService, $state) {
       ctrl.lastSearch = PlacesService.getLastSearch();
       ctrl.pageToken = PlacesService.getLastPageToken();
     }
-  }
+  };
 
+  ctrl.hasPlaces = function() {
+    return ctrl.places.length > 0;
+  };
 
   ctrl.addActivity = function (event) {
     var place = event.place,
