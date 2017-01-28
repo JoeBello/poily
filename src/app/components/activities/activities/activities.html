@@ -1,4 +1,7 @@
-<div class="col-md-12 text-center">
+<div class="col-md-12 text-center" ng-hide="$ctrl.hasActivities()">
+  <span>You have no saved activities. Go find something to do!</span>
+</div>
+<div class="col-md-12 text-center" ng-show="$ctrl.hasActivities()">
   <h1>Your Activities</h1>
   <div class="col-md-8 col-md-offset-2 well" ng-repeat="activity in $ctrl.activities track by $index">
     <activity activity="activity" on-remove="$ctrl.removeActivity($event)"></activity>
