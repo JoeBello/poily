@@ -1,8 +1,8 @@
-<div class="">
-  <app-nav></app-nav>
-  <div>
-    <div ui-view="filters"></div>
-    <div ui-view="main"></div>
+<app-nav></app-nav>
+<snap-drawer>
+  <div class="test-drawer">
+    Drawer
   </div>
-  <app-sidebar></app-sidebar>
-</div>
+</snap-drawer>
+<snap-content ui-view="main">
+</snap-content>
