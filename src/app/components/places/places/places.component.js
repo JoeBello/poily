@@ -14,6 +14,7 @@ angular
       .state('places', {
         parent: 'app',
         url: '/places?zipcode&latitude&longitude&radius&type',
+        component: 'places',
         resolve: {
           places: function($stateParams, PlacesService) {
             if ($stateParams.zipcode || ($stateParams.latitude && $stateParams.longitude))
@@ -22,14 +23,6 @@ angular
             } else {
               return PlacesService.geolocatePlaces();
             }
-          }
-        },
-        views: {
-          'filters': {
-            component: 'placesFilters'
-          },
-          'main':{
-            component: 'places'
           }
         }
       });
