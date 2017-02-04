@@ -2,8 +2,14 @@ body {
   background-color: rgb(228, 224, 235);
 }
 
-.navbar li {
-  display: inline-block;
+.test-drawer {
+  margin-top: 100px;
+  border: 1px solid pink;
+}
+
+.test-container {
+  margin-top: 100px;
+  border: 1px solid green;
 }
 
 .cta {
