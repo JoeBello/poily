@@ -2,6 +2,6 @@ angular
   .module('components.places', [
     'ui.router'
   ])
-  .value('API', {
+  .constant('API', {
     places: 'http://localhost:3000/api/places?'
   });
