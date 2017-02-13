@@ -1,40 +1,11 @@
+noscript {
+  text-align: center;
+}
+
+.boday {
+  margin-top: 200px;
+}
+
 body {
   background-color: rgb(228, 224, 235);
-}
-
-.test-drawer {
-  margin-top: 100px;
-  border: 1px solid pink;
-}
-
-.test-container {
-  margin-top: 100px;
-  border: 1px solid green;
-}
-
-.cta {
-  margin-top: 10%;
-  margin-bottom: 10%;
-}
-
-.cta-header {
-  padding: 1em 0;
-}
-
-.about {
-  margin-top: 10%;
-  margin-bottom: 10%;
-}
-
-.about-section {
-  margin-top: 10%;
-  margin-bottom: 10%;
-}
-
-.agenda {
-  position: fixed;
-  z-index: 100;
-  width: 500px;
-  border: 1px solid black;
-  background: rgb(128, 233, 215);
 }
