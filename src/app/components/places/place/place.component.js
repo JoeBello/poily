@@ -1,12 +1,8 @@
-var place = {
+module.exports = {
   bindings: {
     place: '<',
     onSelect: '&'
   },
-  templateUrl: 'app/components/places/place/place.html',
-  controller: 'PlaceController'
+  template: require('./place.html'),
+  controller: require('./place.controller')
 };
-
-angular
-  .module('components.places')
-  .component('place', place)

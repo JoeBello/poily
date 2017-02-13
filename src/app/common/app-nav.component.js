@@ -1,7 +1,3 @@
-var appNav = {
-  templateUrl: 'app/common/app-nav.html'
+module.exports = {
+  template: require('./app-nav.html')
 };
-
-
-angular.module('common')
-  .component('appNav', appNav);

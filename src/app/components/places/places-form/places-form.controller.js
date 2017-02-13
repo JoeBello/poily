@@ -1,4 +1,4 @@
-var PlacesFormController = function() {
+function PlacesFormController() {
   var ctrl = this;
 
   ctrl.submitForm = function() {
@@ -11,6 +11,4 @@ var PlacesFormController = function() {
 
 };
 
-angular
-  .module('components.places')
-  .controller('PlacesFormController', PlacesFormController);
+module.exports = PlacesFormController;

@@ -1,4 +1,4 @@
-function AppStorageService ($localStorage) {
+function AppStorageService($localStorage) {
 
   if (!$localStorage.hasOwnProperty('project1')) {
     $localStorage.project1 = {
@@ -40,7 +40,7 @@ function AppStorageService ($localStorage) {
     },
 
     // retrieve all stored activities
-    getActivities: function () {
+    getActivities: function() {
       return $localStorage.project1.activities;
     },
 
@@ -56,13 +56,11 @@ function AppStorageService ($localStorage) {
     },
 
     // remove all activities
-    destroyActivities: function () {
+    destroyActivities: function() {
       var storage = $localStorage.project1.activities;
       return storage.splice(0, storage.length);
     }
   }
 }
 
-angular
-  .module('common')
-  .factory('AppStorageService', AppStorageService);
+module.exports = AppStorageService;

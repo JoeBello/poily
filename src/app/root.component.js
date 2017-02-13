@@ -1,7 +1,3 @@
-var root = {
-  templateUrl: 'app/root.html'
+module.exports = {
+  template: require('./root.html')
 };
-
-angular
-  .module('root')
-  .component('root', root);
