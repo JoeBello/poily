@@ -1,29 +1,7 @@
-var places = {
+module.exports = {
   bindings: {
     places: '<'
   },
-  templateUrl: 'app/components/places/places/places.html',
-  controller: 'PlacesController'
+  template: require('./places.html'),
+  controller: require('./places.controller')
 };
-
-angular
-  .module('components.places')
-  .component('places', places)
-  .config(function($stateProvider) {
-    $stateProvider
-      .state('places', {
-        parent: 'app',
-        url: '/places?zipcode&latitude&longitude&radius&type',
-        component: 'places',
-        resolve: {
-          places: function($stateParams, PlacesService) {
-            if ($stateParams.zipcode || ($stateParams.latitude && $stateParams.longitude))
-            {
-              return PlacesService.searchPlaces($stateParams);
-            } else {
-              return PlacesService.geolocatePlaces();
-            }
-          }
-        }
-      });
-  });

@@ -1,5 +1,8 @@
 <h1>SEARCH PAGE</h1>
-<span ng-if="$ctrl.error">There was a problem getting your current location, so we redirected you to our search form.</span>
+<span ng-if="$ctrl.error">
+  There was a problem getting your current location, so we redirected you to
+  our search form.
+</span>
 <places-form options="$ctrl.typeOptions"
   on-submit="$ctrl.searchPlaces($event);">
 </places-form>

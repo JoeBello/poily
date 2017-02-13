@@ -1,12 +1,8 @@
-var activity = {
+module.exports = {
   bindings: {
     activity: '<',
     onRemove: '&'
   },
-  templateUrl: 'app/components/activities/activity/activity.html',
-  controller: 'ActivityController'
+  template: require('./activity.html'),
+  controller: require('./activity.controller')
 };
-
-angular
-  .module('components.activities')
-  .component('activity', activity);

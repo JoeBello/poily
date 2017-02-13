@@ -1,4 +1,4 @@
-function PlacesServiceGeocoder ($window, $q) {
+function PlacesServiceGeocoder($window, $q) {
   var supported = false,
       geocoder;
 
@@ -6,7 +6,7 @@ function PlacesServiceGeocoder ($window, $q) {
   if ($window.navigator.geolocation) {
     supported = true;
 
-    geocoder = function () {
+    geocoder = function() {
       var deferred = $q.defer(),
           // timeout for the geolocation prompt
           geocoderTimeout = setTimeout(geocoderError, 4000),
@@ -60,7 +60,4 @@ function PlacesServiceGeocoder ($window, $q) {
 
 }
 
-
-angular
-  .module('components.places')
-  .factory('PlacesServiceGeocoder', PlacesServiceGeocoder);
+module.exports = PlacesServiceGeocoder;

@@ -1,4 +1,4 @@
-function PlacesController (PlacesService, $state) {
+function PlacesController(PlacesService, $state) {
   var ctrl = this;
 
   ctrl.$onInit = function() {
@@ -14,7 +14,7 @@ function PlacesController (PlacesService, $state) {
     return ctrl.places.length > 0;
   };
 
-  ctrl.addToActivities = function (event) {
+  ctrl.makeActivity = function(event) {
     var place = event.place,
         activity = {
           name: place.name,
@@ -25,7 +25,7 @@ function PlacesController (PlacesService, $state) {
     PlacesService.makeActivity(activity);
   };
 
-  ctrl.nextPage = function () {
+  ctrl.nextPage = function() {
     ctrl.lastSearch.pageToken = ctrl.pageToken || null;
 
     PlacesService.searchPlaces(ctrl.lastSearch)
@@ -38,6 +38,4 @@ function PlacesController (PlacesService, $state) {
   }
 }
 
-angular
-  .module('components.places')
-  .controller('PlacesController', PlacesController);
+module.exports = PlacesController;

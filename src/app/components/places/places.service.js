@@ -1,5 +1,4 @@
-function PlacesService ($http, $httpParamSerializer, AppStorageService, API,
-  PlacesServiceGeocoder) {
+function PlacesService($http, $httpParamSerializer, AppStorageService, API, PlacesServiceGeocoder) {
 
   var endpoint = API['places'];
 
@@ -40,14 +39,14 @@ function PlacesService ($http, $httpParamSerializer, AppStorageService, API,
       latitude: searchParams.latitude || null,
       longitude: searchParams.longitude || null,
       zipcode: searchParams.zipcode || null,
-      radius: searchParams.radius || null,
+      radius: searchParams.radius || 5,
       type: searchParams.type || null
     };
 
     AppStorageService.saveLastSearch(searchDetails);
 
     return $http.get(buildUrl(searchDetails))
-      .then(function (placesResponse) {
+      .then(function(placesResponse) {
         return extractResults(placesResponse);
       })
       .catch(function(error) {
@@ -77,6 +76,4 @@ function PlacesService ($http, $httpParamSerializer, AppStorageService, API,
 
 }
 
-angular
-  .module('components.places')
-  .factory('PlacesService', PlacesService);
+module.exports = PlacesService;

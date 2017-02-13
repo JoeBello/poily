@@ -1,7 +1,7 @@
 function PlaceController() {
   var ctrl = this;
 
-  ctrl.selectPlace = function () {
+  ctrl.selectPlace = function() {
     this.onSelect({
       $event: {
         place: this.place
@@ -11,7 +11,4 @@ function PlaceController() {
 
 }
 
-
-angular
-  .module('components.places')
-  .controller('PlaceController', PlaceController);
+module.exports = PlaceController;

@@ -1,12 +1,8 @@
-var placesForm = {
+module.exports = {
   bindings: {
     options: '<',
     onSubmit: '&'
   },
-  templateUrl: 'app/components/places/places-form/places-form.html',
-  controller: 'PlacesFormController'
+  template: require('./places-form.html'),
+  controller: require('./places-form.controller')
 };
-
-angular
-  .module('components.places')
-  .component('placesForm', placesForm);

@@ -18,6 +18,4 @@ function ActivitiesService (AppStorageService) {
   };
 }
 
-angular
-  .module('components.activities')
-  .service('ActivitiesService', ActivitiesService);
+module.exports = ActivitiesService;

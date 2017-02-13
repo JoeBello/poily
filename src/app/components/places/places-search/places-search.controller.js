@@ -1,4 +1,4 @@
-function PlacesSearchController ($state) {
+function PlacesSearchController($state) {
   var ctrl = this;
 
   ctrl.searchPlaces = function(event) {
@@ -23,6 +23,4 @@ function PlacesSearchController ($state) {
 
 }
 
-angular
-  .module('components.places')
-  .controller('PlacesSearchController', PlacesSearchController)
+module.exports = PlacesSearchController;
