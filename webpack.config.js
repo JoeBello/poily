@@ -1,11 +1,14 @@
 var path = require('path');
+var app = path.resolve(__dirname, 'src', 'app');
 var webpack = require('webpack');
+var ngAnnotatWebpackPlugin = require('ng-annotate-webpack-plugin');
 var progressBarPlugin = require('progress-bar-webpack-plugin');
+
 
 module.exports = {
   context: path.resolve(__dirname, 'src'),
   entry: {
-    vendor: [
+    vendors: [
       'angular',
       'angular-ui-router',
       'ngstorage-webpack'
@@ -13,7 +16,7 @@ module.exports = {
     app: path.resolve(app, 'bootstrap')
   },
   output: {
-    filename: 'bundle.[name].js',
+    filename: '[name].bundle.js',
     path: path.resolve(__dirname, 'src', 'dist'),
     publicPath: '/dist/'
   },
@@ -27,14 +30,21 @@ module.exports = {
   },
   module: {
     rules: [
-      {test: /\.html$/, use: 'raw-loader', exclude: /node_modules/
-      }
+      {test: /\.html$/, use: ['html-loader'], exclude: /node_modules/},
+      {test: /\.css$/, use: ['style-loader', 'css-loader'], exclude: /node_modules/}
     ]
   },
   plugins: [
+    new progressBarPlugin(),
     new webpack.optimize.CommonsChunkPlugin({
-      name: 'vendor'
+      name: 'vendors'
     }),
-    new progressBarPlugin()
+    new ngAnnotatWebpackPlugin({
+      add: true
+    }),
+    new webpack.optimize.UglifyJsPlugin({
+      sourceMap: false,
+      mangle: false
+    })
   ]
 };
