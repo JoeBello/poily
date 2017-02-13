@@ -4,8 +4,7 @@
   "private": true,
   "scripts": {
     "build": "webpack",
-    "dev":
-      "concurrently --kill-others \"npm run local-dev-server\" \"npm run webpack-dev-server\"",
+    "dev": "concurrently --kill-others \"npm run local-dev-server\" \"npm run webpack-dev-server\"",
     "local-dev-server": "NODE_ENV=development nodemon index.js",
     "webpack-dev-server": "webpack-dev-server"
   },
@@ -14,22 +13,25 @@
     "angular-snap": "^1.8.5",
     "angular-ui-bootstrap": "^2.5.0",
     "angular-ui-router": "^1.0.0-rc.1",
-    "body-parser": "^1.15.2",
-    "dotenv": "^2.0.0",
+    "bootstrap": "^3.3.7",
     "express": "~4.13.4",
     "express-session": "^1.14.1",
     "googleplaces-promises": "^1.0.0",
-    "mongoose": "^4.7.4",
+    "mongoose": "^4.8.2",
     "ngstorage-webpack": "^2.2.2",
     "node-geocoder": "^3.15.0"
   },
   "devDependencies": {
+    "body-parser": "^1.16.1",
     "concurrently": "^3.3.0",
+    "css-loader": "^0.26.1",
     "debug": "^2.6.0",
-    "gulp": "^3.9.1",
+    "dotenv": "^4.0.0",
+    "html-loader": "^0.4.4",
     "morgan": "^1.7.0",
+    "ng-annotate-webpack-plugin": "^0.2.1-pre",
     "progress-bar-webpack-plugin": "^1.9.3",
-    "raw-loader": "^0.5.1",
-    "webpack": "^2.2.1",
+    "style-loader": "^0.13.1",
+    "webpack": "^2.2.1"
   }
 }
