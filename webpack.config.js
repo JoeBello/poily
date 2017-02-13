@@ -1,7 +1,7 @@
 var path = require('path');
 var app = path.resolve(__dirname, 'src', 'app');
 var webpack = require('webpack');
-var ngAnnotatWebpackPlugin = require('ng-annotate-webpack-plugin');
+var ngAnnotateWebpackPlugin = require('ng-annotate-webpack-plugin');
 var progressBarPlugin = require('progress-bar-webpack-plugin');
 
 
@@ -39,7 +39,7 @@ module.exports = {
     new webpack.optimize.CommonsChunkPlugin({
       name: 'vendors'
     }),
-    new ngAnnotatWebpackPlugin({
+    new ngAnnotateWebpackPlugin({
       add: true
     }),
     new webpack.optimize.UglifyJsPlugin({
