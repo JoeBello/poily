@@ -3,25 +3,33 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "dev": "NODE_ENV=development nodemon index.js",
-    "test": "NODE_ENV=testing nodemon index.js",
-    "prod": "NODE_ENV=production nodemon index.js"
+    "build": "webpack",
+    "dev":
+      "concurrently --kill-others \"npm run local-dev-server\" \"npm run webpack-dev-server\"",
+    "local-dev-server": "NODE_ENV=development nodemon index.js",
+    "webpack-dev-server": "webpack-dev-server"
   },
   "dependencies": {
+    "angular": "^1.6.2",
+    "angular-snap": "^1.8.5",
+    "angular-ui-bootstrap": "^2.5.0",
+    "angular-ui-router": "^1.0.0-rc.1",
     "body-parser": "^1.15.2",
     "dotenv": "^2.0.0",
     "express": "~4.13.4",
     "express-session": "^1.14.1",
     "googleplaces-promises": "^1.0.0",
     "mongoose": "^4.7.4",
+    "ngstorage-webpack": "^2.2.2",
     "node-geocoder": "^3.15.0"
   },
   "devDependencies": {
-    "browser-sync": "^2.18.1",
-    "debug": "~2.2.0",
+    "concurrently": "^3.3.0",
+    "debug": "^2.6.0",
     "gulp": "^3.9.1",
     "morgan": "^1.7.0",
-    "webpack": "^1.13.2",
-    "webpack-dev-server": "^1.16.2"
+    "progress-bar-webpack-plugin": "^1.9.3",
+    "raw-loader": "^0.5.1",
+    "webpack": "^2.2.1",
   }
 }
