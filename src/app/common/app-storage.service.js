@@ -1,12 +1,13 @@
 function AppStorageService($localStorage) {
-
   if (!$localStorage.hasOwnProperty('project1')) {
-    $localStorage.project1 = {
-      places: {
-        lastSearch: {}
-      },
-      activities: []
-    };
+    $localStorage.$default({
+      project1: {
+        places: {
+          lastSearch: {}
+        },
+        activities: []
+      }
+    })
   }
 
   return {
