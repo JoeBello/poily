@@ -1,3 +1,3 @@
 module.exports = {
-  template: require('./root.html')
+    template: require('./root.html')
 };
