@@ -5,7 +5,8 @@ var ngAnnotateWebpackPlugin = require('ng-annotate-webpack-plugin');
 var progressBarPlugin = require('progress-bar-webpack-plugin');
 
 
-module.exports = {
+module.exports = function(env) {
+  return {
   context: path.resolve(__dirname, 'src'),
   entry: {
     vendors: [
@@ -28,6 +29,7 @@ module.exports = {
       '/api/*': 'http://localhost:3000'
     }
   },
+  devtool: env === 'prod' ? 'source-map' : 'eval',
   module: {
     rules: [
       {test: /\.html$/, use: ['html-loader'], exclude: /node_modules/},
@@ -47,4 +49,5 @@ module.exports = {
       mangle: false
     })
   ]
+  }
 };
