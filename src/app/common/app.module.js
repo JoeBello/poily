@@ -1,8 +1,6 @@
 var common = angular.module('common', [
     'ui.router',
     'ngStorage'
-    // uiBootStrap
-    // angular-snap
   ])
   .factory('AppStorageService', require('./app-storage.service'))
   .component('app', require('./app.component'))
