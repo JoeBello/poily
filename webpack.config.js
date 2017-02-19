@@ -3,6 +3,7 @@ var app = path.resolve(__dirname, 'src', 'app');
 var webpack = require('webpack');
 var ngAnnotateWebpackPlugin = require('ng-annotate-webpack-plugin');
 var progressBarPlugin = require('progress-bar-webpack-plugin');
+var extractTextPlugin = require('extract-text-webpack-plugin');
 
 
 module.exports = function(env) {
@@ -11,6 +12,7 @@ module.exports = function(env) {
   entry: {
     vendors: [
       'angular',
+      'angular-material',
       'angular-ui-router',
       'ngstorage-webpack'
     ],
@@ -32,8 +34,13 @@ module.exports = function(env) {
   devtool: env === 'prod' ? 'source-map' : 'eval',
   module: {
     rules: [
-      {test: /\.html$/, use: ['html-loader'], exclude: /node_modules/},
-      {test: /\.css$/, use: ['style-loader', 'css-loader'], exclude: /node_modules/}
+      {test: /\.html$/, use: ['html-loader']},
+      {test: /\.css$/,
+        use: extractTextPlugin.extract({
+          fallback: 'style-loader',
+          use: 'css-loader'
+        })
+      }
     ]
   },
   plugins: [
@@ -44,6 +51,7 @@ module.exports = function(env) {
     new ngAnnotateWebpackPlugin({
       add: true
     }),
+    new extractTextPlugin('styles.css'),
     new webpack.optimize.UglifyJsPlugin({
       sourceMap: false,
       mangle: false
