@@ -2,10 +2,9 @@ noscript {
   text-align: center;
 }
 
-.boday {
-  margin-top: 200px;
-}
-
 body {
-  background-color: rgb(228, 224, 235);
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
