@@ -1,7 +1,13 @@
-<div class="text-center">
-  <h2 class="">{{ $ctrl.place.name }}</h2>
-  <span class="">{{ $ctrl.place.place_id }}</span>
-  <a href="" ng-click="$ctrl.selectPlace()">
-    <button class="btn-small btn-success">Add</button>
-  </a>
-</div>
+<md-card>
+  <md-card-content>
+    <h2 class="">{{ $ctrl.place.name }}</h2>
+    <p>{{ $ctrl.place.place_id }}</p>
+  </md-card-content>
+  <md-card-action>
+    <md-button class="md-primary md-raised"
+      ng-click="$ctrl.selectPlace()"
+    >
+      Add
+    </md-button>
+  </md-card-action>
+</md-card>
