@@ -1,13 +1,28 @@
-<!--use ng-if to determine if sidebar is docked and adjust widths accordingly  -->
-<div class="col-md-12 text-center" ng-hide="$ctrl.hasPlaces()">
-  <span>:c( Sorry, there were no places found that fit your criteria.</span>
-</div>
-<div class="col-md-12 text-center" ng-show="$ctrl.hasPlaces()">
-  <h1>Near you...</h1>
-  <div class="col-md-8 col-md-offset-2 well" ng-repeat="place in $ctrl.places">
-    <place place="place" on-select="$ctrl.makeActivity($event)"></place>
+<div layout="column" flex="80" flex-offset="10">
+
+  <div ng-hide="$ctrl.hasPlaces()">
+    <span>:c( Sorry, there were no places found that fit your criteria.</span>
   </div>
-</div>
-<div class="col-md-12 text-center" ng-if="$ctrl.pageToken">
-  <a href="" ng-click="$ctrl.nextPage()">More Results...</a>
+
+  <md-card ng-show="$ctrl.hasPlaces()">
+
+    <md-card-header layout-align="center"><h1>Near you...</h1></md-card-header>
+
+    <md-card-content
+      layout="column"
+      flex="70"
+      flex-offset="15"
+      ng-repeat="place in $ctrl.places"
+    >
+      <place place="place" on-select="$ctrl.makeActivity($event)"></place>
+    </md-card-content>
+
+    <md-card-actions layout="row" layout-align="center" ng-if="$ctrl.pageToken">
+      <md-button class="md-primary md-raised" ng-click="$ctrl.nextPage()">
+        More Places
+      </md-button>
+    </md-card-actions>
+
+  </md-card>
+
 </div>
