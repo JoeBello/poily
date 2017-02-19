@@ -1,16 +1,11 @@
 var config = {
-  development: {
-    env: 'development',
+  dev: {
+    env: 'dev',
     port: process.env.PORT || 3000,
     message: 'Running in development mode on port ' + (process.env.PORT || 3000)
   },
-  testing: {
-    env: 'testing',
-    port: process.env.PORT || 3000,
-    message: 'Running in development mode on port ' + (process.env.PORT || 3000)
-  },
-  production: {
-    env: 'production',
+  prod: {
+    env: 'prod',
     port: process.env.PORT || 3000,
     message: 'Running in development mode on port ' + (process.env.PORT || 3000)
   }
