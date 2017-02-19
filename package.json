@@ -1,12 +1,19 @@
 {
   "name": "project1",
   "version": "0.0.0",
+  "engines": {
+    "node": ">=4.0.0"
+  },
   "private": true,
   "scripts": {
-    "build": "webpack",
-    "dev": "concurrently --kill-others \"npm run local-dev-server\" \"npm run webpack-dev-server\"",
-    "local-dev-server": "NODE_ENV=development nodemon index.js",
-    "webpack-dev-server": "webpack-dev-server"
+    "dev": "concurrently --kill-others \"npm run dev:server\" \"npm run webpack-dev-server\"",
+    "dev:server": "NODE_ENV=dev nodemon index.js",
+    "webpack-dev-server": "webpack-dev-server --env=dev",
+    "prod": "npm-run-all clean lint build:prod",
+    "clean": "rimraf ./src/dist",
+    "lint": "eslint .",
+    "build:prod": "NODE_ENV=production webpack",
+    "nibble": "eslint-nibble ."
   },
   "dependencies": {
     "angular": "^1.6.2",
@@ -29,11 +36,16 @@
     "dotenv": "^4.0.0",
     "eslint": "^3.15.0",
     "eslint-config-angular": "^0.5.0",
+    "eslint-friendly-formatter": "^2.0.7",
+    "eslint-nibble": "^3.1.0",
     "eslint-plugin-angular": "^1.6.1",
+    "eslint-plugin-node": "^4.0.1",
     "html-loader": "^0.4.4",
     "morgan": "^1.7.0",
     "ng-annotate-webpack-plugin": "^0.2.1-pre",
+    "npm-run-all": "^4.0.1",
     "progress-bar-webpack-plugin": "^1.9.3",
+    "rimraf": "^2.6.0",
     "style-loader": "^0.13.1",
     "webpack": "^2.2.1"
   }
