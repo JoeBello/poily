@@ -1,0 +1,9 @@
+<div class="filters" uib-collapse="isNavCollapsed">
+  <div class="filters-inner">
+    <ul class="nav navbar-nav">
+      <li ng-repeat="filter in $ctrl.filters">
+        <a href="" ui-sref={{filter.state}}>{{filter.title}}</a>
+      </li>
+    </ul>
+  </div>
+</div>
