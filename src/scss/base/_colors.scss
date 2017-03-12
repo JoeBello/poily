@@ -1,0 +1,34 @@
+$app-colors: (
+  app: (
+    base: rgb(239, 243, 246)
+  ),
+  borders: (
+    base: rgb(30,30,30)
+  ),
+  header: (
+    base: rgb(20, 20, 20),
+    secondary: rgb(0, 0, 0)
+  ),
+  type: (
+    base: rgb(101, 102, 102)
+  ),
+  link: (
+    base: rgb(72, 84, 195),
+    hover: rgb(51, 51, 51)
+  ),
+  button: (
+
+  ),
+  brand: (
+    base: rgb(43, 193, 36),
+    hover: rgb(53, 203, 46)
+  ),
+  toggle: (
+    borders: rgb(101, 102, 102),
+    hover: rgb(30, 30, 30)
+  )
+);
+
+@function colors($element, $level) {
+  @return map-get(map-get($app-colors, $element), $level);
+}

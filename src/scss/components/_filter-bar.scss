@@ -1,0 +1,29 @@
+// mobile
+.filters {
+  margin: 5px 0;
+}
+// @media beyond mobile
+@media (min-width: $grid-float-breakpoint) {
+  .filters {
+    background-color: rgb(0,0,0);
+    border-top: 1px solid rgb(30,30,30);
+    font-size: 10px;
+    height: 20px;
+    left: 0;
+    margin: 0;
+    position: fixed;
+    text-align: center;
+    top: 50px;
+    width: 100%;
+
+    ul li a {
+      line-height: 10px;
+      padding: 5px 10px;
+    }
+
+  }
+
+  .filters-inner {
+    display: inline-block;
+  }
+}
