@@ -1,0 +1,23 @@
+$containers: (
+  full: (
+    width: 100%,
+    max-width: 1400px,
+    margin: 0 auto
+  ),
+  partial: (
+    width: 90%,
+    max-width: 1400px,
+    margin: 0 auto
+  )
+);
+
+
+$total-columns: 12;
+
+$column-width: ();
+
+$breakpoints: (
+  small: (min-width: 400px),
+  medium: (min-width: 800px),
+  large: (min-width: 1200px)
+);
