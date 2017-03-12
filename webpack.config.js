@@ -1,5 +1,5 @@
 var path = require('path');
-var app = path.resolve(__dirname, 'src', 'app');
+var app = path.resolve(__dirname, 'src', 'root');
 var webpack = require('webpack');
 var ngAnnotateWebpackPlugin = require('ng-annotate-webpack-plugin');
 var progressBarPlugin = require('progress-bar-webpack-plugin');
