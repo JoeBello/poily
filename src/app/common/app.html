@@ -1,13 +1,9 @@
-<div class="boday">
-  <app-nav></app-nav>
-  <!-- <snap-drawer>
-    <div class="test-drawer">
-      Drawer
-    </div>
-  </snap-drawer>
-  <snap-content ui-view>
-  </snap-content> -->
-
-  <div ui-view></div>
-
+<div class="app">
+  <app-nav
+    brand="$ctrl.brand"
+    app-nav="$ctrl.appNav"
+    user-nav="$ctrl.userNav"
+    filters="$ctrl.filters"
+  >
+  </app-nav>
 </div>
