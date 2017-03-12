@@ -12,7 +12,8 @@ module.exports = function(env) {
   entry: {
     vendors: [
       'angular',
-      'angular-material',
+      'angular-animate',
+      'angular-ui-bootstrap',
       'angular-ui-router',
       'ngstorage-webpack'
     ],
@@ -40,6 +41,18 @@ module.exports = function(env) {
           fallback: 'style-loader',
           use: 'css-loader'
         })
+      },
+      {test: /\.scss$/,
+        use: extractTextPlugin.extract({
+          fallback: 'style-loader',
+          use: ['css-loader', 'sass-loader']
+        })
+      },
+      {test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/,
+        use: "url-loader?limit=10000&mimetype=application/font-woff"
+      },
+      { test: /\.(ttf|eot|svg)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
+        use: "file-loader"
       }
     ]
   },
