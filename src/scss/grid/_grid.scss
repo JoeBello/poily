@@ -1,0 +1,9 @@
+@import 'variables';
+@import 'mixins';
+
+
+@for $col-width from 1 through $total-columns {
+  $column-width: map-merge($column-width, (
+  $col-width: (width: 100% / $total-columns * col-width)
+  ));
+}
