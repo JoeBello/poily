@@ -1,6 +1,6 @@
 <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+  <div class="container-fluid navbar__container-fluid">
     <div class="navbar-header">
-      <a class="navbar-brand" href="#" ui-sref="app">Project1</a>
       <button
         type="button"
         class="navbar-toggle"
@@ -10,28 +10,24 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-    </div> <!--end navbar-header-->
-
-    <div class="collapse navbar-collapse" uib-collapse="isNavCollapsed">
-      <span><a href="#">Log in</a> or <a href="#">Sign up</a></span>
-      <ul class="nav navbar-nav">
-        <li>
-          <a href="" ui-sref="places">Places</a>
-        </li>
-        <li>
-          <a href="" ui-sref="activities">Activities</a>
-        </li>
-        <li>
-          <a href="" ui-sref="search">Search</a>
+        <a class="navbar__brand" href="#" ui-sref="'{{$ctrl.brand.state}}'">
+          {{$ctrl.brand.title}}
+        </a>
+    </div>
+    <div class="collapse navbar-collapse navbar__collapse" uib-collapse="isNavCollapsed">
+      <ul class="nav navbar-nav navbar-right navbar__right">
+        <li ng-repeat="navItem in $ctrl.userNav">
+          <a href="#">{{navItem.title}}</a>
         </li>
       </ul>
-    </div> <!--end navbar-collapse-->
-
-    <div class="collapse navbar-collapse" uib-collapse="isNavCollapsed">
-      <ul class="nav navbar-nav">
-        <li><a href="" ui-sref="places({type: 'atm', zipcode: '07065'})">ATM</a></li>
-        <li><a href="" ui-sref="places({type: 'hospital', zipcode: '07065'})">Hospital</a></li>
-        <li><a href="" ui-sref="places({type: 'subway_station', zipcode: '07065'})">Subway</a></li>
+      <ul class="nav navbar-nav navbar-left navbar__left">
+        <li ng-repeat="navItem in $ctrl.appNav">
+          <a href="#" ui-sref={{navItem.state}}>
+            {{navItem.title}}
+          </a>
+        </li>
       </ul>
-    </div> <!--end navbar-collapse-->
+      <filter-bar filters="$ctrl.filters"></filter-bar>
+    </div>
+  </div>
 </nav>
