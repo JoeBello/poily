@@ -1,7 +1,7 @@
 var root = angular.module('root', [
     'ngAnimate',
     'ui.bootstrap',
-    require('./common/app.module.js'),
+    require('./app/app.module.js'),
     require('./components/components.module')
 ])
   .component('root', require('./root.component'));
