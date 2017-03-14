@@ -1,3 +1,4 @@
 @import 'vendors';
-@import 'base';
-@import 'components';
+@import './base/base';
+@import './app/app';
+@import './components/components';
