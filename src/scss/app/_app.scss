@@ -1,10 +1,19 @@
 @import 'navbar';
 @import 'filter-bar';
 
-.app {
+
+body {
   background: colors(app, base);
+}
+
+.app {
   color: colors(type, base);
   font: 16px 'Roboto', Arial, sans-serif;
+
+  main {
+    padding-top: 100px;
+  }
+
 }
 
 a {
