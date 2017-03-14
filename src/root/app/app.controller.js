@@ -1,9 +1,17 @@
-function AppController(AppNavConstant) {
+function AppController(AppConstant, AppStorageService, $rootScope) {
   var ctrl = this;
 
-  angular.forEach(AppNavConstant, function(value, constant) {
-    ctrl[constant] = AppNavConstant[constant];
+  angular.forEach(AppConstant, function(value, constant) {
+    ctrl[constant] = AppConstant[constant];
   });
+
+  ctrl.stops = AppStorageService.getActivities().length;
+
+  $rootScope.$on('stops', function(event, data) {
+    event.stopPropagation();
+    ctrl.stops = data;
+  });
+
 
 }
 
