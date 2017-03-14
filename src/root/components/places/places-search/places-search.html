@@ -1,8 +1,10 @@
-<h1>SEARCH PAGE</h1>
-<span ng-if="$ctrl.error">
-  There was a problem getting your current location, so we redirected you to
-  our search form.
-</span>
-<places-form options="$ctrl.typeOptions"
-  on-submit="$ctrl.searchPlaces($event);">
-</places-form>
+<div class="col-md-4 col-md-offset-1">
+  <h2>Search</h2>
+  <span ng-if="$ctrl.error">
+    There was a problem getting your current location, so we redirected you to
+    our search form.
+  </span>
+  <places-form options="$ctrl.typeOptions"
+    on-submit="$ctrl.searchPlaces($event);">
+  </places-form>
+</div>
