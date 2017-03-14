@@ -55,11 +55,12 @@
 }
 
 @media (min-width: $grid-float-breakpoint) {
-  .navbar__container-fluid {
-    padding-top: 5px;
-  }
-
   .navbar__right {
+
+    li {
+      padding: 0;
+    }
+
     .userNav__sm {
       display: none;
     }
