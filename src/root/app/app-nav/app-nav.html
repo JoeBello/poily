@@ -1,4 +1,4 @@
-<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
   <div class="container-fluid navbar__container-fluid">
     <div class="navbar-header">
       <button
@@ -16,15 +16,18 @@
     </div>
     <div class="collapse navbar-collapse navbar__collapse" uib-collapse="isNavCollapsed">
       <ul class="nav navbar-nav navbar-right navbar__right">
-        <li class="userNav__sm" ng-repeat="navItem in $ctrl.userNav">
+        <li class="userNav-sm" ng-repeat="navItem in $ctrl.userNav">
           <a href="#">{{navItem.title}}</a>
         </li>
         <li ng-repeat="navItem in $ctrl.appNav">
           <a href="#" ui-sref={{navItem.state}}>
             {{navItem.title}}
+            <span ng-if="navItem.title === 'Activities'" class="badge">
+              {{$ctrl.stops}}
+            </span>
           </a>
         </li>
-        <li class="userNav__md" ng-repeat="navItem in $ctrl.userNav">
+        <li class="userNav-md" ng-repeat="navItem in $ctrl.userNav">
           <a href="#">{{navItem.title}}</a>
         </li>
       </ul>

@@ -2,9 +2,13 @@
   <app-nav
     brand="$ctrl.brand"
     app-nav="$ctrl.appNav"
+    stops="$ctrl.stops"
     user-nav="$ctrl.userNav"
     filters="$ctrl.filters"
   >
   </app-nav>
-  <main class="container-fluid" ui-view></main>
+  <main class="container-fluid">
+    <div ui-view="main"></div>
+    <div ui-view="right"></div>
+  </main>
 </div>

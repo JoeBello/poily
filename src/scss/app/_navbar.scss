@@ -1,6 +1,7 @@
 .navbar {
-  background-color: colors(header, base);
+  background-color: colors(nav, base);
   font-family: 'Raleway', Helvetica, Arial, sans-serif;
+  font-weight: lighter;
 }
 
 .navbar__brand {
@@ -23,48 +24,38 @@
   }
 }
 
-.navbar-header {
-  .navbar-toggle {
-    border-color: colors(toggle, borders);
-
-    &:hover {
-      background-color: colors(toggle, hover);
-    }
-  }
-}
-
-.navbar-toggle {
-  .icon-bar {
-    border-color: colors(toggle, borders);
-  }
-}
-
 .navbar__right {
   li {
     border-bottom: 1px solid colors(borders, base);
     padding: 5px 0;
   }
 
-  .userNav__sm {
+  .userNav-sm {
     display: block;
   }
 
-  .userNav__md {
+  .userNav-md {
     display: none;
   }
 }
 
 @media (min-width: $grid-float-breakpoint) {
-  .navbar__container-fluid {
-    padding-top: 5px;
+
+  .navbar__brand {
+    left: 0;
   }
 
   .navbar__right {
-    .userNav__sm {
+
+    li {
+      padding: 0;
+    }
+
+    .userNav-sm {
       display: none;
     }
 
-    .userNav__md {
+    .userNav-md {
       display: block;
     }
 
