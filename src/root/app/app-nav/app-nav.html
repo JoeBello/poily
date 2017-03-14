@@ -22,6 +22,9 @@
         <li ng-repeat="navItem in $ctrl.appNav">
           <a href="#" ui-sref={{navItem.state}}>
             {{navItem.title}}
+            <span ng-if="navItem.title === 'Activities'" class="badge">
+              {{$ctrl.stops}}
+            </span>
           </a>
         </li>
         <li class="userNav-md" ng-repeat="navItem in $ctrl.userNav">
