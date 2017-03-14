@@ -1,5 +1,5 @@
 // mobile
-.filters {
+.filter-bar {
   // margin: 5px 0;
   li {
     border-bottom: 1px solid colors(borders, base);
@@ -13,9 +13,9 @@
 
 // @media beyond mobile
 @media (min-width: $grid-float-breakpoint) {
-  .filters {
-    background-color: rgb(0,0,0);
-    border-top: 1px solid rgb(30,30,30);
+  .filter-bar {
+    background-color: colors(filterBar, base);
+    border-top: colors(borders, base);
     font-size: 10px;
     height: 20px;
     left: 0;
@@ -26,7 +26,7 @@
     width: 100%;
   }
 
-  .filters-inner {
+  .filter-bar__inner {
     display: inline-block;
     height: 100%;
 
