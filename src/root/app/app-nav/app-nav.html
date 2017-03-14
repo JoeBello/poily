@@ -16,15 +16,16 @@
     </div>
     <div class="collapse navbar-collapse navbar__collapse" uib-collapse="isNavCollapsed">
       <ul class="nav navbar-nav navbar-right navbar__right">
-        <li ng-repeat="navItem in $ctrl.userNav">
+        <li class="userNav__sm" ng-repeat="navItem in $ctrl.userNav">
           <a href="#">{{navItem.title}}</a>
         </li>
-      </ul>
-      <ul class="nav navbar-nav navbar-left navbar__left">
         <li ng-repeat="navItem in $ctrl.appNav">
           <a href="#" ui-sref={{navItem.state}}>
             {{navItem.title}}
           </a>
+        </li>
+        <li class="userNav__md" ng-repeat="navItem in $ctrl.userNav">
+          <a href="#">{{navItem.title}}</a>
         </li>
       </ul>
       <filter-bar filters="$ctrl.filters"></filter-bar>
