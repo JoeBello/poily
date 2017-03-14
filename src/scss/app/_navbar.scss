@@ -40,8 +40,10 @@
 }
 
 .navbar__right {
-  border-bottom: 1px solid colors(borders, base);
-  padding: 5px 0;
+  li {
+    border-bottom: 1px solid colors(borders, base);
+    padding: 5px 0;
+  }
 
   .userNav__sm {
     display: block;

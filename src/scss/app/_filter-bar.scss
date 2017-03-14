@@ -1,7 +1,16 @@
 // mobile
 .filters {
-  margin: 5px 0;
+  // margin: 5px 0;
+  li {
+    border-bottom: 1px solid colors(borders, base);
+    padding: 5px 0;
+  }
+
+  li:last-child {
+    border-bottom: none;
+  }
 }
+
 // @media beyond mobile
 @media (min-width: $grid-float-breakpoint) {
   .filters {
@@ -15,6 +24,11 @@
     text-align: center;
     top: 50px;
     width: 100%;
+
+    li {
+      border-bottom: none;
+      padding: 0;
+    }
 
     ul li a {
       line-height: 10px;
