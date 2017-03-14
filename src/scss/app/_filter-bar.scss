@@ -1,5 +1,5 @@
 // mobile
-.filters {
+.filter-bar {
   // margin: 5px 0;
   li {
     border-bottom: 1px solid colors(borders, base);
@@ -7,15 +7,15 @@
   }
 
   li:last-child {
-    border-bottom: none;
+    border-bottom: 0;
   }
 }
 
 // @media beyond mobile
 @media (min-width: $grid-float-breakpoint) {
-  .filters {
-    background-color: rgb(0,0,0);
-    border-top: 1px solid rgb(30,30,30);
+  .filter-bar {
+    background-color: colors(filterBar, base);
+    border-top: colors(borders, base);
     font-size: 10px;
     height: 20px;
     left: 0;
@@ -24,20 +24,21 @@
     text-align: center;
     top: 50px;
     width: 100%;
-
-    li {
-      border-bottom: none;
-      padding: 0;
-    }
-
-    ul li a {
-      line-height: 10px;
-      padding: 5px 10px;
-    }
-
   }
 
-  .filters-inner {
+  .filter-bar__inner {
     display: inline-block;
+    height: 100%;
+
+    ul {
+      position: relative;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+
+    li {
+      border-bottom: 0;
+      padding: 0 1em;
+    }
   }
 }

@@ -2,6 +2,7 @@ module.exports = {
   bindings: {
     brand: '<',
     appNav: '<',
+    stops: '<',
     userNav: '<',
     filters: '<'
   },

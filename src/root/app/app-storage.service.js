@@ -1,4 +1,4 @@
-function AppStorageService($localStorage) {
+function AppStorageService($localStorage, $rootScope) {
   if (!$localStorage.hasOwnProperty('project1')) {
     $localStorage.$default({
       project1: {
@@ -37,7 +37,9 @@ function AppStorageService($localStorage) {
 
     // save an activity
     saveActivity: function(activity) {
-      return $localStorage.project1.activities.push(activity);
+      $localStorage.project1.activities.push(activity);
+      return $rootScope
+              .$emit('stops', $localStorage.project1.activities.length);
     },
 
     // retrieve all stored activities
@@ -51,15 +53,20 @@ function AppStorageService($localStorage) {
 
       for (var i = 0; i < storage.length; i++) {
         if (storage[i].name === activity.name) {
-          return storage.splice(i, 1);
+          storage.splice(i, 1);
         }
       }
+
+      return $rootScope
+              .$emit('stops', $localStorage.project1.activities.length);
     },
 
     // remove all activities
     destroyActivities: function() {
       var storage = $localStorage.project1.activities;
-      return storage.splice(0, storage.length);
+      storage.splice(0, storage.length);
+      return $rootScope
+              .$emit('stops', $localStorage.project1.activities.length);
     }
   }
 }

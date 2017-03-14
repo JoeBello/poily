@@ -1,15 +1,14 @@
 <div clsss="row">
+  <div class="col-md-7 places">
+    <section class="places__none text-center" ng-hide="$ctrl.hasPlaces()">
+      <span>Sorry, there were no places found that fit your criteria.</span>
+    </section>
+    <section class="places">
+      <div class="well" ng-repeat="place in $ctrl.places">
+        <place place="place" on-select="$ctrl.makeActivity($event)"></place>
+      </div>
+    </section>
 
-  <div class="col-md-6 col-md-offset-3 places__none text-center" ng-hide="$ctrl.hasPlaces()">
-    <span>Sorry, there were no places found that fit your criteria.</span>
-  </div>
-
-  <div class="col-md-6 col-md-offset-3 places" ng-show="$ctrl.hasPlaces()">
-
-
-    <div class="well" ng-repeat="place in $ctrl.places">
-      <place place="place" on-select="$ctrl.makeActivity($event)"></place>
-    </div>
 
   </div>
 

@@ -1,48 +1,18 @@
-function AppController() {
+function AppController(AppConstant, AppStorageService, $rootScope) {
   var ctrl = this;
 
-  ctrl.brand = {
-    title: 'Placer',
-    state: 'app'
-  };
+  angular.forEach(AppConstant, function(value, constant) {
+    ctrl[constant] = AppConstant[constant];
+  });
 
-  ctrl.appNav = {
-    places: {
-      title: 'Places',
-      state: 'places'
-    },
-    activities: {
-      title: 'Activities',
-      state: 'activities'
-    }
-  };
+  ctrl.stops = AppStorageService.getActivities().length;
 
-  ctrl.userNav = {
-    signUp: {
-      title: 'Sign Up'
-      // state:
-    },
-    logIn: {
-      title: 'Log In'
-      // state:
-    }
-  };
+  $rootScope.$on('stops', function(event, data) {
+    event.stopPropagation();
+    ctrl.stops = data;
+  });
 
-  ctrl.filters = {
-    atm: {
-      title: 'ATM',
-      state: 'places({type: "atm", zipcode: "07065"})'
-    },
-    hospital: {
-      title: 'Hospital',
-      state: 'places({type: "hospital", zipcode: "07065"})'
-    },
-    subway: {
-      title: 'Subway',
-      state: 'places({type: "subway_station", zipcode: "07065"})'
 
-    }
-  }
 }
 
 module.exports = AppController;
