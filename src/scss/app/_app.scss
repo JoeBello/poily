@@ -15,11 +15,3 @@ body {
   }
 
 }
-
-a {
-  color: colors(link, base);
-
-  &:hover {
-    color: colors(link, hover);
-  }
-}
