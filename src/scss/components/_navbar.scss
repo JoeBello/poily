@@ -39,37 +39,33 @@
   }
 }
 
-.navbar__left,
 .navbar__right {
   border-bottom: 1px solid colors(borders, base);
   padding: 5px 0;
+
+  .userNav__sm {
+    display: block;
+  }
+
+  .userNav__md {
+    display: none;
+  }
 }
 
 @media (min-width: $grid-float-breakpoint) {
   .navbar__container-fluid {
     padding-top: 5px;
-
-    .navbar-header {
-      margin-right: 5%;
-    }
   }
 
-  .navbar__left {
-    background-color: colors(header, secondary);
-    border-radius: 5px 5px 0 0;
-    border: 1px solid colors(borders, base);
-    border-bottom: none;
-    height: 40px;
-    position: relative;
-    top: 6px;
-    z-index: 200;
-
-    li {
-      margin: 0 .5em;
-
-      a {
-        padding-top: 10px;
-      }
+  .navbar__right {
+    .userNav__sm {
+      display: none;
     }
+
+    .userNav__md {
+      display: block;
+    }
+
   }
+
 }
