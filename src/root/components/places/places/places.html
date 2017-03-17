@@ -8,8 +8,9 @@
         <place place="place" on-select="$ctrl.makeActivity($event)"></place>
       </div>
     </section>
-
-
+      <button class="btn-primary" ng-if="$ctrl.pageToken" ng-click="$ctrl.nextPage()">
+        More Places
+      <button>
   </div>
 
 </div>
