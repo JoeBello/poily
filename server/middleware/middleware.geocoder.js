@@ -7,17 +7,11 @@ var geocoder = NodeGeocoder({
     });
 
 var geocodeLocation = function (req, res, next) {
-  if (req.query.latitude && req.query.longitude) {
-    req.searchLocation = [
-      req.query.latitude,
-      req.query.longitude
-    ];
-    next();
-  } else {
+  if (req.query.location.length === 5) {
     var geocodeRequest = {
       address: ' ',
       country: 'UnitedStates',
-      zipcode: req.query.zipcode
+      zipcode: req.query.location
     };
     geocoder.geocode(geocodeRequest)
     .then(function parseGeocodeResponse(geocodeResponse){
@@ -27,8 +21,10 @@ var geocodeLocation = function (req, res, next) {
       ];
       next();
     });
+  } else {
+    req.searchLocation = req.query.location;
+    next();
   }
-
-};
+}
 
 module.exports = geocodeLocation;
