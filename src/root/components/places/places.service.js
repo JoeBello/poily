@@ -1,17 +1,16 @@
-function PlacesService($http, $httpParamSerializer, AppStorageService, API, PlacesServiceGeocoder) {
-
-  var endpoint = API['places'];
+function PlacesService($http, $httpParamSerializer, API, PlacesServiceGeocoder,
+                        AppStorageService) {
 
   if (PlacesServiceGeocoder.supported === true) {
     var geocoder = PlacesServiceGeocoder.geocoder;
   }
 
-  function buildUrl(searchParams, type) {
-    return endpoint.concat($httpParamSerializer(searchParams));
+  function buildUrl(searchParams) {
+    return API['places'].concat($httpParamSerializer(searchParams));
   }
 
   function extractResults(responseObject) {
-    AppStorageService.savePageToken(responseObject.data.next_page_token);
+    AppStorageService.savePageToken(responseObject.data.next_page_token || null);
     return responseObject.data.results;
   }
 
@@ -23,10 +22,10 @@ function PlacesService($http, $httpParamSerializer, AppStorageService, API, Plac
     return geocoder()
       .then(function(geocoderResponse) {
         return searchPlaces({
-              latitude: geocoderResponse.position.coords.latitude,
-              longitude: geocoderResponse.position.coords.longitude,
-              pageToken: null
-            });
+                location:[geocoderResponse.position.coords.latitude,
+                          geocoderResponse.position.coords.longitude],
+                pageToken: null
+                });
       })
       .catch(function(error) {
         return error;
@@ -34,44 +33,25 @@ function PlacesService($http, $httpParamSerializer, AppStorageService, API, Plac
   }
 
   function searchPlaces(searchParams) {
-    var searchDetails = {
-      pageToken: searchParams.pageToken || null,
-      latitude: searchParams.latitude || null,
-      longitude: searchParams.longitude || null,
-      zipcode: searchParams.zipcode || null,
-      radius: searchParams.radius || 5,
-      type: searchParams.type || null
-    };
+    if (!searchParams.location) {
+      return geolocatePlaces();
+    }
 
-    AppStorageService.saveLastSearch(searchDetails);
+    AppStorageService.saveLastSearch(searchParams);
 
-    return $http.get(buildUrl(searchDetails))
+    return $http.get(buildUrl(searchParams))
       .then(function(placesResponse) {
         return extractResults(placesResponse);
       })
       .catch(function(error) {
+        console.log(error);
         return error;
       });
   }
 
-  function getLastSearch() {
-    return AppStorageService.getLastSearch();
-  }
-
-  function getLastPageToken() {
-    return AppStorageService.getLastPageToken();
-  }
-
-  function makeActivity(place) {
-    return AppStorageService.saveActivity(place);
-  }
-
   return {
     geolocatePlaces: geolocatePlaces,
-    searchPlaces: searchPlaces,
-    getLastSearch: getLastSearch,
-    getLastPageToken: getLastPageToken,
-    makeActivity: makeActivity
+    searchPlaces: searchPlaces
   };
 
 }

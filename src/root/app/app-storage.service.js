@@ -18,6 +18,7 @@ function AppStorageService($localStorage, $rootScope) {
 
     // save details of the most recent search
     saveLastSearch: function(searchData) {
+      console.log(searchData);
       return $localStorage.project1.places.lastSearch = searchData;
     },
 
@@ -32,7 +33,7 @@ function AppStorageService($localStorage, $rootScope) {
     },
 
     getLastPageToken: function() {
-      return $localStorage.project1.places.lastSearch.pageToken;
+      return $localStorage.project1.places.lastSearch.pageToken || null;
     },
 
     // save an activity

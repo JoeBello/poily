@@ -1,17 +1,12 @@
-function PlacesController(PlacesService, $state) {
+function PlacesController(PlacesService, AppStorageService, $state) {
   var ctrl = this;
-
-  ctrl.$onInit = function() {
-    if (ctrl.places.error) {
-      $state.go('search', {error: ctrl.places.error});
-    } else {
-      ctrl.lastSearch = PlacesService.getLastSearch();
-      ctrl.pageToken = PlacesService.getLastPageToken();
-    }
-  };
 
   ctrl.hasPlaces = function() {
     return ctrl.places.length > 0;
+  };
+
+  ctrl.hasPageToken = function() {
+    return AppStorageService.getLastPageToken() === null;
   };
 
   ctrl.makeActivity = function(event) {
@@ -22,13 +17,14 @@ function PlacesController(PlacesService, $state) {
           id: place.place_id
         };
 
-    PlacesService.makeActivity(activity);
+    AppStorageService.saveActivity(activity);
   };
 
   ctrl.nextPage = function() {
-    ctrl.lastSearch.pageToken = ctrl.pageToken || null;
+    var lastSearch = AppStorageService.getLastSearch();
+    lastSearch.pageToken = AppStorageService.getLastPageToken();
 
-    PlacesService.searchPlaces(ctrl.lastSearch)
+    PlacesService.searchPlaces(lastSearch)
       .then(function(response) {
         ctrl.places = ctrl.places.concat(response);
       })
