@@ -7,9 +7,16 @@ function AppController(AppConstant, AppStorageService, $rootScope) {
 
   ctrl.stops = AppStorageService.getActivities().length;
 
-  $rootScope.$on('stops', function(event, data) {
+  ctrl.lastLocation = AppStorageService.getLastLocation();
+  console.log(ctrl.lastLocation);
+
+  $rootScope.$on('location_change', function(event, location) {
     event.stopPropagation();
-    ctrl.stops = data;
+    ctrl.lastLocation = location;
+  })
+  $rootScope.$on('stop_change', function(event, stops) {
+    event.stopPropagation();
+    ctrl.stops = stops;
   });
 
 
