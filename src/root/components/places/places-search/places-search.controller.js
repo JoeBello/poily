@@ -4,7 +4,7 @@ function PlacesSearchController($state) {
   ctrl.searchPlaces = function(event) {
     var criteria = event.criteria;
     $state.go('places', {
-      zipcode: criteria.zipcode,
+      location: criteria.zipcode,
       radius: criteria.radius,
       type: criteria.type.type
     });

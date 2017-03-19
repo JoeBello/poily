@@ -1,14 +1,13 @@
 exports.get = function (req, res, next) {
   var GooglePlacesPromises = require('googleplaces-promises');
   var placesPromise = new GooglePlacesPromises(process.env.GOOGLE_API_KEY);
-  var searchParams = {
+
+  placesPromise.placeSearch({
     location: req.searchLocation,
     radius: req.query.radius * 1609.344 || null,
     type: req.query.type || null,
     pagetoken: req.query.pageToken || null
-  };
-  // TODO handle next page token
-  placesPromise.placeSearch(searchParams)
+  })
     .then(function extractPlaces(placesResponse){
       res.send(placesResponse);
     })

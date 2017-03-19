@@ -3,13 +3,16 @@
     <section class="places__none text-center" ng-hide="$ctrl.hasPlaces()">
       <span>Sorry, there were no places found that fit your criteria.</span>
     </section>
-    <section class="places">
+    <section class="places" ng-show="$ctrl.hasPlaces()">
       <div class="well" ng-repeat="place in $ctrl.places">
         <place place="place" on-select="$ctrl.makeActivity($event)"></place>
       </div>
+      <div ng-hide="$ctrl.hasPageToken()">
+        <button class="btn-primary"  ng-click="$ctrl.nextPage()">
+          More Places
+        <button>
+      </div>
     </section>
-
-
   </div>
 
 </div>

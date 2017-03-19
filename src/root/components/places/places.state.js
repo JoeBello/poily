@@ -2,15 +2,12 @@ function placesState($stateProvider) {
   $stateProvider
     .state('places', {
       parent: 'app',
-      url: '/places?zipcode&latitude&longitude&radius&type',
+      url: '/places?location&radius&type',
       resolve: {
         places: function($stateParams, PlacesService) {
-          if ($stateParams.zipcode || ($stateParams.latitude && $stateParams.longitude))
-          {
-            return PlacesService.searchPlaces($stateParams);
-          } else {
-            return PlacesService.geolocatePlaces();
-          }
+          delete $stateParams['#'];
+          // console.log(PlacesService.searchPlaces($stateParams));
+          return PlacesService.searchPlaces($stateParams);
         }
       },
       views: {
