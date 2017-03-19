@@ -31,7 +31,10 @@
           <a href="#">{{navItem.title}}</a>
         </li>
       </ul>
-      <filter-bar filters="$ctrl.filters"></filter-bar>
+      <filter-bar
+        last-location="$ctrl.lastLocation"
+        filters="$ctrl.filters"
+      ></filter-bar>
     </div>
   </div>
 </nav>

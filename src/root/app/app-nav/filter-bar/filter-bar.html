@@ -2,7 +2,14 @@
   <div class="filter-bar__inner">
     <ul class="nav navbar-nav">
       <li ng-repeat="filter in $ctrl.filters">
-        <a href="" ui-sref={{filter.state}}>{{filter.title}}</a>
+        <a href=""
+          ui-sref="{{filter.state}}({
+                    location: '{{$ctrl.lastLocation}}',
+                    radius: 5,
+                    type: '{{filter.type}}'})"
+        >
+          {{filter.title}}
+        </a>
       </li>
     </ul>
   </div>
