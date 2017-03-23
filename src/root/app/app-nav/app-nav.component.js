@@ -3,9 +3,8 @@ module.exports = {
     brand: '<',
     appNav: '<',
     stops: '<',
-    userNav: '<',
-    lastLocation: '<',
-    filters: '<'
+    userNav: '<'
   },
-  template: require('./app-nav.html')
+  template: require('./app-nav.html'),
+  controller: require('./app-nav.controller')
 };

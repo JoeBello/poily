@@ -1,7 +1,4 @@
 module.exports = {
-  bindings: {
-    filters: '<',
-    lastLocation: '<'
-  },
-  template: require('./filter-bar.html')
+  template: require('./filter-bar.html'),
+  controller: require('./filter-bar.controller')
 }
