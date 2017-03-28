@@ -1,8 +1,8 @@
-function FilterBarController(FilterBarConstant, AppStorageService, $state) {
+function FiltersController(FiltersConstant, AppStorageService, $state) {
   var ctrl = this;
 
-  angular.forEach(FilterBarConstant, function(value, constant) {
-    ctrl[constant] = FilterBarConstant[constant];
+  angular.forEach(FiltersConstant, function(value, constant) {
+    ctrl[constant] = FiltersConstant[constant];
   });
 
   ctrl.filterResults = function(event) {
@@ -17,4 +17,4 @@ function FilterBarController(FilterBarConstant, AppStorageService, $state) {
 
 }
 
-module.exports = FilterBarController;
+module.exports = FiltersController;
