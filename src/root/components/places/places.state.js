@@ -6,7 +6,6 @@ function placesState($stateProvider) {
       resolve: {
         places: function($stateParams, PlacesService) {
           delete $stateParams['#'];
-          // console.log(PlacesService.searchPlaces($stateParams));
           return PlacesService.searchPlaces($stateParams);
         }
       },
