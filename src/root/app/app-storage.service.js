@@ -18,8 +18,9 @@ function AppStorageService($localStorage, $rootScope) {
 
     // save details of the most recent search
     saveLastSearch: function(searchData) {
-      console.log(searchData);
-      return $localStorage.project1.places.lastSearch = searchData;
+      var location = searchData.location;
+      $localStorage.project1.places.lastSearch = searchData;
+      return $rootScope.$broadcast('location_change', location)
     },
 
     // save the next_page_token from the most recent results
@@ -32,15 +33,36 @@ function AppStorageService($localStorage, $rootScope) {
       return $localStorage.project1.places.lastSearch;
     },
 
+    // retrieve the location of the most recent search
+    getLastLocation: function() {
+      var location = $localStorage.project1.places.lastSearch.location || null;
+
+      if (typeof location === 'string' || location === null) {
+        return location;
+      } else if (typeof location === 'object') {
+        return location = location.join(',');
+      }
+
+    },
+
+    // retrieve the next page token from the results of the last search
     getLastPageToken: function() {
       return $localStorage.project1.places.lastSearch.pageToken || null;
     },
 
+    // remove the details of the last search
+    destroyLastSearch: function() {
+      var lastSearch = $localStorage.project1.places.lastSearch;
+      angular.forEach(lastSearch, function(value, prop) {
+        delete lastSearch[prop];
+      });
+    },
+
     // save an activity
     saveActivity: function(activity) {
-      $localStorage.project1.activities.push(activity);
-      return $rootScope
-              .$emit('stops', $localStorage.project1.activities.length);
+      var activities = $localStorage.project1.activities;
+      activities.push(activity);
+      return $rootScope.$broadcast('stop_change', activities);
     },
 
     // retrieve all stored activities
@@ -50,24 +72,17 @@ function AppStorageService($localStorage, $rootScope) {
 
     // remove an activity
     destroyActivity: function(activity) {
-      var storage = $localStorage.project1.activities;
+      var activities = $localStorage.project1.activities;
 
-      for (var i = 0; i < storage.length; i++) {
-        if (storage[i].name === activity.name) {
-          storage.splice(i, 1);
-        }
-      }
-
-      return $rootScope
-              .$emit('stops', $localStorage.project1.activities.length);
+      activities.splice(activities.indexOf(activity), 1);
+      return $rootScope.$broadcast('stop_change', activities);
     },
 
     // remove all activities
     destroyActivities: function() {
-      var storage = $localStorage.project1.activities;
-      storage.splice(0, storage.length);
-      return $rootScope
-              .$emit('stops', $localStorage.project1.activities.length);
+      var activities = $localStorage.project1.activities;
+      activities.splice(0, activities.length);
+      return $rootScope.$broadcast('stop_change', activities);
     }
   }
 }
