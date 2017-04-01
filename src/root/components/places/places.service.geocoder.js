@@ -26,7 +26,7 @@ function PlacesServiceGeocoder($window, $q) {
       function geocoderError(error) {
         // on error clear the timeout
         clearTimeout(geocoderTimeout);
-        var error,
+        var localError,
             errors = {
               1: 'Permission denied',
               2: 'Position unavailable',
@@ -36,14 +36,12 @@ function PlacesServiceGeocoder($window, $q) {
         // if no error was given, the geolocation prompt timed out -
         // return a timeout error
         if (!error) {
-          error = errors[3];
+          localError = errors[3];
         } else {
-          error = errors[error.code];
+          localError = errors[error.code];
         }
 
-        var errorObject = { error: error };
-
-        deferred.reject(errorObject);
+        deferred.reject(localError);
       };
 
       $window.navigator.geolocation.getCurrentPosition(geocoderSuccess, geocoderError, geocoderOptions);
