@@ -5,6 +5,5 @@ module.exports = {
     stops: '<',
     userNav: '<'
   },
-  template: require('./app-nav.html'),
-  controller: require('./app-nav.controller')
+  template: require('./app-nav.html')
 };
