@@ -1,17 +1,27 @@
 <div clsss="row">
   <div class="col-md-7 places">
-    <section class="places__none text-center" ng-hide="$ctrl.hasPlaces()">
-      <span>Sorry, there were no places found that fit your criteria.</span>
+    <section ng-if="$ctrl.state.error">
+      <p class="text-center">
+        Sorry, we were unable to get your location. Try searching
+        for places with a location.
+      </p>
     </section>
-    <section class="places" ng-show="$ctrl.hasPlaces()">
-      <div class="well" ng-repeat="place in $ctrl.places">
-        <place place="place" on-select="$ctrl.makeActivity($event)"></place>
-      </div>
-      <div ng-hide="$ctrl.hasPageToken()">
-        <button class="btn-primary"  ng-click="$ctrl.nextPage()">
-          More Places
-        <button>
-      </div>
+    <section ng-if="$ctrl.state.success">
+      <section class="places__none text-center" ng-hide="$ctrl.hasPlaces">
+        <p class="text-center">
+          Sorry, there were no places found that fit your criteria.
+        </p>
+      </section>
+      <section class="places" ng-if="$ctrl.hasPlaces">
+        <div class="well" ng-repeat="place in $ctrl.places">
+          <place place="place" on-select="$ctrl.makeActivity($event)"></place>
+        </div>
+        <div ng-show="$ctrl.hasPageToken">
+          <button class="btn-primary"  ng-click="$ctrl.nextPage()">
+            More Places
+          <button>
+        </div>
+      </section>
     </section>
   </div>
 

@@ -3,8 +3,7 @@ module.exports = {
     brand: '<',
     appNav: '<',
     stops: '<',
-    userNav: '<',
-    filters: '<'
+    userNav: '<'
   },
   template: require('./app-nav.html')
 };
