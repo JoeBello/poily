@@ -1,22 +1,22 @@
-function AppController(AppConstant, AppStorageService, $rootScope) {
+function AppController(AppConstant, AppStorageService, $rootScope, $scope) {
   var ctrl = this;
 
-  angular.forEach(AppConstant, function(value, constant) {
-    ctrl[constant] = AppConstant[constant];
-  });
+  ctrl.$onInit = function() {
+    angular.forEach(AppConstant, function(value, constant) {
+      ctrl[constant] = AppConstant[constant];
+    });
 
-  ctrl.stops = AppStorageService.getActivities().length;
+    ctrl.stops = AppStorageService.getActivities().length;
 
-  ctrl.lastLocation = AppStorageService.getLastLocation();
-  console.log(ctrl.lastLocation);
+    ctrl.lastLocation = AppStorageService.getLastLocation();
+  }
 
-  $rootScope.$on('location_change', function(event, location) {
-    event.stopPropagation();
+  $scope.$on('location_change', function(event, location) {
     ctrl.lastLocation = location;
   })
-  $rootScope.$on('stop_change', function(event, stops) {
-    event.stopPropagation();
-    ctrl.stops = stops;
+
+  $scope.$on('stop_change', function(event, stops) {
+    ctrl.stops = stops.length;
   });
 
 
