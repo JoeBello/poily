@@ -1,8 +1,9 @@
-function PlacesService($http, $httpParamSerializer, API, PlacesServiceGeocoder,
-                        AppStorageService) {
-
+function PlacesService($http, $httpParamSerializer, API,
+                        PlacesServiceGeocoder, AppStorageService) {
+  var geocoder;
+  // TODO handle case where geocoder is unsupported
   if (PlacesServiceGeocoder.supported === true) {
-    var geocoder = PlacesServiceGeocoder.geocoder;
+    geocoder = PlacesServiceGeocoder.geocoder;
   }
 
   function buildUrl(searchParams) {
@@ -14,6 +15,7 @@ function PlacesService($http, $httpParamSerializer, API, PlacesServiceGeocoder,
     return responseObject.data.results;
   }
 
+  // TODO handle case where geocoder is unsupported
   function geolocatePlaces() {
     if (geocoder === undefined) {
       return { error: 'geolocation service unavailable' };
@@ -28,7 +30,8 @@ function PlacesService($http, $httpParamSerializer, API, PlacesServiceGeocoder,
                 });
       })
       .catch(function(error) {
-        return error;
+        AppStorageService.destroyLastSearch();
+        return { error: error };
       });
   }
 
@@ -44,8 +47,8 @@ function PlacesService($http, $httpParamSerializer, API, PlacesServiceGeocoder,
         return extractResults(placesResponse);
       })
       .catch(function(error) {
-        console.log(error);
-        return error;
+        AppStorageService.destroyLastSearch();
+        return { error: error };
       });
   }
 
