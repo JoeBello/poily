@@ -5,8 +5,6 @@ function placesState($stateProvider) {
       url: '/places?location&radius&type',
       resolve: {
         places: function($stateParams, PlacesService) {
-          delete $stateParams['#'];
-          // console.log(PlacesService.searchPlaces($stateParams));
           return PlacesService.searchPlaces($stateParams);
         }
       },
