@@ -1,12 +1,19 @@
 function PlacesController(PlacesService, AppStorageService, $state) {
   var ctrl = this;
 
-  ctrl.hasPlaces = function() {
-    return ctrl.places.length > 0;
-  };
+  ctrl.$onInit = function() {
+    ctrl.state = {};
 
-  ctrl.hasPageToken = function() {
-    return AppStorageService.getLastPageToken() === null;
+    if (ctrl.places.error) {
+      ctrl.state.error = true;
+    } else {
+      ctrl.state.success = true;
+    }
+
+    ctrl.hasPlaces = ctrl.places.length > 0;
+
+    ctrl.hasPageToken = AppStorageService.getLastPageToken() !== null;
+
   };
 
   ctrl.makeActivity = function(event) {
