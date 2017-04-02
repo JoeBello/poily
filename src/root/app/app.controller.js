@@ -1,4 +1,4 @@
-function AppController(AppConstant, AppStorageService, $rootScope, $scope) {
+function AppController(AppConstant, AppStorageService, $state, $scope) {
   var ctrl = this;
 
   ctrl.$onInit = function() {
@@ -6,20 +6,28 @@ function AppController(AppConstant, AppStorageService, $rootScope, $scope) {
       ctrl[constant] = AppConstant[constant];
     });
 
-    ctrl.stops = AppStorageService.getActivities().length;
+    AppStorageService.init();
+
+    ctrl.stops = AppStorageService.activityCount();
 
     ctrl.lastLocation = AppStorageService.getLastLocation();
   }
-
-  $scope.$on('location_change', function(event, location) {
-    ctrl.lastLocation = location;
-  })
 
   $scope.$on('stop_change', function(event, stops) {
     ctrl.stops = stops.length;
   });
 
+  $scope.$on('location_change', function(event, location) {
+    ctrl.lastLocation = location;
+  })
 
+  ctrl.goPlaces = function(event) {
+    var stateParams = {
+      location: ctrl.lastLocation
+    };
+
+    $state.go(event.state, stateParams);
+  }
 }
 
 module.exports = AppController;
