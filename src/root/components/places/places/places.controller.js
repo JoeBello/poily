@@ -31,14 +31,10 @@ function PlacesController(PlacesService, AppStorageService, $state) {
     var lastSearch = AppStorageService.getLastSearch();
     lastSearch.pageToken = AppStorageService.getLastPageToken();
 
-    //TODO remove state.go to old state
     PlacesService.searchPlaces(lastSearch)
-      .then(function(response) {
-        ctrl.places = ctrl.places.concat(response);
+      .then(function(morePlaces) {
+        ctrl.places = ctrl.places.concat(morePlaces);
       })
-      .catch(function(error) {
-        $state.go('search', {error: error});
-      });
   }
 }
 
