@@ -1,16 +1,17 @@
 function AppStorageService($localStorage, $rootScope) {
-  if (!$localStorage.hasOwnProperty('project1')) {
-    $localStorage.$default({
-      project1: {
-        places: {
-          lastSearch: {}
-        },
-        activities: []
-      }
-    })
-  }
-
   return {
+    init: function() {
+      if (!$localStorage.hasOwnProperty('project1')) {
+        $localStorage.$default({
+          project1: {
+            places: {
+              lastSearch: {}
+            },
+            activities: []
+          }
+        })
+      }
+    },
     // completely remove project1 storage
     destroyStorage: function() {
       delete $localStorage.project1;
@@ -50,14 +51,6 @@ function AppStorageService($localStorage, $rootScope) {
       return $localStorage.project1.places.lastSearch.pageToken || null;
     },
 
-    // remove the details of the last search
-    destroyLastSearch: function() {
-      var lastSearch = $localStorage.project1.places.lastSearch;
-      angular.forEach(lastSearch, function(value, prop) {
-        delete lastSearch[prop];
-      });
-    },
-
     // save an activity
     saveActivity: function(activity) {
       var activities = $localStorage.project1.activities;
@@ -65,24 +58,10 @@ function AppStorageService($localStorage, $rootScope) {
       return $rootScope.$broadcast('stop_change', activities);
     },
 
-    // retrieve all stored activities
-    getActivities: function() {
-      return $localStorage.project1.activities;
-    },
-
-    // remove an activity
-    destroyActivity: function(activity) {
+    activityCount: function() {
       var activities = $localStorage.project1.activities;
 
-      activities.splice(activities.indexOf(activity), 1);
-      return $rootScope.$broadcast('stop_change', activities);
-    },
-
-    // remove all activities
-    destroyActivities: function() {
-      var activities = $localStorage.project1.activities;
-      activities.splice(0, activities.length);
-      return $rootScope.$broadcast('stop_change', activities);
+      return activities.length;
     }
   }
 }

@@ -6,12 +6,12 @@ function ActivitiesController(ActivitiesService) {
   };
 
   ctrl.clearActivities = function() {
-    ActivitiesService.clearActivities();
+    ActivitiesService.destroyActivities();
   };
 
   ctrl.removeActivity = function(event) {
     var activity = event.activity;
-    ActivitiesService.removeActivity(activity);
+    ActivitiesService.destroyActivity(activity);
   };
 
 }

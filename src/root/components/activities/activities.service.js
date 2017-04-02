@@ -1,19 +1,21 @@
-function ActivitiesService (AppStorageService) {
-
+function ActivitiesService ($localStorage, $rootScope) {
   return {
     // retrieve all activities
-    getActivities: function () {
-      return AppStorageService.getActivities();
+    getActivities: function() {
+      return $localStorage.project1.activities;
     },
-
     // remove an activity
-    removeActivity: function(activity) {
-      return AppStorageService.destroyActivity(activity);
-    },
+    destroyActivity: function(activity) {
+      var activities = $localStorage.project1.activities;
 
+      activities.splice(activities.indexOf(activity), 1);
+      return $rootScope.$broadcast('stop_change', activities);
+    },
     // remove all activities
-    clearActivities: function () {
-      return AppStorageService.destroyActivities();
+    destroyActivities: function() {
+      var activities = $localStorage.project1.activities;
+      activities.splice(0, activities.length);
+      return $rootScope.$broadcast('stop_change', activities);
     }
   };
 }
