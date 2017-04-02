@@ -15,12 +15,10 @@ function FiltersController(FiltersConstant, AppStorageService, $state, $scope) {
 
   ctrl.filterResults = function(event) {
     var stateParams = {
+      location: ctrl.lastLocation,
       radius: 5,
       type: event.filter.type
     };
-
-    stateParams.location = ctrl.lastLocation;
-
 
     $state.go(event.filter.state, stateParams);
   }
