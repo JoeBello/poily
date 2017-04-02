@@ -1,5 +1,16 @@
-function PlacesSearchController($state) {
+function PlacesSearchController($state, PlaceTypes) {
   var ctrl = this;
+
+  ctrl.$onInit = function() {
+    ctrl.typeOptions = [];
+
+    angular.forEach(PlaceTypes, function(value, type) {
+      ctrl.typeOptions.push({
+        type: value.type,
+        value: value.value
+      });
+    })
+  }
 
   ctrl.searchPlaces = function(event) {
     var criteria = event.criteria;
@@ -9,18 +20,6 @@ function PlacesSearchController($state) {
       type: criteria.type.type
     });
   };
-
-
-  ctrl.typeOptions = [
-      {type: null, value: 'Let\'s see it all !'},
-      {type: 'amusement_park', value: 'Amusement Park'},
-      {type: 'art_gallery', value: 'Art Gallery'},
-      {type: 'bank', value: 'Bank'},
-      {type: 'campground', value: 'Campground'},
-      {type: 'movie_theater', value: 'Movie Theater'},
-      {type: 'cafe', value: 'Cafe'}
-  ];
-
 }
 
 module.exports = PlacesSearchController;

@@ -4,6 +4,7 @@ var placesComponents = angular.module('components.places', [
   .constant('API', {
     places: 'http://localhost:3001/api/places?'
   })
+  .constant('PlaceTypes', require('./places-search/places-search.constant'))
   .factory('PlacesServiceGeocoder', require('./places.service.geocoder'))
   .factory('PlacesService', require('./places.service'))
   .component('places', require('./places/places.component'))
