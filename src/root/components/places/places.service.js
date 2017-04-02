@@ -16,7 +16,6 @@ function PlacesService($q, $http, $httpParamSerializer, API,
     return responseObject.data.results;
   }
 
-  // TODO handle case where geocoder is unsupported
   function geolocatePlaces() {
     if (!geocoder) {
       return $q.reject({ error: 'geolocation service unavailable' });
