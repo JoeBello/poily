@@ -17,18 +17,6 @@ function AppStorageService($localStorage, $rootScope) {
       delete $localStorage.project1;
     },
 
-    // save details of the most recent search
-    saveLastSearch: function(searchData) {
-      var location = searchData.location;
-      $localStorage.project1.places.lastSearch = searchData;
-      return $rootScope.$broadcast('location_change', location)
-    },
-
-    // save the next_page_token from the most recent results
-    savePageToken: function(token) {
-      return $localStorage.project1.places.lastSearch.pageToken = token;
-    },
-
     // retrieve details of the most recent search
     getLastSearch: function() {
       return $localStorage.project1.places.lastSearch;
@@ -47,17 +35,11 @@ function AppStorageService($localStorage, $rootScope) {
     },
 
     // retrieve the next page token from the results of the last search
-    getLastPageToken: function() {
+    getNextPageToken: function() {
       return $localStorage.project1.places.lastSearch.pageToken || null;
     },
 
-    // save an activity
-    saveActivity: function(activity) {
-      var activities = $localStorage.project1.activities;
-      activities.push(activity);
-      return $rootScope.$broadcast('stop_change', activities);
-    },
-
+    // retrieve the number of saved activities
     activityCount: function() {
       var activities = $localStorage.project1.activities;
 

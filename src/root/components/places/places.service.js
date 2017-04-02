@@ -1,6 +1,5 @@
 function PlacesService($q, $http, $httpParamSerializer, API,
-                        PlacesServiceGeocoder, AppStorageService,
-                      $localStorage) {
+                        PlacesServiceGeocoder, $localStorage, $rootScope) {
   var geocoder = null;
 
   if (PlacesServiceGeocoder.supported === true) {
@@ -12,8 +11,19 @@ function PlacesService($q, $http, $httpParamSerializer, API,
   }
 
   function extractResults(responseObject) {
-    AppStorageService.savePageToken(responseObject.data.next_page_token || null);
+    savePageToken(responseObject.data.next_page_token);
     return responseObject.data.results;
+  }
+
+  function saveLastSearch(searchData) {
+    var location = searchData.location;
+    $localStorage.project1.places.lastSearch = searchData;
+    return $rootScope.$broadcast('location_change', location)
+  }
+
+  // save the next_page_token from the most recent results
+  function savePageToken(token) {
+    return $localStorage.project1.places.lastSearch.pageToken = token;
   }
 
   function geolocatePlaces() {
@@ -43,7 +53,7 @@ function PlacesService($q, $http, $httpParamSerializer, API,
         });
     }
 
-    AppStorageService.saveLastSearch(searchParams);
+    saveLastSearch(searchParams);
 
     return $http.get(buildUrl(searchParams))
       .then(function(placesResponse) {
