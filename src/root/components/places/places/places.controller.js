@@ -1,4 +1,4 @@
-function PlacesController(PlacesService, AppStorageService, $state) {
+function PlacesController(PlacesService, AppStorageService, ActivitiesService, $state) {
   var ctrl = this;
 
   ctrl.$onInit = function() {
@@ -12,7 +12,7 @@ function PlacesController(PlacesService, AppStorageService, $state) {
 
     ctrl.hasPlaces = ctrl.places.length > 0;
 
-    ctrl.hasPageToken = AppStorageService.getLastPageToken() !== null;
+    ctrl.hasPageToken = AppStorageService.getNextPageToken() !== null;
 
   };
 
@@ -24,12 +24,12 @@ function PlacesController(PlacesService, AppStorageService, $state) {
           id: place.place_id
         };
 
-    AppStorageService.saveActivity(activity);
+    ActivitiesService.saveActivity(activity);
   };
 
   ctrl.nextPage = function() {
     var lastSearch = AppStorageService.getLastSearch();
-    lastSearch.pageToken = AppStorageService.getLastPageToken();
+    lastSearch.pageToken = AppStorageService.getNextPageToken();
 
     PlacesService.searchPlaces(lastSearch)
       .then(function(morePlaces) {
