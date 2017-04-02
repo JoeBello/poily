@@ -1,9 +1,9 @@
-function AppController(AppConstant, AppStorageService, $state, $scope) {
+function AppController(AppConstants, AppStorageService, $state, $scope) {
   var ctrl = this;
 
   ctrl.$onInit = function() {
-    angular.forEach(AppConstant, function(value, constant) {
-      ctrl[constant] = AppConstant[constant];
+    angular.forEach(AppConstants, function(value, constant) {
+      ctrl[constant] = AppConstants[constant];
     });
 
     AppStorageService.init();
