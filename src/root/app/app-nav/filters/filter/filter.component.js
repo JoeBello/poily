@@ -5,4 +5,4 @@ module.exports = {
   },
   template: require('./filter.html'),
   controller: require('./filter.controller')
-}
+};
