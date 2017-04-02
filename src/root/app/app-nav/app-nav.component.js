@@ -3,7 +3,9 @@ module.exports = {
     brand: '<',
     appNav: '<',
     stops: '<',
-    userNav: '<'
+    userNav: '<',
+    onSelect: '&'
   },
-  template: require('./app-nav.html')
+  template: require('./app-nav.html'),
+  controller: require('./app-nav.controller')
 };

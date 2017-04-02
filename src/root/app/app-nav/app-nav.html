@@ -17,12 +17,22 @@
     <div class="collapse navbar-collapse navbar__collapse" uib-collapse="isNavCollapsed">
       <ul class="nav navbar-nav navbar-right navbar__right">
         <li class="userNav-sm" ng-repeat="navItem in $ctrl.userNav">
-          <a href="#">{{navItem.title}}</a>
+          <a href="">{{navItem.title}}</a>
         </li>
         <li ng-repeat="navItem in $ctrl.appNav">
-          <a href="#" ui-sref={{navItem.state}}>
+          <a
+            ng-if="navItem.title === 'Places'"
+            href="" ng-click="$ctrl.selectPlaces()"
+          >
             {{navItem.title}}
-            <span ng-if="navItem.title === 'Activities'" class="badge">
+          </a>
+          <a
+            ng-if="navItem.title === 'Activities'"
+            href=""
+            ui-sref={{navItem.state}}
+          >
+            {{navItem.title}}
+            <span class="badge">
               {{$ctrl.stops}}
             </span>
           </a>
