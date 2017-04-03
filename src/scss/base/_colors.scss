@@ -1,9 +1,10 @@
 $app-colors: (
-  app: (
-    base: rgb(239, 243, 246)
+  body: (
+    base: rgb(0, 0, 0)
   ),
   borders: (
-    base: rgb(30,30,30)
+    base: rgb(30, 30, 30),
+    place: rgb(50, 50, 50)
   ),
   brand: (
     base: rgb(43, 193, 36),
@@ -13,13 +14,19 @@ $app-colors: (
 
   ),
   filterBar: (
-    base: rgb(40, 40, 40)
+    base: rgb(20, 20, 20)
   ),
   link: (
     base: rgb(157, 157, 157),
     hover: rgb(255, 255, 255)
   ),
   nav: (
+    base: rgb(0, 0, 0)
+  ),
+  places-results: (
+    base: rgb(20, 20, 20)
+  ),
+  shadow: (
     base: rgb(20, 20, 20)
   ),
   type: (

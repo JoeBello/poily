@@ -26,7 +26,7 @@
 @media (min-width: $grid-float-breakpoint) {
   .filter-bar {
     background-color: colors(filterBar, base);
-    border-top: colors(borders, base);
+    box-shadow: 0px 2px 3px 0px colors(shadow, base);
     font-size: 10px;
     height: 20px;
     left: 0;
