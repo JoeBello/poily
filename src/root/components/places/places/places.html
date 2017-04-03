@@ -1,5 +1,5 @@
 <div clsss="row">
-  <div class="col-md-7 places">
+  <div class="col-md-8 places-results">
     <section ng-if="$ctrl.state.error">
       <p class="text-center">
         Sorry, we were unable to get your location. Try searching
@@ -12,8 +12,8 @@
           Sorry, there were no places found that fit your criteria.
         </p>
       </section>
-      <section class="places" ng-if="$ctrl.hasPlaces">
-        <div class="well" ng-repeat="place in $ctrl.places">
+      <section ng-if="$ctrl.hasPlaces">
+        <div ng-repeat="place in $ctrl.places">
           <place place="place" on-select="$ctrl.makeActivity($event)"></place>
         </div>
         <div ng-show="$ctrl.hasPageToken">
