@@ -1,9 +1,43 @@
-<div class="row place">
-  <div class="col-md-12">
-    <h2 class="">{{ $ctrl.place.name }}</h2>
-    <p>{{ $ctrl.place.place_id }}</p>
-    <button class="btn-primary" ng-click="$ctrl.selectPlace()">
-      Add
-    </button>
+<div class="row">
+  <div class="place" ng-click="$ctrl.selectPlace()">
+    <div class="col-md-10 col-md-offset-1 well place">
+      <!-- <div class="col-md-2">
+        <div class="place-image" style="height: 100px;">
+          <span>IMAGE</span>
+        </div>
+      </div> -->
+      <div class="col-md-10">
+        <div class="col-md-12">
+          <p class="place-title">
+            {{$ctrl.place.name}}
+          </p>
+        </div>
+        <div class="col-md-12" ng-if="$ctrl.place.opening_hours">
+          <p ng-if="$ctrl.place.opening_hours.open_now" class="text-primary">
+            Open
+          </p>
+          <p ng-if="!$ctrl.place.opening_hours.open_now" class="text-danger">
+            Closed
+          </p>
+        </div>
+        <div class="col-md-12">
+          <p class="place-vicinity">{{$ctrl.place.vicinity}}</p>
+        </div>
+        <div class="col-md-12">
+          <div class="place-type">
+            <span ng-repeat="type in $ctrl.place.types">
+              {{type}}
+            </span>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-2 text-center">
+        <div class="place-rating" ng-if="$ctrl.place.rating">
+          <p class="text-success">
+            {{$ctrl.place.rating}} <br> out of <br> 5
+          </p>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
