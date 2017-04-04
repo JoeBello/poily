@@ -1,1 +1,19 @@
+.placesForm {
+  legend {
+    color: colors(text, head);
+  }
 
+  label {
+    color: colors(text, head);
+  }
+  .form-control {
+    background-color: colors(inputs, field);
+    border-color: colors(inputs, borders);
+  }
+
+  .placesForm-btn {
+    background: transparent;
+    border: 1px solid colors(buttons, borders);
+    color: colors(text, head);
+  }
+}
