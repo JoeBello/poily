@@ -7,8 +7,15 @@ $app-colors: (
     base: rgb(43, 193, 36),
     hover: rgb(93, 243, 86)
   ),
+  buttons: (
+    borders: rgb(255, 136, 0)
+  ),
   filters: (
     base: rgb(21, 21, 21)
+  ),
+  inputs: (
+    field: rgb(21, 21, 21),
+    borders: rgb(21, 21, 21)
   ),
   text: (
     base: rgb(136, 136, 136),
