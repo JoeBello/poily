@@ -15,7 +15,7 @@
       <place
         ng-repeat="place in $ctrl.places"
         place="place"
-       on-select="$ctrl.makeActivity($event)">
+       on-select="$ctrl.makeStop($event)">
        </place>
       <div ng-show="$ctrl.hasPageToken">
         <button class="btn-primary"  ng-click="$ctrl.nextPage()">

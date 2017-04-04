@@ -1,4 +1,4 @@
-function PlacesController(PlacesService, AppStorageService, ActivitiesService, $state) {
+function PlacesController(PlacesService, AppStorageService, StopsService, $state) {
   var ctrl = this;
 
   ctrl.$onInit = function() {
@@ -16,15 +16,15 @@ function PlacesController(PlacesService, AppStorageService, ActivitiesService, $
 
   };
 
-  ctrl.makeActivity = function(event) {
+  ctrl.makeStop = function(event) {
     var place = event.place,
-        activity = {
+        stop = {
           name: place.name,
           location: place.vicinity,
           id: place.place_id
         };
 
-    ActivitiesService.saveActivity(activity);
+    StopsService.saveStop(stop);
   };
 
   ctrl.nextPage = function() {
