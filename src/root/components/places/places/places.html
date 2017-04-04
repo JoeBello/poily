@@ -1,28 +1,27 @@
-<div clsss="row">
-  <div class="col-md-8 places-results">
-    <section ng-if="$ctrl.state.error">
-      <p class="text-center">
-        Sorry, we were unable to get your location. Try searching
-        for places with a location.
-      </p>
-    </section>
-    <section ng-if="$ctrl.state.success">
-      <section class="places__none text-center" ng-hide="$ctrl.hasPlaces">
-        <p class="text-center">
-          Sorry, there were no places found that fit your criteria.
-        </p>
-      </section>
-      <section ng-if="$ctrl.hasPlaces">
-        <div ng-repeat="place in $ctrl.places">
-          <place place="place" on-select="$ctrl.makeActivity($event)"></place>
-        </div>
-        <div ng-show="$ctrl.hasPageToken">
-          <button class="btn-primary"  ng-click="$ctrl.nextPage()">
-            More Places
-          <button>
-        </div>
-      </section>
-    </section>
+<div class="col-md-8">
+  <div ng-if="$ctrl.state.error">
+    <p class="text-center">
+      Sorry, we were unable to get your location. Try searching
+      for places with a location.
+    </p>
   </div>
-
+  <div ng-if="$ctrl.state.success">
+    <div class="places__none text-center" ng-hide="$ctrl.hasPlaces">
+      <p class="text-center">
+        Sorry, there were no places found that fit your criteria.
+      </p>
+    </div>
+    <div ng-if="$ctrl.hasPlaces">
+      <place
+        ng-repeat="place in $ctrl.places"
+        place="place"
+       on-select="$ctrl.makeActivity($event)">
+       </place>
+      <div ng-show="$ctrl.hasPageToken">
+        <button class="btn-primary"  ng-click="$ctrl.nextPage()">
+          More Places
+        <button>
+      </div>
+    </div>
+  </div>
 </div>
