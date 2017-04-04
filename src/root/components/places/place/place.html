@@ -13,7 +13,7 @@
           </p>
         </div>
         <div class="col-md-12" ng-if="$ctrl.place.opening_hours">
-          <p ng-if="$ctrl.place.opening_hours.open_now" class="text-primary">
+          <p ng-if="$ctrl.place.opening_hours.open_now" class="text-success">
             Open
           </p>
           <p ng-if="!$ctrl.place.opening_hours.open_now" class="text-danger">
@@ -33,7 +33,7 @@
       </div>
       <div class="col-md-2 text-center">
         <div class="place-rating" ng-if="$ctrl.place.rating">
-          <p class="text-success">
+          <p class="text-primary">
             {{$ctrl.place.rating}} <br> out of <br> 5
           </p>
         </div>
