@@ -29,6 +29,7 @@
   "devDependencies": {
     "body-parser": "^1.16.1",
     "bootstrap-sass": "^3.3.7",
+    "bootswatch": "^3.3.7",
     "concurrently": "^3.3.0",
     "css-loader": "^0.26.1",
     "debug": "^2.6.0",
