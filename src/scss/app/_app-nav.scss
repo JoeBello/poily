@@ -1,0 +1,48 @@
+.navbar {
+  font-family: 'Raleway', Helvetica, Arial, sans-serif;
+}
+
+.navbar-default {
+  .navbar-brand {
+    color: colors(brand, base);
+    font-size: 32px;
+    left: 15px;
+    position: relative;
+
+    &:hover,
+    &:focus {
+      color: colors(brand, hover);
+      text-decoration: none;
+    }
+  }
+}
+
+.navbar-right {
+  li {
+    border-bottom: 1px solid colors(borders, light);
+    padding: 5px 0;
+  }
+
+  .userNav-sm {
+    display: block;
+  }
+
+  .userNav-md {
+    display: none;
+  }
+}
+
+@media (min-width: $grid-float-breakpoint) {
+  .navbar-right {
+
+    .userNav-sm {
+      display: none;
+    }
+
+    .userNav-md {
+      display: block;
+    }
+
+  }
+
+}
