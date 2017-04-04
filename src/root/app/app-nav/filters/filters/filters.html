@@ -1,11 +1,12 @@
-<div class="filter-bar" uib-collapse="isNavCollapsed">
-  <div class="filter-bar__inner">
+<div class="filters" uib-collapse="isNavCollapsed">
+  <div class="filters-inner">
     <ul class="nav navbar-nav">
       <filter
+        ng-class="{ 'last': $last }"
         ng-repeat="filter in $ctrl.filters"
         filter="filter"
-        on-select="$ctrl.filterResults($event)">
-      </filter>
+        on-select="$ctrl.filterResults($event)"
+      ></filter>
     </ul>
   </div>
 </div>
