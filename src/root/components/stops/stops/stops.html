@@ -1,0 +1,14 @@
+<div class="col-md-12 text-center" ng-hide="$ctrl.hasStops()">
+  <span>You have no saved stops. Go find something to do!</span>
+</div>
+<div class="col-md-12 text-center" ng-show="$ctrl.hasStops()">
+  <h1>Your Stops</h1>
+  <div class="col-md-8 col-md-offset-2 well" ng-repeat="stop in $ctrl.stops track by $index">
+    <stop stop="stop" on-remove="$ctrl.removeStop($event)"></activity>
+  </div>
+  <span ng-if="$ctrl.stops.length > 0">
+    <a href="" ng-click="$ctrl.clearStops()">
+      <button class="btn btn-small btn-danger">Clear</button>
+    </a>
+  </span>
+</div>

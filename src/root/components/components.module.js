@@ -1,5 +1,5 @@
 var components = angular.module('components', [
-    require('./activities/activities.module'),
+    require('./stops/stops.module'),
     require('./places/places.module')
   ]);
 
