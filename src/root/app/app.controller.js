@@ -14,7 +14,7 @@ function AppController(AppConstants, AppStorageService, $state, $scope) {
   }
 
   $scope.$on('stop_change', function(event, stops) {
-    ctrl.stops = stops.length;
+    ctrl.stops = stops;
   });
 
   $scope.$on('location_change', function(event, location) {
