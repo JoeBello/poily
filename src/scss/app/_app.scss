@@ -1,9 +1,9 @@
-@import 'navbar';
-@import 'filter-bar';
+@import 'app-nav';
+@import 'filters';
+@import 'filter';
 
 .app {
-  color: colors(type, base);
-  font: 16px 'Roboto', Arial, sans-serif;
+  font-family: 'Roboto', Arial, sans-serif;
 
   main {
     padding-top: 100px;
