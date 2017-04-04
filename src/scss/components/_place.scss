@@ -1,0 +1,35 @@
+.place {
+  &:hover {
+    cursor: pointer;
+
+    & .place-title {
+      color: colors(text, hover);
+    }
+  }
+}
+
+.place-title {
+  color: colors(text, head);
+  font-size: 24px;
+}
+
+.place-rating {
+  height: 100px;
+  p {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    left: 25%;
+  }
+}
+
+.place-type {
+  margin-top: 20px;
+
+  span {
+    color: colors(text, head);
+    font-size: 10px;
+    text-transform: uppercase;
+    margin-right: 1em;
+  }
+}
