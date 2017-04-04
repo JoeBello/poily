@@ -8,7 +8,7 @@ function AppController(AppConstants, AppStorageService, $state, $scope) {
 
     AppStorageService.init();
 
-    ctrl.stops = AppStorageService.activityCount();
+    ctrl.stops = AppStorageService.stopCount();
 
     ctrl.lastLocation = AppStorageService.getLastLocation();
   }

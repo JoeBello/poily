@@ -9,9 +9,9 @@ module.exports = {
         title: 'Places',
         state: 'places'
       },
-      activities: {
-        title: 'Activities',
-        state: 'activities'
+      stops: {
+        title: 'Stops',
+        state: 'stops'
       }
     },
 

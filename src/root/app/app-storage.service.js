@@ -7,7 +7,7 @@ function AppStorageService($localStorage, $rootScope) {
             places: {
               lastSearch: {}
             },
-            activities: []
+            stops: []
           }
         })
       }
@@ -39,11 +39,11 @@ function AppStorageService($localStorage, $rootScope) {
       return $localStorage.project1.places.lastSearch.pageToken || null;
     },
 
-    // retrieve the number of saved activities
-    activityCount: function() {
-      var activities = $localStorage.project1.activities;
+    // retrieve the number of saved stops
+    stopCount: function() {
+      var stops = $localStorage.project1.stops;
 
-      return activities.length;
+      return stops.length;
     }
   }
 }
