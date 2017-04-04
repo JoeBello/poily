@@ -1,46 +1,79 @@
-<form class="form-horizonal" name="placesForm" ng-submit="$ctrl.submitForm()" novalidate>
-  <fieldset>
-  <legend>Search</legend>
-  <div class="form-group">
-    <label>Zipcode</label>
-    <input
-      class="form-control"
-      type="text"
-      name="zipcode"
-      ng-minlength="5"
-      ng-maxlength="5"
-      ng-trim="false"
-      ng-pattern="/^(\d{5}(-\d{4})?|[A-Z]\d[A-Z] *\d[A-Z]\d)$/"
-      ng-model="$ctrl.criteria.zipcode"
-      required>
-      <p ng-show="placesForm.zipcode.$invalid" class="help-block">
-        A valid zipcode is required.
-      </p>
-  </div>
-  <div class="form-group">
-    <label>Distance (miles)</label>
-    <input
-      class="form-control"
-      type="number"
-      name="radius"
-      min="0"
-      ng-model="$ctrl.criteria.radius">
-  </div>
-
-  <div class="form-group">
-    <label>Type</label>
-    <select
-      ng-options="option.value for option in $ctrl.options track by option.type"
-      ng-model="$ctrl.criteria.type">
-      <option value="" selected="selected">Pick a type</option>
-    </select>
-  </div>
-    <button
-      type="submit"
-      class="btn btn-primary"
-      ng-disabled="placesForm.$invalid"
-    >
-      Submit
-    </button>
-  </fieldset>
-</form>
+<div class="col-md-10 col-md-offset-1">
+  <form
+    class="form-horizontal"
+    name="placesForm"
+    ng-submit="$ctrl.submitForm()"
+    novalidate
+  >
+    <fieldset>
+      <legend class="text-center">Search</legend>
+      <div class="form-group">
+        <label class="col-md-3 control-label" for="zipcode">Zipcode</label>
+        <div class="col-md-9">
+          <input
+            class="form-control"
+            type="text"
+            name="zipcode"
+            id="zipcode"
+            ng-minlength="5"
+            ng-maxlength="5"
+            ng-trim="false"
+            ng-pattern="/^(\d{5}(-\d{4})?|[A-Z]\d[A-Z] *\d[A-Z]\d)$/"
+            ng-model="$ctrl.criteria.zipcode"
+            required
+          >
+        </div>
+        <div class="col-md-9 col-md-offset-3">
+          <p
+            class="help-block text-center"
+            ng-show="placesForm.zipcode.$dirty && placesForm.zipcode.$invalid"
+          >
+            A valid zipcode is required.
+          </p>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="col-md-3 control-label">Distance</label>
+        <div class="col-md-9">
+          <input
+            class="form-control"
+            type="number"
+            name="radius"
+            min="0"
+            ng-model="$ctrl.criteria.radius"
+          >
+        </div>
+          <div class="col-md-9 col-md-offset-3">
+            <p
+              class="help-block text-center"
+              ng-show="placesForm.radius.$dirty && placesForm.radius.$invalid"
+            >
+              A non-negative number is required
+            </p>
+          </div>
+      </div>
+      <div class="form-group">
+        <label class="col-md-3 control-label">Type</label>
+        <div class="col-md-9">
+          <select
+            class="form-control"
+            ng-options="option.value for option in $ctrl.options track by option.type"
+            ng-model="$ctrl.criteria.type">
+            <option value="" selected="selected">Pick a type</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="col-md-9 col-md-offset-3">
+          <button
+            type="submit"
+            class="btn btn-primary"
+            ng-disabled="placesForm.$invalid"
+          >
+            Submit
+          </button>
+        </div>
+      </div>
+    </fieldset>
+  </form>
+</div>
