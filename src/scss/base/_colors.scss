@@ -1,23 +1,18 @@
 $app-colors: (
-  body: (
-    base: rgb(0, 0, 0)
-  ),
   borders: (
-    base: rgb(30, 30, 30),
+    light: rgb(30, 30, 30),
     place: rgb(50, 50, 50)
   ),
   brand: (
     base: rgb(43, 193, 36),
     hover: rgb(93, 243, 86)
   ),
-  button: (
-
+  filters: (
+    base: rgb(21, 21, 21)
   ),
-  filterBar: (
-    base: rgb(20, 20, 20)
-  ),
-  link: (
-    base: rgb(157, 157, 157),
+  text: (
+    base: rgb(136, 136, 136),
+    head: rgb(207, 207, 207),
     hover: rgb(255, 255, 255)
   ),
   nav: (
@@ -27,7 +22,7 @@ $app-colors: (
     base: rgb(20, 20, 20)
   ),
   shadow: (
-    base: rgb(20, 20, 20)
+    filters: rgba(0, 0, 0, .5)
   ),
   type: (
     base: rgb(101, 102, 102)
