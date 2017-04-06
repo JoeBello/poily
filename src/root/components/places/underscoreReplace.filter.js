@@ -1,4 +1,4 @@
-function underscoreToSpace() {
+function underscoreReplace() {
   return function(input) {
     input = input || ' ';
     var output = input.replace(/_/g, ' ');
@@ -6,4 +6,4 @@ function underscoreToSpace() {
   }
 }
 
-module.exports = underscoreToSpace;
+module.exports = underscoreReplace;
