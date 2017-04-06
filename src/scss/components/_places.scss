@@ -1,8 +1,8 @@
 .places-next {
   color: colors(text, base);
 
-  &:hover,
-  &:focus {
+  &:focus,
+  &:hover {
     text-decoration: none;
   }
 
