@@ -6,17 +6,17 @@
     </p>
   </div>
   <div class="col-md-12" ng-if="$ctrl.state.success">
-    <div ng-hide="$ctrl.hasPlaces">
+    <div class="col-md-12" ng-hide="$ctrl.hasPlaces">
       <p class="text-center">
         Sorry, there were no places found that fit your criteria.
       </p>
     </div>
-    <div ng-if="$ctrl.hasPlaces">
+    <div class="col-md-12" ng-if="$ctrl.hasPlaces">
       <place
         ng-repeat="place in $ctrl.places"
         place="place"
-       on-select="$ctrl.makeStop($event)">
-       </place>
+       on-select="$ctrl.makeStop($event)"
+      ></place>
       <div class="col-md-12 text-center" ng-if="$ctrl.hasPageToken">
         <a class="places-next" href="" ng-click="$ctrl.nextPlaces()">
           More places
