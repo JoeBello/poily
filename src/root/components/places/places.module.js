@@ -5,7 +5,7 @@ var placesComponents = angular.module('components.places', [
     places: 'http://localhost:3001/api/places?'
   })
   .constant('PlaceTypes', require('./places-search/places-search.constant'))
-  .filter('underscoreToSpace', require('./underscore-to-space.filter'))
+  .filter('underscoreReplace', require('./underscoreReplace.filter'))
   .factory('PlacesServiceGeocoder', require('./places.service.geocoder'))
   .factory('PlacesService', require('./places.service'))
   .component('places', require('./places/places.component'))
