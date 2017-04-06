@@ -2,7 +2,7 @@ var common = angular.module('common', [
     'ui.router',
     'ngStorage'
   ])
-  .constant('AppConstants', require('./app.constants'))
+  .constant('AppConstant', require('./app.constant'))
   .factory('AppStorageService', require('./app-storage.service'))
   .component('app', require('./app.component'))
   .component('appNav', require('./app-nav/app-nav.component'))
