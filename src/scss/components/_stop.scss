@@ -1,0 +1,29 @@
+.stop {
+  margin-bottom: 75px;
+  border-bottom: 1px solid colors(borders, light);
+}
+
+.stop-name {
+  color: colors(text, head);
+  font-size: 24px;
+}
+
+.stop-remove {
+  color: colors(text, base);
+  left: 0;
+  position: absolute;
+  top: 0;
+
+  &:focus,
+  &:hover {
+    text-decoration: none;
+  }
+
+  &:hover {
+    color: colors(text, danger);
+  }
+
+  &:focus {
+    color: colors(text, base);
+  }
+}
