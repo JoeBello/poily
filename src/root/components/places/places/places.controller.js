@@ -20,9 +20,12 @@ function PlacesController(PlacesService, AppStorageService, StopsService, $state
     var place = event.place,
         stop = {
           name: place.name,
-          location: place.vicinity,
-          id: place.place_id
+          vicinity: place.vicinity
         };
+
+    if (place.opening_hours) {
+      stop.open_now = place.opening_hours.open_now;
+    }
 
     StopsService.saveStop(stop);
   };
