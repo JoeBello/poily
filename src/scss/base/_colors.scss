@@ -1,7 +1,6 @@
 $app-colors: (
   borders: (
-    light: rgb(30, 30, 30),
-    place: rgb(50, 50, 50)
+    light: rgb(30, 30, 30)
   ),
   brand: (
     base: rgb(43, 193, 36),
@@ -24,7 +23,8 @@ $app-colors: (
   text: (
     base: rgb(136, 136, 136),
     head: rgb(207, 207, 207),
-    hover: rgb(255, 255, 255)
+    hover: rgb(255, 255, 255),
+    danger: rgb(204, 0, 0)
   ),
   places-results: (
     base: rgb(20, 20, 20)
