@@ -1,7 +1,24 @@
-<div class="text-center">
-  <h2 class="">{{ $ctrl.stop.name }}</h2>
-  <span class="">{{ $ctrl.stop.id }}</span>
-  <a href="" ng-click="$ctrl.removeStop()">
-    <button class="btn-small btn-danger">remove</button>
-  </a>
+<div class="row">
+  <div class="col-md-8 stop">
+    <a class="stop-remove" href="" ng-click="$ctrl.removeStop()">X</a>
+    <div class="col-md-2">
+      <div class="stop-image" style="height: 100px;border: 1px solid white;">
+        <span>image</span>
+      </div>
+    </div>
+    <div class="col-md-10">
+      <p class="stop-name">{{ $ctrl.stop.name }}</p>
+    </div>
+    <div class="col-md-10" ng-if="$ctrl.stop.open_now">
+      <p ng-if="$ctrl.stop.open_now" class="text-success">
+        Open
+      </p>
+      <p ng-if="!$ctrl.stop.open_now" class="text-danger">
+        Closed
+      </p>
+    </div>
+    <div class="col-md-10">
+      <p>{{$ctrl.stop.vicinity}}</p>
+    </div>
+  </div>
 </div>
