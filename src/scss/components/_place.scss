@@ -2,13 +2,13 @@
   &:hover {
     cursor: pointer;
 
-    & .place-title {
+    & .place-name {
       color: colors(text, hover);
     }
   }
 }
 
-.place-title {
+.place-name {
   color: colors(text, head);
   font-size: 24px;
 }
