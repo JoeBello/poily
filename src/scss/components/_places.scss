@@ -1,1 +1,21 @@
+.places-next {
+  color: colors(text, base);
 
+  &:hover,
+  &:focus {
+    text-decoration: none;
+  }
+
+  &:hover {
+    color: colors(text, hover);
+  }
+
+  &:focus {
+    color: colors(text, base);
+  }
+
+  // &:active {
+  //   color: colors(text, hover);
+  // }
+
+}
