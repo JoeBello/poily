@@ -1,11 +1,11 @@
 function StopsController(StopsService) {
   var ctrl = this;
 
-  ctrl.hasStops = function() {
-    return ctrl.stops.length > 0;
+  ctrl.$onInit = function() {
+    ctrl.hasStops = ctrl.stops.length > 0;
   };
 
-  ctrl.clearStops = function() {
+  ctrl.removeStops = function() {
     StopsService.destroyStops();
   };
 
