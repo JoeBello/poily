@@ -27,7 +27,7 @@ function PlacesController(PlacesService, AppStorageService, StopsService, $state
     StopsService.saveStop(stop);
   };
 
-  ctrl.nextPage = function() {
+  ctrl.nextPlaces = function() {
     var lastSearch = AppStorageService.getLastSearch();
     lastSearch.pageToken = AppStorageService.getNextPageToken();
 
