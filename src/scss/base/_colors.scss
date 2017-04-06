@@ -11,28 +11,26 @@ $app-colors: (
     borders: rgb(255, 136, 0)
   ),
   filters: (
-    base: rgb(21, 21, 21)
+    base: rgb(21, 21, 21),
+    shadow: rgba(0, 0, 0, .5)
   ),
   inputs: (
     field: rgb(21, 21, 21),
     borders: rgb(21, 21, 21)
+  ),
+  nav: (
+    borders: rgb(30, 30, 30)
   ),
   text: (
     base: rgb(136, 136, 136),
     head: rgb(207, 207, 207),
     hover: rgb(255, 255, 255)
   ),
-  nav: (
-    base: rgb(0, 0, 0)
-  ),
   places-results: (
     base: rgb(20, 20, 20)
   ),
   shadow: (
-    filters: rgba(0, 0, 0, .5)
-  ),
-  type: (
-    base: rgb(101, 102, 102)
+
   )
 );
 
