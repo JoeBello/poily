@@ -24,7 +24,8 @@ function PlacesController(PlacesService, AppStorageService, StopsService, $state
         };
 
     if (place.opening_hours) {
-      stop.open_now = place.opening_hours.open_now;
+      stop.opening_hours = {};
+      stop.opening_hours.open_now = place.opening_hours.open_now;
     }
 
     StopsService.saveStop(stop);
