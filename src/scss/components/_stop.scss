@@ -1,5 +1,5 @@
 .stop {
-  margin-bottom: 75px;
+  margin-bottom: 100px;
   border-bottom: 1px solid colors(borders, light);
 }
 
@@ -10,8 +10,8 @@
 
 .stop-remove {
   color: colors(text, base);
-  left: 0;
   position: absolute;
+  right: 1em;
   top: 0;
 
   &:focus,
