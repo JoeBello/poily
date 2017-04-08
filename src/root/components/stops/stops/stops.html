@@ -1,14 +1,11 @@
-<div class="col-md-12 text-center" ng-if="!$ctrl.hasStops">
-  <p>You have no stops.</p>
+<div class="col-md-10 col-md-offset-1" ng-if="!$ctrl.hasStops">
+  <p class="text-center">You have no stops.</p>
 </div>
 
-<div class="col-md-12" ng-if="$ctrl.hasStops">
+<div class="col-md-8 col-md-offset-2" ng-if="$ctrl.hasStops">
   <stop
     ng-repeat="stop in $ctrl.stops track by $index"
     stop="stop"
     on-remove="$ctrl.removeStop($event)"
   ></stop>
-  <div class="stops-clear" ng-show="$ctrl.hasStops">
-    <a href="" ng-click="$ctrl.removeStops()">Clear</a>
-  </div>
 </div>
