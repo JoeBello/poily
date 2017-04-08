@@ -1,45 +1,13 @@
 @import 'app-nav';
 @import 'filters';
 @import 'filter';
+@import 'app-scroll';
 
 .app {
   font-family: 'Roboto', Arial, sans-serif;
 
   main {
     padding-top: 125px;
-  }
-
-}
-
-.appScroll {
-  color: colors(text, base);
-  font-size: 18px;
-  position: fixed;
-  left: 95%;
-  top: 90%;
-  z-index: 100;
-
-  &:hover {
-    color: colors(text, hover);
-  }
-
-  &:focus {
-    color: colors(text, base);
-  }
-
-  &:hover:focus {
-    color: colors(text, hover);
-  }
-
-  &.active {
-    visibility: visible;
-    opacity: 1;
-    transition: opacity 1s;
-  }
-
-  &.inactive {
-    visibility: hidden;
-    opacity: 0;
   }
 
 }
