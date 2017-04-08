@@ -12,6 +12,9 @@
             {{$ctrl.place.name}}
           </p>
         </div>
+        <div class="col-md-12">
+          <p class="place-vicinity">{{$ctrl.place.vicinity}}</p>
+        </div>
         <div class="col-md-12" ng-if="$ctrl.place.opening_hours">
           <p ng-if="$ctrl.place.opening_hours.open_now" class="text-success">
             Open
@@ -19,9 +22,6 @@
           <p ng-if="!$ctrl.place.opening_hours.open_now" class="text-danger">
             Closed
           </p>
-        </div>
-        <div class="col-md-12">
-          <p class="place-vicinity">{{$ctrl.place.vicinity}}</p>
         </div>
         <div class="col-md-12">
           <div class="place-type">
