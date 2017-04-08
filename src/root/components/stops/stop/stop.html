@@ -1,24 +1,26 @@
 <div class="row">
-  <div class="col-md-8 stop">
-    <a class="stop-remove" href="" ng-click="$ctrl.removeStop()">X</a>
+  <div class="col-md-12 stop">
     <div class="col-md-2">
-      <div class="stop-image" style="height: 100px;border: 1px solid white;">
+      <div class="stop-image" style="height: 100px;border: 1px solid rgb(50, 50, 50);">
         <span>image</span>
       </div>
     </div>
-    <div class="col-md-10">
+    <div class="col-md-8">
       <p class="stop-name">{{ $ctrl.stop.name }}</p>
     </div>
-    <div class="col-md-10" ng-if="$ctrl.stop.open_now">
-      <p ng-if="$ctrl.stop.open_now" class="text-success">
+    <div class="col-md-8">
+      <p>{{$ctrl.stop.vicinity}}</p>
+    </div>
+    <div class="col-md-8" ng-if="$ctrl.stop.opening_hours">
+      <p ng-if="$ctrl.stop.opening_hours.open_now" class="text-success">
         Open
       </p>
-      <p ng-if="!$ctrl.stop.open_now" class="text-danger">
+      <p ng-if="!$ctrl.stop.opening_hours.open_now" class="text-danger">
         Closed
       </p>
     </div>
-    <div class="col-md-10">
-      <p>{{$ctrl.stop.vicinity}}</p>
-    </div>
+      <a class="stop-remove" href="" ng-click="$ctrl.removeStop()">
+        X
+      </a>
   </div>
 </div>
