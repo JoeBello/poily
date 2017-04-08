@@ -6,6 +6,7 @@ var common = angular.module('common', [
   .factory('AppStorageService', require('./app-storage.service'))
   .component('app', require('./app.component'))
   .component('appNav', require('./app-nav/app-nav.component'))
+  .component('appScroll', require('./app-scroll/app-scroll.component'))
   .constant('FiltersConstant',
     require('./app-nav/filters/filters.constant'))
   .component('filters', require('./app-nav/filters/filters/filters.component'))

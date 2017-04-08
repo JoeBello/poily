@@ -7,7 +7,8 @@
     on-select="$ctrl.goPlaces($event)"
   >
   </app-nav>
-  <main class="container-fluid">
+  <app-scroll></app-scroll>
+  <main id="main" class="container-fluid">
     <div class="row">
       <div ui-view="main"></div>
       <div ui-view="right"></div>
