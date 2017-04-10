@@ -1,7 +1,7 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
-var ActivitySchema = new Schema({
+var StopSchema = new Schema({
   name: {
     type: String,
     required: true
@@ -14,4 +14,4 @@ var ActivitySchema = new Schema({
 
 });
 
-module.exports = mongoose.model('activity', ActivitySchema);
+module.exports = mongoose.model('stop', StopSchema);
