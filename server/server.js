@@ -1,14 +1,19 @@
 require('dotenv').config();
 var express = require('express');
 var app = express();
+var bodyParser = require('body-parser');
 var morgan = require('morgan');
 var api = require('./api/api');
 var source = express.static('src');
-// var mongoose = require('mongoose');
-// mongoose.connect('mongodb://localhost:27017/project1');
+var mongoose = require('mongoose');
 
+mongoose.connect('mongodb://localhost:27017');
 // logging
 app.use(morgan('combined'));
+
+// parse POST reques
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
 
 // serve application and pass routing off to AngularJS and UI-Router
 app.use(source);
