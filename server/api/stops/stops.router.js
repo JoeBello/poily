@@ -1,5 +1,5 @@
 var router = require('express').Router();
-var controller = require('./activity.controller');
+var controller = require('./stops.controller');
 
 router.param('')
 

@@ -1,4 +1,4 @@
-var activity = require('./activity.model.js');
+var stop = require('./stop.model.js');
 
 exports.get = function (req, res, next) {
   res.send('GET from activity controller');

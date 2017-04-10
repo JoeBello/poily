@@ -12,7 +12,7 @@ function PlacesService($q, $http, $httpParamSerializer, API,
 
   function extractResults(responseObject) {
     savePageToken(responseObject.data.next_page_token);
-    return responseObject.data.results;
+    return responseObject.data.places;
   }
 
   function saveLastSearch(searchData) {
