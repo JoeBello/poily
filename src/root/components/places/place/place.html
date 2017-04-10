@@ -1,12 +1,10 @@
 <div class="row">
   <div class="place" ng-click="$ctrl.selectPlace()">
     <div class="col-md-10 col-md-offset-1 well place">
-      <!-- <div class="col-md-2">
-        <div class="place-image" style="height: 100px;">
-          <span>IMAGE</span>
-        </div>
-      </div> -->
-      <div class="col-md-10">
+      <div class="col-md-3" ng-if="$ctrl.place.photo">
+        <img src="{{$ctrl.place.photo}}" class="img-responsive" alt="">
+      </div>
+      <div class="col-md-8">
         <div class="col-md-12">
           <p class="place-name">
             {{$ctrl.place.name}}
@@ -31,7 +29,7 @@
           </div>
         </div>
       </div>
-      <div class="col-md-2 text-center">
+      <div class="col-md-1 text-center">
         <div class="place-rating" ng-if="$ctrl.place.rating">
           <p class="text-primary">
             {{$ctrl.place.rating}} <br> out of <br> 5
