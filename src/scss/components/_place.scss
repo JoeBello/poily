@@ -14,8 +14,8 @@
 }
 
 .place-rating {
-  height: 150px;
-  p {
+  height: 100px;
+  span {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
@@ -24,7 +24,7 @@
 }
 
 .place-type {
-  margin-top: 20px;
+  padding: 1em 0 0 0;
 
   span {
     color: colors(text, head);
