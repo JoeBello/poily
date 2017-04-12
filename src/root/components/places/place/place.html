@@ -4,7 +4,7 @@
       <div class="col-md-3" ng-if="$ctrl.place.photo">
         <img src="{{$ctrl.place.photo}}" class="img-responsive" alt="">
       </div>
-      <div class="col-md-8">
+      <div ng-class="{'col-md-11': !$ctrl.place.photo, 'col-md-8': $ctrl.place.photo}">
         <div class="col-md-12">
           <p class="place-name">
             {{$ctrl.place.name}}
@@ -21,19 +21,19 @@
             Closed
           </p>
         </div>
-        <div class="col-md-12">
-          <div class="place-type">
-            <span ng-repeat="type in $ctrl.place.types">
-              {{type|underscoreReplace}}
-            </span>
-          </div>
-        </div>
       </div>
       <div class="col-md-1 text-center">
         <div class="place-rating" ng-if="$ctrl.place.rating">
-          <p class="text-primary">
+          <span class="text-primary">
             {{$ctrl.place.rating}} <br> out of <br> 5
-          </p>
+          </span>
+        </div>
+      </div>
+      <div class="col-md-12">
+        <div class="place-type">
+          <span ng-repeat="type in $ctrl.place.types">
+            {{type|underscoreReplace}}
+          </span>
         </div>
       </div>
     </div>
