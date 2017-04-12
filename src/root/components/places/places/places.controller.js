@@ -28,6 +28,10 @@ function PlacesController(PlacesService, AppStorageService, StopsService, $state
       stop.opening_hours.open_now = place.opening_hours.open_now;
     }
 
+    if (place.photo) {
+      stop.photo = place.photo;
+    }
+
     StopsService.saveStop(stop);
   };
 
