@@ -1,10 +1,10 @@
 <div class="row">
   <div class="col-md-12 stop">
-    <div class="col-md-2">
-      <div class="stop-image" style="height: 100px;border: 1px solid rgb(50, 50, 50);">
-        <span>image</span>
-      </div>
-    </div>
+
+  <div class="col-md-3" ng-if="$ctrl.stop.photo">
+    <img src="{{ $ctrl.stop.photo }}" alt="" class="img-responsive stop-img">
+  </div>
+  <div ng-class="{'col-md-9': $ctrl.stop.photo, 'col-md-12': !$ctrl.stop.photo}">
     <div class="col-md-8">
       <p class="stop-name">{{ $ctrl.stop.name }}</p>
     </div>
@@ -19,8 +19,12 @@
         Closed
       </p>
     </div>
+
       <a class="stop-remove" href="" ng-click="$ctrl.removeStop()">
         X
       </a>
+
+    </div>
+
   </div>
 </div>
