@@ -3,6 +3,10 @@
   border-bottom: 1px solid colors(borders, light);
 }
 
+.stop-img {
+  padding-bottom: 1em;
+}
+
 .stop-name {
   color: colors(text, head);
   font-size: 24px;
@@ -11,8 +15,8 @@
 .stop-remove {
   color: colors(text, base);
   position: absolute;
-  right: 1em;
-  top: 0;
+  right: 0;
+  top: .5em;
 
   &:focus,
   &:hover {
