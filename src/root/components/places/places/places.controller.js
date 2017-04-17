@@ -1,4 +1,4 @@
-function PlacesController(PlacesService, AppStorageService, StopsService, $state) {
+function PlacesController(PlacesFactory, AppStorageService, StopsService, $state) {
   var ctrl = this;
 
   ctrl.$onInit = function() {
@@ -39,7 +39,7 @@ function PlacesController(PlacesService, AppStorageService, StopsService, $state
     var lastSearch = AppStorageService.getLastSearch();
     lastSearch.pageToken = AppStorageService.getNextPageToken();
 
-    PlacesService.searchPlaces(lastSearch)
+    PlacesFactory.searchPlaces(lastSearch)
       .then(function(morePlaces) {
         ctrl.places = ctrl.places.concat(morePlaces);
       })
