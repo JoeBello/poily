@@ -1,35 +1,61 @@
 .place {
-  &:hover {
+  text-align: center;
+}
+
+.place:hover {
     cursor: pointer;
 
     & .place-name {
       color: colors(text, hover);
     }
-  }
+}
+
+.place-image {
+  margin: 0 auto;
 }
 
 .place-name {
   color: colors(text, head);
-  font-size: 24px;
+  font-size: 18px;
+  line-height: 1.5;
 }
 
-.place-rating {
-  height: 100px;
-  span {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    left: 25%;
+
+.place-type {
+  margin: 0;
+  padding: 0;
+  padding: 3em 0 0 0;
+
+  li {
+    display: inline-block;
+    font-size: 8px;
+    list-style: none;
+    margin: 0 .5em;
+    text-transform: uppercase;
   }
 }
 
-.place-type {
-  padding: 1em 0 0 0;
 
-  span {
-    color: colors(text, head);
-    font-size: 10px;
-    text-transform: uppercase;
-    margin-right: 1em;
+
+@media (min-width: $screen-sm) {
+  .place {
+    text-align: left;
+  }
+
+  .place-name {
+    font-size: 24px;
+    margin-top: 0;
+  }
+
+  .place-rating {
+    text-align: right;
+  }
+
+  .place-type {
+    padding-top: 2em;
+
+    li {
+      font-size: 10px;
+    }
   }
 }
