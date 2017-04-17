@@ -4,16 +4,22 @@ function placesState($stateProvider) {
       parent: 'app',
       url: '/places?location&radius&type',
       resolve: {
-        places: function($stateParams, PlacesService) {
-          return PlacesService.searchPlaces($stateParams);
+        places: function($stateParams, LocationFactory, PlacesFactory) {
+          if (!$stateParams.location) {
+            return LocationFactory.geolocate()
+            .then(function(coordinates) {
+              var searchParams = angular.copy($stateParams);
+              searchParams.location = coordinates;
+              return PlacesFactory.searchPlaces(searchParams);
+            })
+          }
+
+          return PlacesFactory.searchPlaces($stateParams);
         }
       },
       views: {
         main: {
           component: 'places',
-        },
-        right: {
-          component: 'placesSearch'
         }
       }
     });

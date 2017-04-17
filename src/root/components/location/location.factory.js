@@ -1,10 +1,8 @@
-function PlacesServiceGeocoder($window, $q) {
-  var supported = false,
-      geocoder;
+function LocationFactory($window, $q) {
+  var geocoder;
 
   // if the current environment supports html5 geolocation
   if ($window.navigator.geolocation) {
-    supported = true;
 
     geocoder = function() {
       var deferred = $q.defer(),
@@ -51,11 +49,27 @@ function PlacesServiceGeocoder($window, $q) {
 
     }
   }
+
+  function geolocate() {
+    if (!geocoder) {
+      return $q.reject({ error: 'geolocation service unavailable' });
+    }
+
+    return geocoder()
+      .then(function(geocoderResponse) {
+        var coords = geocoderResponse.position.coords,
+            coordinates = coords.latitude + ',' + coords.longitude;
+        return coordinates;
+      })
+      .catch(function(error) {
+        return { error: error };
+      });
+  }
+
   return {
-    supported: supported,
-    geocoder: geocoder
+    geolocate: geolocate
   };
 
 }
 
-module.exports = PlacesServiceGeocoder;
+module.exports = LocationFactory;

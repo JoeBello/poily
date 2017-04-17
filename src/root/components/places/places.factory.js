@@ -1,10 +1,5 @@
-function PlacesService($q, $http, $httpParamSerializer, API,
-                        PlacesServiceGeocoder, $localStorage, $rootScope) {
-  var geocoder = null;
-
-  if (PlacesServiceGeocoder.supported === true) {
-    geocoder = PlacesServiceGeocoder.geocoder;
-  }
+function PlacesFactory($q, $http, $httpParamSerializer, API, $localStorage,
+                        $rootScope) {
 
   function buildUrl(searchParams) {
     return API['places'].concat($httpParamSerializer(searchParams));
@@ -26,31 +21,9 @@ function PlacesService($q, $http, $httpParamSerializer, API,
     return $localStorage.project1.places.lastSearch.pageToken = token;
   }
 
-  function geolocatePlaces() {
-    if (!geocoder) {
-      return $q.reject({ error: 'geolocation service unavailable' });
-    }
-
-    return geocoder()
-      .then(function(geocoderResponse) {
-        return searchPlaces({
-                location:[geocoderResponse.position.coords.latitude,
-                          geocoderResponse.position.coords.longitude],
-                pageToken: null
-                });
-      })
-      .catch(function(error) {
-        return { error: error };
-      });
-  }
-
   function searchPlaces(searchParams) {
-
-    if (!searchParams.location) {
-      return geolocatePlaces()
-        .catch(function(error) {
-          return { error: error };
-        });
+    if (!searchParams.radius) {
+      searchParams.radius = 20;
     }
 
     saveLastSearch(searchParams);
@@ -65,10 +38,9 @@ function PlacesService($q, $http, $httpParamSerializer, API,
   }
 
   return {
-    geolocatePlaces: geolocatePlaces,
     searchPlaces: searchPlaces
   };
 
 }
 
-module.exports = PlacesService;
+module.exports = PlacesFactory;

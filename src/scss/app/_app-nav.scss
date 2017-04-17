@@ -32,8 +32,11 @@
   }
 }
 
-@media (min-width: $grid-float-breakpoint) {
+@media (min-width: $screen-sm) {
   .navbar-right {
+    li {
+      border: 0;
+    }
 
     .userNav-sm {
       display: none;
