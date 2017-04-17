@@ -1,4 +1,4 @@
-.filter {
+.preset {
     border-bottom: 1px solid colors(borders, light);
     padding: 5px 0;
 
@@ -17,16 +17,20 @@
   }
 
 .last {
-  .filter {
+  .preset {
     border-bottom: 0;
   }
 }
 
 
-@media (min-width: $grid-float-breakpoint) {
-    .filter {
+@media (min-width: $screen-sm) {
+    .preset {
       border-bottom: 0;
       display: inline-block;
-      padding: 0 1em;
+      padding: 0 2em;
+
+      a {
+        padding: 0;
+      }
     }
 }

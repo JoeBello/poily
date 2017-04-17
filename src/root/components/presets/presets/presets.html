@@ -1,0 +1,12 @@
+<div class="presets" uib-collapse="isNavCollapsed">
+  <div class="presets-inner">
+    <ul class="nav navbar-nav">
+      <preset
+        ng-class="{ 'last': $last }"
+        ng-repeat="preset in $ctrl.presets"
+        preset="preset"
+        on-select="$ctrl.presetSearch($event)"
+      ></preset>
+    </ul>
+  </div>
+</div>
