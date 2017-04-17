@@ -28,6 +28,7 @@ function AppController(AppConstant, AppStorageService, $state, $scope) {
 
     $state.go(event.state, stateParams);
   }
+
 }
 
 module.exports = AppController;

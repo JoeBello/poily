@@ -5,13 +5,14 @@
     stops="$ctrl.stops"
     user-nav="$ctrl.userNav"
     on-select="$ctrl.goPlaces($event)"
+    toggle-search="$ctrl.toggleSearch()"
   >
   </app-nav>
   <app-scroll></app-scroll>
   <main id="main" class="container-fluid">
     <div class="row">
       <div ui-view="main"></div>
-      <div ui-view="right"></div>
+      <div ui-view="aside"></div>
     </div>
   </main>
 </div>
