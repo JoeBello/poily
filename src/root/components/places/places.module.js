@@ -4,14 +4,11 @@ var placesComponents = angular.module('components.places', [
   .constant('API', {
     places: 'http://localhost:3001/api/places?'
   })
-  .constant('PlaceTypes', require('./places-search/places-search.constant'))
   .filter('underscoreReplace', require('./underscoreReplace.filter'))
   .factory('PlacesServiceGeocoder', require('./places.service.geocoder'))
   .factory('PlacesService', require('./places.service'))
   .component('places', require('./places/places.component'))
   .component('place', require('./place/place.component'))
-  .component('placesSearch', require('./places-search/places-search.component'))
-  .component('placesForm', require('./places-form/places-form.component'))
   .config(require('./places.state'));
 
 module.exports = placesComponents.name;
