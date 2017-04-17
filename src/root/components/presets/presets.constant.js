@@ -1,5 +1,5 @@
 module.exports = {
-  filters: {
+  presets: {
     atm: {
       title: 'ATM',
       state: 'places',
@@ -10,10 +10,20 @@ module.exports = {
       state: 'places',
       type: 'bank'
     },
+    bar: {
+      title: 'Bar',
+      state: 'places',
+      type: 'bar'
+    },
     bus_station: {
       title: 'Bus',
       state: 'places',
       type: 'bus_station'
+    },
+    cafe: {
+      title: 'Cafe',
+      state: 'places',
+      type: 'cafe'
     },
     gas_station: {
       title: 'Gas',
