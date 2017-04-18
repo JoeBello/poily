@@ -1,5 +1,8 @@
 .place {
   text-align: center;
+  border: 1px solid colors(borders, light);
+  margin-bottom: 50px;
+  padding: 10px 0;
 }
 
 .place:hover {
@@ -10,21 +13,16 @@
     }
 }
 
-.place-image {
-  margin: 0 auto;
-}
-
 .place-name {
   color: colors(text, head);
   font-size: 18px;
   line-height: 1.5;
 }
 
-
 .place-type {
   margin: 0;
   padding: 0;
-  padding: 3em 0 0 0;
+
 
   li {
     display: inline-block;
@@ -40,6 +38,22 @@
 @media (min-width: $screen-sm) {
   .place {
     text-align: left;
+    border: 0;
+    border-bottom: 1px solid colors(borders, light);
+    padding: 10px 0 0 0;
+    margin-bottom: 75px;
+  }
+
+  .place-image {
+    margin: 0 auto;
+    max-height: 125px;
+    max-width: 100%;
+  }
+
+  .place-image--wrapper {
+    max-height: 125px;
+    overflow: hidden;
+    margin: 10px 0 0 0;
   }
 
   .place-name {
@@ -52,10 +66,14 @@
   }
 
   .place-type {
-    padding-top: 2em;
+    margin: 15px 0 0 0;
 
     li {
       font-size: 10px;
+
+      &:first-child {
+        margin-left: 0;
+      }
     }
   }
 }
