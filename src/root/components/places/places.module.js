@@ -6,8 +6,10 @@ var placesComponents = angular.module('components.places', [
   })
   .filter('underscoreReplace', require('./underscoreReplace.filter'))
   .factory('PlacesFactory', require('./places.factory'))
-  .component('places', require('./places/places.component'))
   .component('place', require('./place/place.component'))
-  .config(require('./places.state'));
+  .component('places', require('./places/places.component'))
+  .config(require('./places/places.state'))
+  .component('placesSaved', require('./places-saved/places-saved.component'))
+  .config(require('./places-saved/places-saved.state'));
 
 module.exports = placesComponents.name;

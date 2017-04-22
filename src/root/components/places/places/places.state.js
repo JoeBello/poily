@@ -10,11 +10,11 @@ function placesState($stateProvider) {
             .then(function(coordinates) {
               var searchParams = angular.copy($stateParams);
               searchParams.location = coordinates;
-              return PlacesFactory.searchPlaces(searchParams);
+              return PlacesFactory.searchNewPlaces(searchParams);
             })
           }
 
-          return PlacesFactory.searchPlaces($stateParams);
+          return PlacesFactory.searchNewPlaces($stateParams);
         }
       },
       views: {
