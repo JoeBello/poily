@@ -12,11 +12,9 @@
       </p>
     </div>
     <div class="col-md-12" ng-if="$ctrl.hasPlaces">
-      <place
-        ng-repeat="place in $ctrl.places"
-        place="place"
-       on-select="$ctrl.makeStop($event)"
-      ></place>
+      <div class="row" ng-repeat="place in $ctrl.places">
+        <place place="place" on-select="$ctrl.savePlace($event)"></place>
+      </div>
       <div class="col-md-12 text-center" ng-if="$ctrl.hasPageToken">
         <a class="places-next" href="" ng-click="$ctrl.nextPlaces()">
           More places

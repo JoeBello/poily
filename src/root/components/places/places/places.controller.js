@@ -1,4 +1,4 @@
-function PlacesController(PlacesFactory, AppStorageService, StopsService, $state) {
+function PlacesController(PlacesFactory, $state) {
   var ctrl = this;
 
   ctrl.$onInit = function() {
@@ -12,34 +12,35 @@ function PlacesController(PlacesFactory, AppStorageService, StopsService, $state
 
     ctrl.hasPlaces = ctrl.places.length > 0;
 
-    ctrl.hasPageToken = AppStorageService.getNextPageToken() !== null;
+    ctrl.hasPageToken = PlacesFactory.getNextPageToken() !== null;
 
   };
 
-  ctrl.makeStop = function(event) {
-    var place = event.place,
-        stop = {
-          name: place.name,
-          vicinity: place.vicinity
+  ctrl.savePlace = function(event) {
+    var place = {
+          name: event.place.name,
+          vicinity: event.place.vicinity,
+          saved: true
         };
 
-    if (place.opening_hours) {
-      stop.opening_hours = {};
-      stop.opening_hours.open_now = place.opening_hours.open_now;
+    if (event.place.opening_hours) {
+      place.opening_hours = {};
+      place.opening_hours.open_now = event.place.opening_hours.open_now;
     }
 
-    if (place.photo) {
-      stop.photo = place.photo;
+    if (event.place.photo) {
+      place.photo = event.place.photo;
     }
 
-    StopsService.saveStop(stop);
+    PlacesFactory.savePlace(place);
   };
 
   ctrl.nextPlaces = function() {
-    var lastSearch = AppStorageService.getLastSearch();
-    lastSearch.pageToken = AppStorageService.getNextPageToken();
+    var lastSearch = PlacesFactory.getLastSearch();
 
-    PlacesFactory.searchPlaces(lastSearch)
+    lastSearch.pageToken = PlacesFactory.getNextPageToken();
+
+    PlacesFactory.searchNewPlaces(lastSearch)
       .then(function(morePlaces) {
         ctrl.places = ctrl.places.concat(morePlaces);
       })

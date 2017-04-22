@@ -8,13 +8,13 @@ function AppController(AppConstant, AppStorageService, $state, $scope) {
 
     AppStorageService.init();
 
-    ctrl.stops = AppStorageService.stopCount();
+    ctrl.placeCount = AppStorageService.getPlaceCount();
 
     ctrl.lastLocation = AppStorageService.getLastLocation();
   }
 
-  $scope.$on('stop_change', function(event, stops) {
-    ctrl.stops = stops;
+  $scope.$on('places_change', function(event, placeCount) {
+    ctrl.placeCount = placeCount;
   });
 
   $scope.$on('location_change', function(event, location) {
