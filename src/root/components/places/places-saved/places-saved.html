@@ -1,0 +1,8 @@
+<div class="col-md-10 col-md-offset-1" ng-if="!$ctrl.hasSavedPlaces">
+  <p class="text-center">You have no saved places.</p>
+</div>
+<div class="col-md-8 col-md-offset-2" ng-if="$ctrl.hasSavedPlaces">
+  <div class="row" ng-repeat="place in $ctrl.places track by $index">
+    <place place="place" on-select="$ctrl.deletePlace($event)"></stop>
+  </div>
+</div>

@@ -5,18 +5,46 @@
   padding: 10px 0;
 }
 
-.place:hover {
-    cursor: pointer;
+.place-new:hover {
+  cursor: pointer;
 
-    & .place-name {
-      color: colors(text, hover);
-    }
+  & .place-name {
+    color: colors(text, hover);
+
+  }
+}
+
+.place-saved {
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: 1;
+
+  &:hover {
+    cursor: pointer;
+    color: red;
+  }
+}
+
+
+.place-image--wrapper {
+  width: 100%;
+}
+
+.place-image {
+  margin: 0 auto;
 }
 
 .place-name {
   color: colors(text, head);
   font-size: 18px;
   line-height: 1.5;
+}
+
+.place-hours,
+.place-rating,
+.place-vicinity {
+  margin: .5em 0;
 }
 
 .place-type {
@@ -35,7 +63,7 @@
 
 
 
-@media (min-width: $screen-sm) {
+@media screen and (min-width: $screen-sm) {
   .place {
     text-align: left;
     border: 0;
