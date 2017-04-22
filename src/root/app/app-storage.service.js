@@ -1,30 +1,24 @@
 function AppStorageService($localStorage, $rootScope) {
   return {
-    init: function() {
-      if (!$localStorage.hasOwnProperty('project1')) {
-        $localStorage.$default({
-          project1: {
-            places: {
-              lastSearch: {}
-            },
-            stops: []
-          }
-        })
-      }
-    },
-    // completely remove project1 storage
-    destroyStorage: function() {
-      delete $localStorage.project1;
+
+    deleteStorage: function() {
+      delete $localStorage.Placer;
     },
 
-    // retrieve details of the most recent search
-    getLastSearch: function() {
-      return $localStorage.project1.places.lastSearch;
+    deleteAllPlaces: function() {
+      var places = $localStorage.Placer.places;
+      places.splice(0, places.length);
+      return $rootScope.$broadcast('places_change', places.length);
     },
 
-    // retrieve the location of the most recent search
+    deletePlace: function(place) {
+      var places = $localStorage.Placer.places;
+      places.splice(places.indexOf(place), 1);
+      return $rootScope.$broadcast('places_change', places.length);
+    },
+
     getLastLocation: function() {
-      var location = $localStorage.project1.places.lastSearch.location || null;
+      var location = $localStorage.Placer.lastSearch.location || null;
 
       if (typeof location === 'string' || location === null) {
         return location;
@@ -34,17 +28,48 @@ function AppStorageService($localStorage, $rootScope) {
 
     },
 
-    // retrieve the next page token from the results of the last search
-    getNextPageToken: function() {
-      return $localStorage.project1.places.lastSearch.pageToken || null;
+    getLastSearch: function() {
+      return $localStorage.Placer.lastSearch;
     },
 
-    // retrieve the number of saved stops
-    stopCount: function() {
-      var stops = $localStorage.project1.stops;
+    getNextPageToken: function() {
+      return $localStorage.Placer.lastSearch.next_page_token;
+    },
 
-      return stops.length;
+    getPlaceCount: function() {
+      var places = $localStorage.Placer.places;
+      return places.length;
+    },
+
+    getSavedPlaces: function() {
+      return $localStorage.Placer.places;
+    },
+
+    init: function() {
+      if (!$localStorage.hasOwnProperty('Placer')) {
+        return $localStorage.$default({
+          Placer: { lastSearch: { next_page_token: null }, places: [] }
+        });
+      } else {
+        return $localStorage.Placer;
+      }
+    },
+
+    saveNextPageToken: function(token) {
+      return $localStorage.Placer.lastSearch.next_page_token = token;
+    },
+
+    saveSearch: function(searchDetails) {
+      $localStorage.Placer.lastSearch = searchDetails;
+      return $rootScope.$broadcast('location_change', searchDetails.location)
+    },
+
+    savePlace: function(place) {
+      var places = $localStorage.Placer.places;
+      places.push(place);
+      return $rootScope.$broadcast('places_change', places.length);
     }
+
   }
 }
 

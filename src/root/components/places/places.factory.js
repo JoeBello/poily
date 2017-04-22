@@ -1,27 +1,48 @@
-function PlacesFactory($q, $http, $httpParamSerializer, API, $localStorage,
+function PlacesFactory($q, $http, $httpParamSerializer, API, AppStorageService,
                         $rootScope) {
 
   function buildUrl(searchParams) {
     return API['places'].concat($httpParamSerializer(searchParams));
   }
 
+  function deleteAllPlaces() {
+    return AppStorageService.deleteAllPlaces();
+  }
+
+  function deletePlace(place) {
+    return AppStorageService.deletePlace(place);
+  }
+
   function extractResults(responseObject) {
-    savePageToken(responseObject.data.next_page_token);
+    AppStorageService.saveNextPageToken(responseObject.data.next_page_token);
     return responseObject.data.places;
   }
 
-  function saveLastSearch(searchData) {
-    var location = searchData.location;
-    $localStorage.project1.places.lastSearch = searchData;
-    return $rootScope.$broadcast('location_change', location)
+  function getLastSearch() {
+    return AppStorageService.getLastSearch();
   }
 
-  // save the next_page_token from the most recent results
-  function savePageToken(token) {
-    return $localStorage.project1.places.lastSearch.pageToken = token;
+  function getNextPageToken() {
+    return AppStorageService.getNextPageToken();
   }
 
-  function searchPlaces(searchParams) {
+  function getSavedPlaces() {
+    return AppStorageService.getSavedPlaces();
+  }
+
+  function saveLastSearch(searchDetails) {
+    return AppStorageService.saveSearch(searchDetails);
+  }
+
+  function saveNextPageToken(token) {
+    return AppStorageService.saveNextPageToken(token);
+  }
+
+  function savePlace(place) {
+    return AppStorageService.savePlace(place);
+  }
+
+  function searchNewPlaces(searchParams) {
     if (!searchParams.radius) {
       searchParams.radius = 20;
     }
@@ -37,8 +58,15 @@ function PlacesFactory($q, $http, $httpParamSerializer, API, $localStorage,
       });
   }
 
+
   return {
-    searchPlaces: searchPlaces
+    deleteAllPlaces: deleteAllPlaces,
+    deletePlace: deletePlace,
+    getLastSearch: getLastSearch,
+    getNextPageToken: getNextPageToken,
+    getSavedPlaces: getSavedPlaces,
+    savePlace: savePlace,
+    searchNewPlaces: searchNewPlaces
   };
 
 }

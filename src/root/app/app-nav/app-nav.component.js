@@ -2,7 +2,7 @@ module.exports = {
   bindings: {
     brand: '<',
     appNav: '<',
-    stops: '<',
+    placeCount: '<',
     userNav: '<',
     onSelect: '&'
   },
