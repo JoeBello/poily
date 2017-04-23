@@ -1,9 +1,9 @@
-.appScroll {
+.app-scroll {
+  bottom: 15px;
   color: colors(text, base);
   font-size: 18px;
   position: fixed;
-  left: 95%;
-  top: 90%;
+  right: 15px;
   z-index: 100;
 
   &:hover {
@@ -19,14 +19,13 @@
   }
 
   &.active {
-    visibility: visible;
     opacity: 1;
     transition: opacity 1s;
+    visibility: visible;
   }
 
   &.inactive {
-    visibility: hidden;
     opacity: 0;
+    visibility: hidden;
   }
-
 }
