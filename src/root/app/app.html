@@ -1,18 +1,18 @@
 <div class="app">
   <app-nav
-    brand="$ctrl.brand"
     app-nav="$ctrl.appNav"
+    brand="$ctrl.brand"
+    nav-collapsed="$ctrl.navCollapsed"
+    on-select="$ctrl.goPlaces($event)"
+    on-toggle="$ctrl.toggleNav()"
     place-count="$ctrl.placeCount"
     user-nav="$ctrl.userNav"
-    on-select="$ctrl.goPlaces($event)"
-    toggle-search="$ctrl.toggleSearch()"
   >
   </app-nav>
   <app-scroll></app-scroll>
   <main id="main" class="container-fluid">
     <div class="row">
       <div ui-view="main"></div>
-      <div ui-view="aside"></div>
     </div>
   </main>
 </div>
