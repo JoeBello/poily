@@ -1,28 +1,27 @@
 .place {
-  text-align: center;
   border: 1px solid colors(borders, light);
   margin-bottom: 50px;
   padding: 10px 0;
+  text-align: center;
 }
 
 .place-new:hover {
   cursor: pointer;
 
-  & .place-name {
+  .place-name {
     color: colors(text, hover);
-
   }
 }
 
 .place-saved {
   position: absolute;
-  top: 0;
   right: 0;
+  top: 0;
   z-index: 1;
 
   &:hover {
+    color: colors(text, danger);
     cursor: pointer;
-    color: red;
   }
 }
 
@@ -37,7 +36,7 @@
 
 .place-name {
   color: colors(text, head);
-  font-size: 18px;
+  font-size: $font-size-large;
   line-height: 1.5;
 }
 
@@ -65,11 +64,11 @@
 
 @media screen and (min-width: $screen-sm) {
   .place {
-    text-align: left;
     border: 0;
     border-bottom: 1px solid colors(borders, light);
-    padding: 10px 0 0 0;
     margin-bottom: 75px;
+    padding: 10px 0 0 0;
+    text-align: left;
   }
 
   .place-image {
@@ -79,13 +78,13 @@
   }
 
   .place-image--wrapper {
+    margin: 10px 0 0 0;
     max-height: 125px;
     overflow: hidden;
-    margin: 10px 0 0 0;
   }
 
   .place-name {
-    font-size: 24px;
+    font-size: $font-size-h4;
     margin-top: 0;
   }
 
