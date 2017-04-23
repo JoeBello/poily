@@ -23,6 +23,7 @@ function AppStorageService($localStorage, $rootScope) {
       if (typeof location === 'string' || location === null) {
         return location;
       } else if (typeof location === 'object') {
+        // TODO everything is object
         return location = location.join(',');
       }
 
