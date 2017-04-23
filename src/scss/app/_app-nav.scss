@@ -6,8 +6,6 @@
   .navbar-brand {
     color: colors(brand, base);
     font-size: 32px;
-    left: 15px;
-    position: relative;
 
     &:hover,
     &:focus {
@@ -22,30 +20,20 @@
     border-bottom: 1px solid colors(nav, borders);
     padding: 5px 0;
   }
-
-  .userNav-sm {
-    display: block;
-  }
-
-  .userNav-md {
-    display: none;
-  }
 }
 
-@media (min-width: $screen-sm) {
+@media screen and (min-width: $screen-sm) {
+  .navbar-default {
+    .navbar-brand {
+      left: 0;
+    }
+  }
+
   .navbar-right {
     li {
       border: 0;
+      padding: 0;
     }
-
-    .userNav-sm {
-      display: none;
-    }
-
-    .userNav-md {
-      display: block;
-    }
-
   }
 
 }
