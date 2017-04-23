@@ -3,9 +3,8 @@
   <p class="text-center" ng-if="!$ctrl.hasSavedPlaces">
     You have no saved places.
   </p>
-
   <div class="row" ng-if="$ctrl.hasSavedPlaces" ng-repeat="place in
                           $ctrl.places track by $index">
-    <place place="place" on-select="$ctrl.deletePlace($event)"></place>
+      <place place="place" on-select="$ctrl.deletePlace($event)"></place>
   </div>
 </div>
