@@ -6,16 +6,19 @@
     ng-if="$ctrl.place.saved">
     X
   </div>
-  <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4" ng-if="$ctrl.place.photo">
-    <div class="place-image--wrapper">
+  <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
+    <div class="place-image--wrapper" ng-if="$ctrl.place.photo">
       <img src="{{$ctrl.place.photo}}" class="place-image img-responsive"
         alt="A picture of a point of interest.">
     </div>
+    <div class="place-image--absent" ng-if="!$ctrl.place.photo">
+      <p  class="text-center">
+        Image currently not available.
+      </p>
+    </div>
   </div><!--end layout for place-image-->
-  <div ng-class="{
-    'col-xs-12 col-sm-8 col-md-8 col-lg-8': $ctrl.place.photo,
-    'col-xs-12 col-sm-12 col-md-12 col-lg-12': !$ctrl.place.photo
-    }">
+  <div class="col-xs-12 col-sm-8 col-md-8 col-lg-8">
+
     <header class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
       <h3 class="place-name">
         {{$ctrl.place.name}}
