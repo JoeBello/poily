@@ -1,20 +1,20 @@
 .preset {
-    border-bottom: 1px solid colors(borders, light);
-    padding: 5px 0;
+  border-bottom: 1px solid colors(borders, light);
+  padding: 5px 0;
 
-    a {
-      color: colors(text, base);
-      position: relative;
-      display: block;
-      padding: 10px 15px;
+  a {
+    color: colors(text, base);
+    display: block;
+    padding: 10px 15px;
+    position: relative;
 
-      &:hover,
-      &:focus {
-        color: colors(text, hover);
-        text-decoration: none;
-      }
+    &:hover,
+    &:focus {
+      color: colors(text, hover);
+      text-decoration: none;
     }
   }
+}
 
 .last {
   .preset {
@@ -23,14 +23,20 @@
 }
 
 
-@media (min-width: $screen-sm) {
-    .preset {
-      border-bottom: 0;
-      display: inline-block;
-      padding: 0 2em;
+@media screen and (min-width: $screen-sm) {
+  .preset {
+    border-bottom: 0;
+    display: inline-block;
+    padding: 0 1.5em;
 
-      a {
-        padding: 0;
-      }
+    a {
+      padding: 0;
     }
+  }
+}
+
+@media screen and (min-width: $screen-md) {
+  .preset {
+    padding: 0 2em;
+  }
 }
