@@ -1,9 +1,9 @@
 .app-scroll {
-  bottom: 15px;
+  bottom: 0;
   color: colors(text, base);
   font-size: 18px;
   position: fixed;
-  right: 15px;
+  right: 0;
   z-index: 100;
 
   &:hover {
@@ -27,5 +27,12 @@
   &.inactive {
     opacity: 0;
     visibility: hidden;
+  }
+}
+
+@media screen and (min-width: $screen-sm) {
+  .app-scroll {
+    bottom: 1em;
+    right: 1em;
   }
 }
