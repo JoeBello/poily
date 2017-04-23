@@ -20,6 +20,7 @@ function PlacesController(PlacesFactory, $state) {
     var place = {
           name: event.place.name,
           vicinity: event.place.vicinity,
+          types: event.place.types,
           saved: true
         };
 
