@@ -13,10 +13,10 @@
   }
 }
 
-.place-saved {
+.place-delete {
   position: absolute;
-  right: 0;
-  top: 0;
+  right: .5em;
+  top: .25em;
   z-index: 1;
 
   &:hover {
@@ -68,7 +68,7 @@
     display: inline-block;
     font-size: 8px;
     list-style: none;
-    margin: 0 .5em;
+    margin: 0 1em 0 0;
     text-transform: uppercase;
   }
 }
@@ -80,7 +80,7 @@
     border: 0;
     border-bottom: 1px solid colors(borders, light);
     margin-bottom: 75px;
-    padding: 10px 0 0 0;
+    padding: 10px 0 0;
     text-align: left;
   }
 
@@ -91,7 +91,7 @@
   }
 
   .place-image--wrapper {
-    margin: 10px 0 0 0;
+    margin: 10px 0 0;
     max-height: 125px;
     overflow: hidden;
   }
@@ -106,7 +106,7 @@
   }
 
   .place-type {
-    margin: 15px 0 0 0;
+    margin: 15px 0 0;
 
     li {
       font-size: 10px;

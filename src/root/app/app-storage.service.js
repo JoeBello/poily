@@ -57,6 +57,7 @@ function AppStorageService($localStorage, $rootScope) {
     },
 
     saveNextPageToken: function(token) {
+      // TODO next_page_token seems to be the same every time
       return $localStorage.Placer.lastSearch.next_page_token = token;
     },
 
