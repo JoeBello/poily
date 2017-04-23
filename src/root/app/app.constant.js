@@ -1,17 +1,13 @@
 module.exports = {
     brand: {
       title: 'Placer',
-      state: 'app'
+      state: 'places'
     },
 
     appNav: {
       places: {
         title: 'Places',
-        state: 'places'
-      },
-      stops: {
-        title: 'Stops',
-        state: 'stops'
+        state: 'saved'
       }
     },
 
