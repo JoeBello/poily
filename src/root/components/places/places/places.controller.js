@@ -6,6 +6,7 @@ function PlacesController(PlacesFactory, $state) {
 
     if (ctrl.places.error) {
       ctrl.state.error = true;
+      ctrl.error = ctrl.places;
     } else {
       ctrl.state.success = true;
     }
