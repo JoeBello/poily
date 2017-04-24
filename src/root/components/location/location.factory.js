@@ -29,9 +29,13 @@ function LocationFactory($window, $q) {
               1: 'Permission denied',
               2: 'Position unavailable',
               3: 'Request timeout'
+            },
+            errorObject = {
+              error: '',
+              source: 'geocoder'
             };
 
-        // if no error was given, the geolocation prompt timed out -
+        // if no error was given, the geolocation prompt timed out
         // return a timeout error
         if (!error) {
           localError = errors[3];
@@ -39,7 +43,9 @@ function LocationFactory($window, $q) {
           localError = errors[error.code];
         }
 
-        deferred.reject(localError);
+        errorObject.error = localError;
+
+        deferred.reject(errorObject);
       };
 
       $window.navigator.geolocation.getCurrentPosition(geocoderSuccess, geocoderError, geocoderOptions);
@@ -60,9 +66,6 @@ function LocationFactory($window, $q) {
         var coords = geocoderResponse.position.coords,
             coordinates = coords.latitude + ',' + coords.longitude;
         return coordinates;
-      })
-      .catch(function(error) {
-        return { error: error };
       });
   }
 
