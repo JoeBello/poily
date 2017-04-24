@@ -23,10 +23,6 @@ function AppController(AppConstant, AppStorageService, $state, $scope) {
     ctrl.lastLocation = location;
   })
 
-  ctrl.toggleNav = function() {
-    ctrl.navCollapsed = !ctrl.navCollapsed;
-  }
-
   ctrl.goPlaces = function(event) {
     var stateParams = {
       location: ctrl.lastLocation

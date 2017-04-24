@@ -9,10 +9,6 @@ function AppNavController() {
     })
   }
 
-  ctrl.toggleNav = function() {
-    this.onToggle();
-  }
-
 }
 
 module.exports = AppNavController;

@@ -5,8 +5,7 @@ module.exports = {
     navCollapsed: '<',
     placeCount: '<',
     userNav: '<',
-    onSelect: '&',
-    onToggle: '&'
+    onSelect: '&'
   },
   template: require('./app-nav.html'),
   controller: require('./app-nav.controller')
