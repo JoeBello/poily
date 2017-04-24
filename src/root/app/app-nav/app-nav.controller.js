@@ -1,13 +1,13 @@
 function AppNavController() {
   var ctrl = this;
 
-  ctrl.selectPlaces = function() {
-    this.onSelect({
+  ctrl.navigate = function(source) {
+    this.onNavigate({
       $event: {
-        state: this.appNav.places.state
+        source: source
       }
     })
-  }
+  };
 
 }
 
