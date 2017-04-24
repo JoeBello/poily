@@ -33,6 +33,7 @@
 
     &:focus {
       border-color: colors(borders, focus);
+      outline: none;
       transition: border-color .5s;
     }
 
@@ -48,6 +49,7 @@
     color: colors(text, base);
     position: absolute;
     right: 0;
+    top: 0;
     transition: color .2s;
   }
 
