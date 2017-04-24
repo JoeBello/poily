@@ -18,13 +18,25 @@ function AppStorageService($localStorage, $rootScope) {
     },
 
     getLastLocation: function() {
-      var location = $localStorage.Placer.lastSearch.location || null;
+      var location = $localStorage.Placer.lastSearch.location || null,
+          errorObject = {
+            error: '',
+            source: 'AppStorageService.getLastLocation'
+          };
 
-      if (typeof location === 'string' || location === null) {
-        return location;
-      } else if (typeof location === 'object') {
-        // TODO everything is object
-        return location = location.join(',');
+      try {
+        if (typeof location === 'string' || location === null) {
+          return location;
+        } else if (typeof location === 'object') {
+          return location = location.join(',');
+        } else {
+          errorObject.error = 'invalid location';
+          throw errorObject;
+        }
+      }
+      catch(error) {
+        console.log(error);
+        return null;
       }
 
     },
@@ -34,7 +46,7 @@ function AppStorageService($localStorage, $rootScope) {
     },
 
     getNextPageToken: function() {
-      return $localStorage.Placer.lastSearch.next_page_token;
+      return $localStorage.Placer.lastSearch.next_page_token || null;
     },
 
     getPlaceCount: function() {
@@ -57,13 +69,11 @@ function AppStorageService($localStorage, $rootScope) {
     },
 
     saveNextPageToken: function(token) {
-      // TODO next_page_token seems to be the same every time
       return $localStorage.Placer.lastSearch.next_page_token = token;
     },
 
     saveSearch: function(searchDetails) {
-      $localStorage.Placer.lastSearch = searchDetails;
-      return $rootScope.$broadcast('location_change', searchDetails.location)
+      return $localStorage.Placer.lastSearch = searchDetails;
     },
 
     savePlace: function(place) {

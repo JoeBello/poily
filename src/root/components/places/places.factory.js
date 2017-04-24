@@ -1,6 +1,8 @@
 function PlacesFactory($q, $http, $httpParamSerializer, API, AppStorageService,
                         $rootScope) {
 
+  AppStorageService.init();
+
   function buildUrl(searchParams) {
     return API['places'].concat($httpParamSerializer(searchParams));
   }
@@ -43,9 +45,11 @@ function PlacesFactory($q, $http, $httpParamSerializer, API, AppStorageService,
   }
 
   function searchNewPlaces(searchParams) {
+
     if (!searchParams.radius) {
-      searchParams.radius = 20;
+      searchParams.radius = 50;
     }
+
 
     saveLastSearch(searchParams);
 
