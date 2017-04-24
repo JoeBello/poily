@@ -8,27 +8,22 @@ function AppController(AppConstant, AppStorageService, $state, $scope) {
 
     AppStorageService.init();
 
-    ctrl.placeCount = AppStorageService.getPlaceCount();
-
-    ctrl.lastLocation = AppStorageService.getLastLocation();
-
     ctrl.navCollapsed = true;
+
+    ctrl.placeCount = AppStorageService.getPlaceCount();
   }
 
   $scope.$on('places_change', function(event, placeCount) {
     ctrl.placeCount = placeCount;
   });
 
-  $scope.$on('location_change', function(event, location) {
-    ctrl.lastLocation = location;
-  })
+  ctrl.go = function(event) {
+    var lastLocation = AppStorageService.getLastLocation(),
+        stateParams = {
+          location: lastLocation
+        };
 
-  ctrl.goPlaces = function(event) {
-    var stateParams = {
-      location: ctrl.lastLocation
-    };
-
-    $state.go(event.state, stateParams);
+    $state.go(event.source.state, stateParams);
   }
 
 }
