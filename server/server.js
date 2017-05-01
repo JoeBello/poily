@@ -5,13 +5,11 @@ var bodyParser = require('body-parser');
 var morgan = require('morgan');
 var api = require('./api/api');
 var source = express.static('src');
-var mongoose = require('mongoose');
 
-mongoose.connect('mongodb://localhost:27017');
 // logging
 app.use(morgan('combined'));
 
-// parse POST reques
+// parse POST request
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
