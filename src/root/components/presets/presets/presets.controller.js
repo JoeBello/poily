@@ -1,21 +1,16 @@
-function PresetsController(PresetsConstant, AppStorageService, $state, $scope) {
+function PresetsController(PresetsConstant, AppStorageService, $state) {
   var ctrl = this;
 
   ctrl.$onInit = function() {
     angular.forEach(PresetsConstant, function(value, constant) {
       ctrl[constant] = PresetsConstant[constant];
     });
-
-    ctrl.lastLocation = AppStorageService.getLastLocation();
   }
 
-  $scope.$on('location_change', function(event, location) {
-    ctrl.lastLocation = location;
-  })
-
   ctrl.presetSearch = function(event) {
+    var lastLocation = AppStorageService.getLastLocation();
     var stateParams = {
-      location: ctrl.lastLocation,
+      location: lastLocation,
       radius: 5,
       type: event.preset.type
     };
