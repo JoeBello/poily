@@ -11,6 +11,7 @@ function AppController(AppConstant, AppStorageService, $state, $scope) {
     ctrl.navCollapsed = true;
 
     ctrl.placeCount = AppStorageService.getPlaceCount();
+
   }
 
   $scope.$on('places_change', function(event, placeCount) {
@@ -20,7 +21,9 @@ function AppController(AppConstant, AppStorageService, $state, $scope) {
   ctrl.go = function(event) {
     var lastLocation = AppStorageService.getLastLocation(),
         stateParams = {
-          location: lastLocation
+          location: lastLocation,
+          type: null,
+          radius: null
         };
 
     $state.go(event.source.state, stateParams);
