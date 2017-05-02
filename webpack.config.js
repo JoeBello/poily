@@ -64,7 +64,7 @@ module.exports = function(env) {
     config.devServer = {
         contentBase: path.resolve(__dirname, 'src'),
         port: 3001,
-        publicPath: 'dist/',
+        publicPath: '/dist/',
         proxy: { '/api/*': 'http://localhost:3000' }
       };
   }
