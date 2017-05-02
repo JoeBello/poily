@@ -5,26 +5,12 @@
   text-align: center;
 }
 
-.place-new:hover {
-  cursor: pointer;
-
-  .place-name {
-    color: colors(text, hover);
-  }
+.place-name {
+  color: colors(text, head);
+  font-size: $font-size-large;
+  line-height: 1.5;
+  transition: color .5s;
 }
-
-.place-delete {
-  position: absolute;
-  right: .5em;
-  top: .25em;
-  z-index: 1;
-
-  &:hover {
-    color: colors(text, danger);
-    cursor: pointer;
-  }
-}
-
 
 .place-image--wrapper {
   width: 100%;
@@ -47,12 +33,6 @@
   }
 }
 
-.place-name {
-  color: colors(text, head);
-  font-size: $font-size-large;
-  line-height: 1.5;
-}
-
 .place-hours,
 .place-rating,
 .place-vicinity {
@@ -72,6 +52,31 @@
     text-transform: uppercase;
   }
 }
+
+.place-new:hover {
+  cursor: pointer;
+
+  .place-name {
+    color: colors(text, hover);
+    transition: color .25s;
+  }
+}
+
+.place-delete {
+  position: absolute;
+  right: .5em;
+  top: .25em;
+  transition: color .5s;
+  z-index: 1;
+
+  &:hover {
+    color: colors(text, danger);
+    cursor: pointer;
+    transition: color .25s;
+  }
+}
+
+
 
 
 
