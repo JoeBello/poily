@@ -1,5 +1,5 @@
 {
-  "name": "project1",
+  "name": "placer",
   "version": "0.0.0",
   "engines": {
     "node": ">=4.0.0"
@@ -12,6 +12,7 @@
     "prod": "npm-run-all clean lint build:prod",
     "clean": "rimraf ./src/dist",
     "lint": "eslint .",
+    "build:dev": "webpack --env=dev",
     "build:prod": "webpack --env=prod",
     "nibble": "eslint-nibble ."
   },
