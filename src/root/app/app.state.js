@@ -1,14 +1,10 @@
-function appState($locationProvider,
-                  $stateProvider,
-                  $urlRouterProvider,
-                  $urlMatcherFactoryProvider) {
-    // $locationProvider.html5Mode(true);
-    $urlRouterProvider.otherwise('/app');
-    $urlMatcherFactoryProvider.caseInsensitive(true);
+function appState($locationProvider, $stateProvider) {
+    $locationProvider.html5Mode(true);
 
     $stateProvider
       .state('app', {
-        url: '/app',
+        abstract: true,
+        url: '',
         component: 'app'
         });
   }

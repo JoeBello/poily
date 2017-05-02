@@ -1,8 +1,10 @@
-function placesState($stateProvider) {
+function placesState($stateProvider, $urlRouterProvider) {
+  $urlRouterProvider.otherwise('/');
+
   $stateProvider
     .state('places', {
       parent: 'app',
-      url: '/places?location&radius&type',
+      url: '/?location&radius&type',
       views: {
         main: {
           component: 'places',
