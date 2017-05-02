@@ -50,8 +50,7 @@ function AppStorageService($localStorage, $rootScope) {
     },
 
     getPlaceCount: function() {
-      var places = $localStorage.Placer.places;
-      return places.length;
+      return $localStorage.Placer.places.length;
     },
 
     getSavedPlaces: function() {
