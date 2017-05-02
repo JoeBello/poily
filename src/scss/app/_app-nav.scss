@@ -6,11 +6,13 @@
   .navbar-brand {
     color: colors(brand, base);
     font-size: 32px;
+    transition: color .5s;
 
     &:hover,
     &:focus {
       color: colors(brand, hover);
       text-decoration: none;
+      transition: color .25s;
     }
   }
 }
@@ -19,6 +21,14 @@
   li {
     border-bottom: 1px solid colors(nav, borders);
     padding: 5px 0;
+  }
+
+  a {
+    transition: color .5s;
+
+    &:hover {
+      transition: color .25s;
+    }
   }
 }
 
