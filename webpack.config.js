@@ -55,11 +55,7 @@ module.exports = function(env) {
       new ngAnnotateWebpackPlugin({
         add: true
       }),
-      new extractTextPlugin('styles.css'),
-      new webpack.optimize.UglifyJsPlugin({
-        sourceMap: false,
-        mangle: false
-      })
+      new extractTextPlugin('styles.css')
     ]
   };
 
@@ -75,6 +71,12 @@ module.exports = function(env) {
 
   if (env === 'prod') {
     config.devtool = 'source-map';
+    config.plugins.push(
+      new webpack.optimize.UglifyJsPlugin({
+        sourceMap: false,
+        mangle: false
+      })
+    );
   }
 
   return config;
