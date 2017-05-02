@@ -21,7 +21,7 @@ module.exports = function(env) {
     output: {
       filename: '[name].bundle.js',
       path: path.resolve(__dirname, 'src', 'dist'),
-      publicPath: '/dist/',
+      publicPath: 'dist/',
       sourceMapFilename: '[name].map'
     },
     module: {
@@ -64,7 +64,7 @@ module.exports = function(env) {
     config.devServer = {
         contentBase: path.resolve(__dirname, 'src'),
         port: 3001,
-        publicPath: '/dist/',
+        publicPath: 'dist/',
         proxy: { '/api/*': 'http://localhost:3000' }
       };
   }
@@ -73,6 +73,7 @@ module.exports = function(env) {
     config.devtool = 'source-map';
     config.plugins.push(
       new webpack.optimize.UglifyJsPlugin({
+        compress: true,
         sourceMap: false,
         mangle: false
       })
