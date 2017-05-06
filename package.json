@@ -6,15 +6,17 @@
   },
   "private": true,
   "scripts": {
-    "dev": "concurrently --kill-others \"npm run dev:server\" \"npm run webpack-server\"",
-    "dev:server": "NODE_ENV=dev nodemon index.js",
-    "webpack-server": "webpack-dev-server --env=dev",
-    "prod": "npm-run-all clean lint build:prod",
-    "clean": "rimraf ./src/dist",
-    "lint": "eslint .",
     "build:dev": "webpack --env=dev",
     "build:prod": "webpack --env=prod",
-    "nibble": "eslint-nibble ."
+    "clean": "rimraf ./src/dist",
+    "dev:server": "NODE_ENV=dev nodemon index.js",
+    "dev": "concurrently --kill-others \"npm run dev:server\" \"npm run webpack-server\"",
+    "lint": "eslint .",
+    "live": "NODE_ENV=prod node index.js",
+    "nibble": "eslint-nibble .",
+    "prod:server": "NODE_ENV=prod nodemon index.js",
+    "prod": "npm-run-all clean lint build:prod",
+    "webpack-server": "NODE_ENV=dev webpack-dev-server"
   },
   "dependencies": {
     "angular": "^1.6.3",
