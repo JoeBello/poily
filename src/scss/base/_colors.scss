@@ -1,7 +1,7 @@
 $app-colors: (
   borders: (
-    light: rgb(30, 30, 30),
-    focus: rgb(255, 255, 255)
+    focus: rgb(255, 255, 255),
+    light: rgb(30, 30, 30)
   ),
   brand: (
     base: rgb(43, 193, 36),
@@ -10,22 +10,26 @@ $app-colors: (
   buttons: (
     borders: rgb(255, 136, 0)
   ),
-  presets: (
-    base: rgb(21, 21, 21),
-    shadow: rgba(0, 0, 0, .5)
+  footer: (
+    base: rgba(6, 6, 6, 0.7),
+    borders: rgb(21, 21, 21)
   ),
   inputs: (
-    field: rgb(21, 21, 21),
-    borders: rgb(21, 21, 21)
+    borders: rgb(21, 21, 21),
+    field: rgb(21, 21, 21)
   ),
   nav: (
     borders: rgb(30, 30, 30)
   ),
+  presets: (
+    base: rgb(21, 21, 21),
+    shadow: rgba(0, 0, 0, .5)
+  ),
   text: (
     base: rgb(136, 136, 136),
+    danger: rgb(204, 0, 0),
     head: rgb(207, 207, 207),
-    hover: rgb(255, 255, 255),
-    danger: rgb(204, 0, 0)
+    hover: rgb(255, 255, 255)
   )
 );
 
