@@ -1,27 +1,26 @@
 .app-scroll {
-  bottom: 0;
+  bottom: 50%;
   color: colors(text, base);
   font-size: 18px;
   position: fixed;
-  right: 0;
+  right: .25em;
+  transition: opacity .5s;
   z-index: 100;
-
-  &:hover {
-    color: colors(text, hover);
-  }
-
-  &:focus {
-    color: colors(text, base);
-  }
-
-  &:hover:focus {
-    color: colors(text, hover);
-  }
 
   &.active {
     opacity: 1;
-    transition: opacity 1s;
+    transition: color .5s, opacity .25s;
     visibility: visible;
+
+    &:hover,
+    &:focus:hover {
+      color: colors(text, hover);
+      transition: color .25s;
+    }
+
+    &:focus {
+      color: colors(text, base);
+    }
   }
 
   &.inactive {
@@ -32,7 +31,7 @@
 
 @media screen and (min-width: $screen-sm) {
   .app-scroll {
-    bottom: 1em;
+    bottom: 50%;
     right: 1em;
   }
 }
