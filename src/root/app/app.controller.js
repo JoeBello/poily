@@ -1,5 +1,6 @@
-function AppController(AppConstant, AppStorageService, $state, $scope) {
-  var ctrl = this;
+function AppController(AppConstant, AppStorageService, $sce, $scope, $state) {
+  var ctrl = this,
+      year = new Date().getFullYear();
 
   ctrl.$onInit = function() {
     angular.forEach(AppConstant, function(value, constant) {
@@ -12,6 +13,10 @@ function AppController(AppConstant, AppStorageService, $state, $scope) {
 
     ctrl.placeCount = AppStorageService.getPlaceCount();
 
+    ctrl.copyright = $sce.trustAsHtml(
+                      '<span class="footer-copyright">Copyright &copy; ' +
+                        year + ' Joseph Bello</span>'
+                      );
   }
 
   $scope.$on('places_change', function(event, placeCount) {
