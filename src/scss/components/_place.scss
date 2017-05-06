@@ -53,10 +53,19 @@
   }
 }
 
+.place-add {
+  bottom: 0;
+  left: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+  z-index: 99;
+}
+
 .place-add:hover {
   cursor: pointer;
 
-  .place-name {
+  ~ .place-details .place-name {
     color: colors(text, hover);
     transition: color .25s;
   }
@@ -67,7 +76,7 @@
   right: .5em;
   top: .25em;
   transition: color .5s;
-  z-index: 1;
+  z-index: 99;
 
   &:hover {
     color: colors(text, danger);
@@ -75,10 +84,6 @@
     transition: color .25s;
   }
 }
-
-
-
-
 
 @media screen and (min-width: $screen-sm) {
   .place {
