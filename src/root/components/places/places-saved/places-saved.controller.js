@@ -10,8 +10,7 @@ function PlacesSavedController(PlacesFactory) {
   };
 
   ctrl.deletePlace = function(event) {
-    var place = event.place;
-    PlacesFactory.deletePlace(place);
+    return PlacesFactory.deletePlace(event.place);
   };
 
 }

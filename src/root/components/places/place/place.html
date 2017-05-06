@@ -1,9 +1,11 @@
 <section class="place col-xs-12 col-sm-10 col-sm-offset-1 col-md-10
-                col-md-offset-1 col-lg-10 col-lg-offset-1"
-                ng-class="{ 'place-add': !$ctrl.place.saved }"
-                ng-click="$ctrl.selectPlace()">
+                col-md-offset-1 col-lg-10 col-lg-offset-1">
+
+  <div class="place-add" ng-click="$ctrl.selectPlace()"
+    ng-if="!$ctrl.place.saved"></div>
   <div class="place-delete" ng-click="$ctrl.selectPlace()"
-    ng-if="$ctrl.place.saved">
+    ng-if="$ctrl.place.saved"
+  >
     X
   </div>
   <div class="col-xs-10 col-xs-offset-1 col-sm-4 col-sm-offset-0 col-md-4 col-lg-4">
@@ -17,7 +19,7 @@
       </p>
     </div>
   </div><!--end layout for place-image-->
-  <div class="col-xs-12 col-sm-8 col-md-8 col-lg-8">
+  <div class="place-details col-xs-12 col-sm-8 col-md-8 col-lg-8">
 
     <header class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
       <h3 class="place-name">
