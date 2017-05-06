@@ -1,0 +1,32 @@
+.footer {
+  bottom: .5em;
+  color: colors(text, base);
+  font-family: 'Raleway', Helvetica, Arial, sans-serif;
+  position: fixed;
+  right: .5em;
+  transition: color .5s;
+
+  &:hover {
+    color: colors(text, hover);
+    cursor: pointer;
+    transition: color .25s;
+  }
+
+  + .tooltip .tooltip-inner {
+    background: colors(footer, base);
+    box-shadow: 0;
+  }
+}
+
+.footer-copyright {
+  color: colors(text, hover);
+  font-family: 'Raleway', Helvetica, Arial, sans-serif;
+}
+
+
+@media screen and (min-width: $screen-sm) {
+  .footer {
+    bottom: 1em;
+    right: 1em;
+  }
+}
