@@ -1,9 +1,10 @@
-var path = require('path');
-var app = path.resolve(__dirname, 'src', 'root');
-var webpack = require('webpack');
-var ngAnnotateWebpackPlugin = require('ng-annotate-webpack-plugin');
-var extractTextPlugin = require('extract-text-webpack-plugin');
-var progressBarPlugin = require('progress-bar-webpack-plugin');
+var path = require('path'),
+    app = path.resolve(__dirname, 'src', 'root'),
+    env = process.env.NODE_ENV || 'dev',
+    extractTextPlugin = require('extract-text-webpack-plugin'),
+    ngAnnotateWebpackPlugin = require('ng-annotate-webpack-plugin'),
+    progressBarPlugin = require('progress-bar-webpack-plugin'),
+    webpack = require('webpack')
 
 module.exports = function(env) {
   var config =  {
