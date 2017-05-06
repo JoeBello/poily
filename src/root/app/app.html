@@ -8,10 +8,8 @@
     user-nav="$ctrl.userNav"
   >
   </app-nav>
-  <app-scroll></app-scroll>
-  <main id="main" class="container-fluid">
-    <div class="row">
-      <div ui-view="main"></div>
-    </div>
-  </main>
+  <div id="top" class="container-fluid">
+    <main class="row" role="main" ui-view="main" autoscroll></main>
+    <app-footer role="contentinfo" copyright="$ctrl.copyright"></app-footer>
+  </div>
 </div>

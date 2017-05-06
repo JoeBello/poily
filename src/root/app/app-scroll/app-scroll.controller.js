@@ -1,4 +1,4 @@
-function AppScrollController($anchorScroll, $window, $scope) {
+function AppScrollController($anchorScroll, $scope, $window) {
     var ctrl = this,
         $win = angular.element($window);
 
@@ -15,7 +15,7 @@ function AppScrollController($anchorScroll, $window, $scope) {
     })
 
     ctrl.top = function() {
-      $anchorScroll('main');
+      $anchorScroll('top');
     }
 }
 
