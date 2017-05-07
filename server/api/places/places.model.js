@@ -71,38 +71,78 @@ var geocodeLocation = function (location) {
 };
 
 var getPlaces = function(placesQuery) {
-  if (placesQuery.location.length === 5) {
-    return geocodeLocation(placesQuery.location)
-    .then(function(geocodeResponse) {
-        return placesPromise.placeSearch({
-          location: geocodeResponse,
-          // default radius to 10 miles
-          radius: (placesQuery.radius || 10) * 1609.344,
-          type: placesQuery.type || null,
-          pagetoken: placesQuery.pageToken || null
-        });
-    })
-    .then(function(placesResponse) {
-      return parsePlaces(placesResponse)
-    })
-    .then(function(parsedResults) {
-      return parsedResults;
-    });
-  } else {
-    return placesPromise.placeSearch({
-      location: placesQuery.location,
-      // default radius to 10 miles
-      radius: (placesQuery.radius || 10) * 1609.344,
-      type: placesQuery.type || null,
-      pagetoken: placesQuery.pageToken || null
-    })
-    .then(function(placesResponse) {
-      return parsePlaces(placesResponse)
-    })
-    .then(function(parsedResults) {
-      return parsedResults;
-    });
-  }
+  return new Promise(function(resolve, reject) {
+    if (!placesQuery.location) {
+      return reject('No location provided.');
+    }
+
+    if (placesQuery.location.length === 5) {
+      geocodeLocation(placesQuery.location)
+      .then(function(geocodeResponse) {
+          return placesPromise.placeSearch({
+            location: geocodeResponse,
+            // default radius to 10 miles
+            radius: (placesQuery.radius || 10) * 1609.344,
+            type: placesQuery.type || null,
+            pagetoken: placesQuery.pageToken || null
+          });
+      })
+      .then(function(placesResponse) {
+        return parsePlaces(placesResponse)
+      })
+      .then(function(parsedResults) {
+        return resolve(parsedResults);
+      });
+    } else {
+      placesPromise.placeSearch({
+        location: placesQuery.location,
+        // default radius to 10 miles
+        radius: (placesQuery.radius || 10) * 1609.344,
+        type: placesQuery.type || null,
+        pagetoken: placesQuery.pageToken || null
+      })
+      .then(function(placesResponse) {
+        return parsePlaces(placesResponse)
+      })
+      .then(function(parsedResults) {
+        return resolve(parsedResults);
+      });
+    }
+
+  })
+
+  // if (placesQuery.location.length === 5) {
+  //   return geocodeLocation(placesQuery.location)
+  //   .then(function(geocodeResponse) {
+  //       return placesPromise.placeSearch({
+  //         location: geocodeResponse,
+  //         // default radius to 10 miles
+  //         radius: (placesQuery.radius || 10) * 1609.344,
+  //         type: placesQuery.type || null,
+  //         pagetoken: placesQuery.pageToken || null
+  //       });
+  //   })
+  //   .then(function(placesResponse) {
+  //     return parsePlaces(placesResponse)
+  //   })
+  //   .then(function(parsedResults) {
+  //     return parsedResults;
+  //   });
+  // } else {
+  //   return placesPromise.placeSearch({
+  //     location: placesQuery.location,
+  //     // default radius to 10 miles
+  //     radius: (placesQuery.radius || 10) * 1609.344,
+  //     type: placesQuery.type || null,
+  //     pagetoken: placesQuery.pageToken || null
+  //   })
+  //   .then(function(placesResponse) {
+  //     return parsePlaces(placesResponse)
+  //   })
+  //   .then(function(parsedResults) {
+  //     return parsedResults;
+  //   });
+  // }
 
 };
 
