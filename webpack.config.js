@@ -1,12 +1,11 @@
 var path = require('path'),
     app = path.resolve(__dirname, 'src', 'root'),
-    env = process.env.NODE_ENV || 'dev',
     extractTextPlugin = require('extract-text-webpack-plugin'),
     ngAnnotateWebpackPlugin = require('ng-annotate-webpack-plugin'),
     progressBarPlugin = require('progress-bar-webpack-plugin'),
-    webpack = require('webpack')
+    webpack = require('webpack');
 
-module.exports = function(env) {
+module.exports = function(env){
   var config =  {
     context: path.resolve(__dirname, 'src'),
     entry: {
@@ -41,10 +40,10 @@ module.exports = function(env) {
           })
         },
         {test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/,
-          use: "url-loader?limit=10000&mimetype=application/font-woff"
+          use: "url-loader??name=[name].[ext]&publicPath=./&limit=10000&mimetype=application/font-woff"
         },
         { test: /\.(ttf|eot|svg)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
-          use: "file-loader"
+          use: "file-loader?name=[name].[ext]&publicPath=./"
         }
       ]
     },
