@@ -17,7 +17,7 @@ config.env.prod ? app.use(helmet.contentSecurityPolicy({
                             }
                           })) : noop();
 
-config.logging ? app.use(morgan('combined')) : noop();
+app.use(morgan('combined'));
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
