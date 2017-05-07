@@ -1,13 +1,18 @@
 require('dotenv').config();
 var config = {},
+    configOpts = {
+      dev: 'development',
+      prod: 'production',
+      defaultPort: 3000
+    },
     envConfig;
 
-config.env = process.env.NODE_ENV = process.env.NODE_ENV || config.dev;
-config.port = process.env.PORT || 3000;
+process.env.NODE_ENV = process.env.NODE_ENV || configOpts['dev'];
+config.env = configOpts[process.env.NODE_ENV];
+config.port = process.env.PORT || configOpts['defaultPort'];
 
 try {
-  envConfig = require('./config.' + config.env);
-  envConfig = envConfig || {};
+  envConfig = require('./config.' + config.env) || {};
 } catch(error) {
   envConfig = {};
 }
