@@ -13,7 +13,7 @@ module.exports = function(env){
         'angular',
         'angular-animate',
         'angular-ui-bootstrap',
-        'angular-ui-router',
+        '@uirouter/angularjs',
         'ngstorage-webpack'
       ],
       app: path.resolve(app, 'bootstrap')

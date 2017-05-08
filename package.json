@@ -16,15 +16,9 @@
     "webpack-server": "webpack-dev-server --env=dev"
   },
   "dependencies": {
-    "angular": "^1.6.3",
-    "angular-animate": "^1.6.3",
-    "angular-ui-bootstrap": "^2.5.0",
-    "angular-ui-router": "^1.0.0-rc.1",
     "body-parser": "^1.17.1",
-    "debug": "^2.6.6",
     "dotenv": "^4.0.0",
     "express": "~4.13.4",
-    "express-session": "^1.14.1",
     "googleplaces-promises": "^1.0.0",
     "helmet": "^3.6.0",
     "hpp": "^0.2.2",
@@ -32,10 +26,15 @@
     "node-geocoder": "^3.15.0"
   },
   "devDependencies": {
+    "@uirouter/angularjs": "^1.0.3",
+    "angular": "^1.6.4",
+    "angular-animate": "^1.6.4",
+    "angular-ui-bootstrap": "^2.5.0",
     "bootstrap-sass": "^3.3.7",
     "bootswatch": "^3.3.7",
     "concurrently": "^3.3.0",
     "css-loader": "^0.26.1",
+    "debug": "^2.6.6",
     "extract-text-webpack-plugin": "^2.0.0-rc.3",
     "file-loader": "^0.10.0",
     "font-awesome": "^4.7.0",
