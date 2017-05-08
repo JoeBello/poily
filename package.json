@@ -12,7 +12,7 @@
     "clean": "rimraf ./src/dist",
     "dev:server": "NODE_ENV=dev nodemon index.js",
     "dev": "concurrently --kill-others \"npm run dev:server\" \"npm run webpack-server\"",
-    "heroku-postbuild": "build:prod",
+    "heroku-postbuild": "webpack --env=prod",
     "live": "NODE_ENV=prod node index.js",
     "prod:server": "NODE_ENV=prod nodemon index.js",
     "webpack-server": "webpack-dev-server --env=dev"
