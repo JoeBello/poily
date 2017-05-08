@@ -8,7 +8,6 @@ function AppNavController() {
       }
     })
   };
-
 }
 
 module.exports = AppNavController;

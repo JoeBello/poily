@@ -1,8 +1,8 @@
 module.exports = {
   bindings: {
-    place: '<',
-    onSelect: '&'
+    onSelect: '&',
+    place: '<'
   },
-  template: require('./place.html'),
-  controller: require('./place.controller')
+  controller: require('./place.controller'),
+  template: require('./place.html')
 };

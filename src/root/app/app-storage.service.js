@@ -1,6 +1,5 @@
 function AppStorageService($localStorage, $rootScope) {
   return {
-
     deleteStorage: function() {
       delete $localStorage.Placer;
     },

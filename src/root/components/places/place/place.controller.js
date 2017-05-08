@@ -8,7 +8,6 @@ function PlaceController() {
       }
     })
   };
-
 }
 
 module.exports = PlaceController;

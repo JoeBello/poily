@@ -12,7 +12,6 @@ function PlacesSavedController(PlacesFactory) {
   ctrl.deletePlace = function(event) {
     return PlacesFactory.deletePlace(event.place);
   };
-
 }
 
 module.exports = PlacesSavedController;

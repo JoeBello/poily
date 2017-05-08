@@ -2,6 +2,6 @@ module.exports = {
   bindings: {
     onLocate: '&'
   },
-  template: require('./location-detail.html'),
-  controller: require('./location-detail.controller')
+  controller: require('./location-detail.controller'),
+  template: require('./location-detail.html')
 };

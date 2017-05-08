@@ -1,4 +1,4 @@
 module.exports = {
-  template: require('./app.html'),
-  controller: require('./app.controller')
+  controller: require('./app.controller'),
+  template: require('./app.html')
 };

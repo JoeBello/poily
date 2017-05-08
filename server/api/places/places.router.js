@@ -1,6 +1,5 @@
-var router = require('express').Router();
-var controller = require('./places.controller');
-
+var controller = require('./places.controller'),
+    router = require('express').Router();
 
 router.route('/')
   .get(controller.getPlaces);

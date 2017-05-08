@@ -1,4 +1,4 @@
 module.exports = {
-  template: require('./app-scroll.html'),
-  controller: require('./app-scroll.controller')
+  controller: require('./app-scroll.controller'),
+  template: require('./app-scroll.html')
 };
