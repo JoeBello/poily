@@ -1,4 +1,4 @@
-function PlacesController(PlacesFactory, $state) {
+function PlacesController(PlaceFactory, $state) {
   var ctrl = this;
 
   ctrl.$onInit = function() {
@@ -13,7 +13,7 @@ function PlacesController(PlacesFactory, $state) {
 
     ctrl.hasPlaces = ctrl.places.length > 0;
 
-    ctrl.hasPageToken = PlacesFactory.getNextPageToken() !== null;
+    ctrl.hasPageToken = PlaceFactory.getNextPageToken() !== null;
 
   };
 
@@ -34,15 +34,15 @@ function PlacesController(PlacesFactory, $state) {
       place.photo = event.place.photo;
     }
 
-    PlacesFactory.savePlace(place);
+    PlaceFactory.savePlace(place);
   };
 
   ctrl.nextPlaces = function() {
-    var lastSearch = PlacesFactory.getLastSearch();
+    var lastSearch = PlaceFactory.getLastSearch();
 
-    lastSearch.pageToken = PlacesFactory.getNextPageToken();
+    lastSearch.pageToken = PlaceFactory.getNextPageToken();
 
-    PlacesFactory.searchNewPlaces(lastSearch)
+    PlaceFactory.searchNewPlaces(lastSearch)
       .then(function(morePlaces) {
         ctrl.places = ctrl.places.concat(morePlaces);
       })

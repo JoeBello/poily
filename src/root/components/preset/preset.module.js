@@ -1,6 +1,6 @@
 var presetsComponents = angular.module('components.presets', [
   ])
-  .constant('PresetsConstant', require('./presets.constant'))
+  .constant('PresetConstant', require('./preset.constant'))
   .component('presets', require('./presets/presets.component'))
   .component('preset', require('./preset/preset.component'));
 

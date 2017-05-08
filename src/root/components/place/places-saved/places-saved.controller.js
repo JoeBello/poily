@@ -1,4 +1,4 @@
-function PlacesSavedController(PlacesFactory) {
+function PlacesSavedController(PlaceFactory) {
   var ctrl = this;
 
   ctrl.$onInit = function() {
@@ -6,11 +6,11 @@ function PlacesSavedController(PlacesFactory) {
   };
 
   ctrl.deleteAllPlaces = function() {
-    PlacesFactory.deleteAllPlaces();
+    PlaceFactory.deleteAllPlaces();
   };
 
   ctrl.deletePlace = function(event) {
-    return PlacesFactory.deletePlace(event.place);
+    return PlaceFactory.deletePlace(event.place);
   };
 }
 

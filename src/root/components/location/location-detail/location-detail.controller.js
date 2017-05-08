@@ -1,21 +1,13 @@
-function LocationDetailController() {
+function LocationController($state, LocationFactory) {
   var ctrl = this;
 
-  ctrl.zipLocate = function() {
-    ctrl.onLocate({
-      $event: {
-        location: ctrl.location
-      }
+  ctrl.searchLocation = function(event) {
+    $state.go('places', {
+      location: event.location || null,
+      radius: null,
+      type: null
     });
-  }
-
-  ctrl.geolocate = function() {
-    ctrl.onLocate({
-      $event: {
-        location: false
-      }
-    })
   }
 }
 
-module.exports = LocationDetailController;
+module.exports = LocationController;
