@@ -7,8 +7,10 @@ var config = {},
     },
     envConfig;
 
-process.env.NODE_ENV = process.env.NODE_ENV || configOpts['dev'];
+process.env.NODE_ENV = process.env.NODE_ENV || 'dev';
+
 config.env = configOpts[process.env.NODE_ENV];
+
 config.port = process.env.PORT || configOpts['defaultPort'];
 
 try {
@@ -16,7 +18,6 @@ try {
 } catch(error) {
   envConfig = {};
 }
-
 
 for (var key in envConfig) {
   config[key] = envConfig[key];
