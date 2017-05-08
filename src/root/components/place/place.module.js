@@ -2,7 +2,7 @@ var placesComponents = angular.module('components.places', [
   'ui.router'
 ])
 .constant('API', {
-  places: 'http://localhost:3001/api/places?'
+  places: '/api/places?'
 })
 .filter('underscoreReplace', require('./underscoreReplace.filter'))
 .factory('PlaceFactory', require('./place.factory'))
