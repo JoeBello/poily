@@ -9,9 +9,9 @@ var express = require('express'),
     noop = function(){},
     source = express.static('src')
 
-config.env.prod ? app.use(helmet()) : noop();
+config.env === 'production' ? app.use(helmet()) : noop();
 
-config.env.prod ? app.use(helmet.contentSecurityPolicy({
+config.env === 'production' ? app.use(helmet.contentSecurityPolicy({
                             directives: {
                               defaultSrc: ["'self'"]
                             }
@@ -22,7 +22,7 @@ app.use(morgan('combined'));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
-config.env.prod ? app.use(hpp()) : noop();
+config.env === 'production' ? app.use(hpp()) : noop();
 
 app.use(source);
 
