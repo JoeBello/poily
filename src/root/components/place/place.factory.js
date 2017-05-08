@@ -1,4 +1,4 @@
-function PlacesFactory($q, $http, $httpParamSerializer, API, AppStorageService,
+function PlaceFactory($q, $http, $httpParamSerializer, API, AppStorageService,
                         $rootScope) {
 
   AppStorageService.init();
@@ -74,4 +74,4 @@ function PlacesFactory($q, $http, $httpParamSerializer, API, AppStorageService,
 
 }
 
-module.exports = PlacesFactory;
+module.exports = PlaceFactory;

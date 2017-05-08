@@ -1,24 +1,24 @@
-function placesState($stateProvider, $urlRouterProvider) {
+function PlacesState($stateProvider, $urlRouterProvider) {
   $urlRouterProvider.otherwise('/');
 
   $stateProvider
     .state('places', {
       parent: 'app',
       resolve: {
-        places: function($transition$, LocationFactory, PlacesFactory) {
+        places: function($transition$, LocationFactory, PlaceFactory) {
           if (!$transition$.params().location) {
             return LocationFactory.geolocate()
               .then(function(coordinates) {
                 var searchParams = angular.copy($transition$.params());
                 searchParams.location = coordinates;
-                return PlacesFactory.searchNewPlaces(searchParams);
+                return PlaceFactory.searchNewPlaces(searchParams);
               })
               .catch(function(error) {
                 return error;
               });
           }
 
-          return PlacesFactory.searchNewPlaces($transition$.params());
+          return PlaceFactory.searchNewPlaces($transition$.params());
         }
       },
       url: '/?location&radius&type',
@@ -30,4 +30,4 @@ function placesState($stateProvider, $urlRouterProvider) {
     });
 }
 
-module.exports = placesState;
+module.exports = PlacesState;

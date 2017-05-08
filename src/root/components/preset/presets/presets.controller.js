@@ -1,9 +1,9 @@
-function PresetsController(PresetsConstant, AppStorageService, $state) {
+function PresetsController(PresetConstant, AppStorageService, $state) {
   var ctrl = this;
 
   ctrl.$onInit = function() {
-    angular.forEach(PresetsConstant, function(value, constant) {
-      ctrl[constant] = PresetsConstant[constant];
+    angular.forEach(PresetConstant, function(value, constant) {
+      ctrl[constant] = PresetConstant[constant];
     });
   }
 

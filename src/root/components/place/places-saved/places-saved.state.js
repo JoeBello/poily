@@ -1,10 +1,10 @@
-function placesSavedState($stateProvider) {
+function PlacesSavedState($stateProvider) {
   $stateProvider
     .state('saved', {
       parent: 'app',
       resolve: {
-        places: function(PlacesFactory) {
-          return PlacesFactory.getSavedPlaces();
+        places: function(PlaceFactory) {
+          return PlaceFactory.getSavedPlaces();
         }
       },
       url: '/saved',
@@ -16,4 +16,4 @@ function placesSavedState($stateProvider) {
     });
 }
 
-module.exports = placesSavedState;
+module.exports = PlacesSavedState;

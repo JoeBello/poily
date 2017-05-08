@@ -1,12 +1,20 @@
-function LocationController($state, LocationFactory) {
+function LocationController() {
   var ctrl = this;
 
-  ctrl.searchLocation = function(event) {
-    $state.go('places', {
-      location: event.location || null,
-      radius: null,
-      type: null
+  ctrl.zipLocate = function() {
+    ctrl.onLocate({
+      $event: {
+        location: ctrl.location
+      }
     });
+  }
+
+  ctrl.geolocate = function() {
+    ctrl.onLocate({
+      $event: {
+        location: false
+      }
+    })
   }
 }
 

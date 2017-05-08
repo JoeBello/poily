@@ -1,4 +1,4 @@
-function appState($locationProvider, $stateProvider) {
+function AppState($locationProvider, $stateProvider) {
   $locationProvider.html5Mode(true);
 
   $stateProvider
@@ -9,4 +9,4 @@ function appState($locationProvider, $stateProvider) {
     });
 }
 
-module.exports = appState;
+module.exports = AppState;

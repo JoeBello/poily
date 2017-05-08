@@ -1,3 +1,29 @@
-<div class="location">
-  <location-detail on-locate="$ctrl.searchLocation($event)"></location-detail>
-</div>
+<ul class="location">
+  <li>
+    <form name="zipcodeForm" ng-submit="$ctrl.zipLocate()" novalidate>
+      <label for="zipcode" class="control-label">Zipcode</label>
+      <input
+        id="zipcode"
+        maxlength="5"
+        name="zipcode"
+        placeholder="Zipcode"
+        required
+        type="text"
+        ng-maxlength="5"
+        ng-minlength="5"
+        ng-model="$ctrl.location"
+        ng-pattern="/^(\d{5}(-\d{4})?|[A-Z]\d[A-Z] *\d[A-Z]\d)$/"
+        ng-trim="false"
+      >
+      <button type="submit" ng-disabled="zipcodeForm.$invalid">
+        <i class="glyphicon glyphicon-search"></i>
+      </button>
+    </form>
+  </li>
+  <li>
+    <a href="" ng-click="$ctrl.geolocate()">
+      Geolocation
+      <i class="glyphicon glyphicon-map-marker"></i>
+    </a>
+  </li>
+</ul>
