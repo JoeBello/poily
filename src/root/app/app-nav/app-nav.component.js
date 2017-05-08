@@ -1,12 +1,12 @@
 module.exports = {
   bindings: {
-    brand: '<',
     appNav: '<',
+    brand: '<',
     navCollapsed: '<',
+    onNavigate: '&',
     placeCount: '<',
-    userNav: '<',
-    onNavigate: '&'
+    userNav: '<'
   },
-  template: require('./app-nav.html'),
-  controller: require('./app-nav.controller')
+  controller: require('./app-nav.controller'),
+  template: require('./app-nav.html')
 };

@@ -1,4 +1,4 @@
 module.exports = {
-  template: require('./location.html'),
-  controller: require('./location.controller')
+  controller: require('./location.controller'),
+  template: require('./location.html')
 };

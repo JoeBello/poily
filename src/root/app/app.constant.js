@@ -1,24 +1,24 @@
 module.exports = {
-    brand: {
-      title: 'Placer',
-      state: 'places'
-    },
+  brand: {
+    state: 'places',
+    title: 'Placer'
+  },
 
-    appNav: {
-      places: {
-        title: 'Places',
-        state: 'saved'
-      }
-    },
+  appNav: {
+    places: {
+      state: 'saved',
+      title: 'Places'
+    }
+  },
 
-    userNav: {
-      signUp: {
-        title: 'Sign Up'
-        // state:
-      },
-      logIn: {
-        title: 'Log In'
-        // state:
-      }
+  userNav: {
+    signUp: {
+      title: 'Sign Up'
+      // state:
+    },
+    logIn: {
+      title: 'Log In'
+      // state:
     }
   }
+}

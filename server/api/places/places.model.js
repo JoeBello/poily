@@ -8,14 +8,14 @@ var NodeGeocoder = require('node-geocoder'),
     GooglePlacesPromises = require('googleplaces-promises'),
     placesPromise = new GooglePlacesPromises(process.env.GOOGLE_API_KEY);
 
-var parsePlaces = function(placesPayload) {
+var parsePlaces = function(placesResponse) {
   var placesData = {},
       placesDetails = [],
-      places = placesPayload.results,
+      places = placesResponse.results,
       promises = [];
 
-  if (placesPayload.next_page_token) {
-    placesData.next_page_token = placesPayload.next_page_token;
+  if (placesResponse.next_page_token) {
+    placesData.next_page_token = placesResponse.next_page_token;
   }
 
   placesDetails = places.map(function(place) {
@@ -36,8 +36,8 @@ var parsePlaces = function(placesPayload) {
     if (place.photos) {
       promises.push(
         placesPromise.imageFetch({
-          photoreference: place.photos[0].photo_reference,
-          maxwidth: 300
+          maxwidth: 300,
+          photoreference: place.photos[0].photo_reference
         })
         .then(function(image) {
           return returnPlace.photo = image;
@@ -81,10 +81,10 @@ var getPlaces = function(placesQuery) {
       .then(function(geocodeResponse) {
           return placesPromise.placeSearch({
             location: geocodeResponse,
+            pagetoken: placesQuery.pageToken || null,
             // default radius to 10 miles
             radius: (placesQuery.radius || 10) * 1609.344,
-            type: placesQuery.type || null,
-            pagetoken: placesQuery.pageToken || null
+            type: placesQuery.type || null
           });
       })
       .then(function(placesResponse) {
@@ -96,10 +96,10 @@ var getPlaces = function(placesQuery) {
     } else {
       placesPromise.placeSearch({
         location: placesQuery.location,
+        pagetoken: placesQuery.pageToken || null,
         // default radius to 10 miles
         radius: (placesQuery.radius || 10) * 1609.344,
-        type: placesQuery.type || null,
-        pagetoken: placesQuery.pageToken || null
+        type: placesQuery.type || null
       })
       .then(function(placesResponse) {
         return parsePlaces(placesResponse)

@@ -27,8 +27,8 @@ function AppController(AppConstant, AppStorageService, $sce, $scope, $state) {
     var lastLocation = AppStorageService.getLastLocation(),
         stateParams = {
           location: lastLocation,
-          type: null,
-          radius: null
+          radius: null,
+          type: null
         };
 
     $state.go(event.source.state, stateParams);

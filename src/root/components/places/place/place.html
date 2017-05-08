@@ -1,6 +1,5 @@
 <section class="place col-xs-12 col-sm-10 col-sm-offset-1 col-md-10
                 col-md-offset-1 col-lg-10 col-lg-offset-1">
-
   <div class="place-add" ng-click="$ctrl.selectPlace()"
     ng-if="!$ctrl.place.saved"></div>
   <div class="place-delete" ng-click="$ctrl.selectPlace()"
@@ -8,7 +7,8 @@
   >
     X
   </div>
-  <div class="col-xs-10 col-xs-offset-1 col-sm-4 col-sm-offset-0 col-md-4 col-lg-4">
+  <div class="col-xs-10 col-xs-offset-1 col-sm-4 col-sm-offset-0 col-md-4
+              col-lg-4">
     <div class="place-image--wrapper" ng-if="$ctrl.place.photo">
       <img src="{{$ctrl.place.photo}}" class="place-image img-responsive"
         alt="A picture of a point of interest.">
@@ -18,9 +18,8 @@
         Image currently not available.
       </p>
     </div>
-  </div><!--end layout for place-image-->
+  </div>
   <div class="place-details col-xs-12 col-sm-8 col-md-8 col-lg-8">
-
     <header class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
       <h3 class="place-name">
         {{$ctrl.place.name}}
@@ -45,19 +44,19 @@
         ng-if="!$ctrl.place.opening_hours.open_now">
         Closed
       </div>
-    </div><!--end layout for place.opening_hours-->
+    </div>
     <div class="col-xs-12 col-sm-4 col-sm-offset-2 col-md-4 col-md-offset-2
                 col-lg-4 col-lg-offset-2">
       <div class="place-rating text-primary" ng-if="$ctrl.place.rating">
         {{$ctrl.place.rating}} out of 5
       </div>
-    </div><!--end layout for .place-rating-->
+    </div>
     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
       <ul class="place-type">
         <li ng-repeat="type in $ctrl.place.types">
           {{type|underscoreReplace}}
         </li>
       </ul>
-    </div><!--end .place-type-->
-  </div><!--end layout for place information-->
-</section><!--end .place-->
+    </div>
+  </div>
+</section>

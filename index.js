@@ -1,4 +1,4 @@
-var config = require('./server/config/config');
-var app = require('./server/server');
+var app = require('./server/server'),
+    config = require('./server/config/config');
 
 app.listen(config.port);

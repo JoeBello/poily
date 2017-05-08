@@ -50,7 +50,6 @@ function PlacesFactory($q, $http, $httpParamSerializer, API, AppStorageService,
       searchParams.radius = 50;
     }
 
-
     saveLastSearch(searchParams);
 
     return $http.get(buildUrl(searchParams))
