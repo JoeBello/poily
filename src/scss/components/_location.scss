@@ -46,7 +46,9 @@
   button {
     background: transparent;
     border: 0;
+    bottom: 0;
     color: colors(text, base);
+    padding: .5em;
     position: absolute;
     right: 0;
     transition: color .5s;
@@ -86,6 +88,10 @@
       font-size: $font-size-base;
       text-align: left;
       width: 10em;
+    }
+
+    button {
+      padding: .25em;
     }
 
     a {
