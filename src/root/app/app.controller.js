@@ -9,14 +9,14 @@ function AppController(AppConstant, AppStorageService, $sce, $scope, $state) {
 
     AppStorageService.init();
 
-    ctrl.navCollapsed = true;
-
-    ctrl.placeCount = AppStorageService.getPlaceCount();
-
     ctrl.copyright = $sce.trustAsHtml(
                       '<span class="footer-copyright">Copyright &copy; ' +
                         year + ' Joseph Bello</span>'
                       );
+
+    ctrl.navCollapsed = true;
+
+    ctrl.placeCount = AppStorageService.getPlaceCount();
   }
 
   $scope.$on('places_change', function(event, placeCount) {
