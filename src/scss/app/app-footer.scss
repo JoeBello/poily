@@ -12,9 +12,13 @@
     transition: color .25s;
   }
 
-  + .tooltip .tooltip-inner {
-    background: colors(footer, base);
-    box-shadow: 0;
+  +.tooltip {
+    position: fixed;
+
+    .tooltip-inner {
+      background: colors(footer, base);
+      box-shadow: 0;
+    }
   }
 }
 
