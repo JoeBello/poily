@@ -1,7 +1,7 @@
 module.exports = {
   brand: {
     state: 'places',
-    title: 'Placer'
+    title: 'Poily'
   },
 
   appNav: {
