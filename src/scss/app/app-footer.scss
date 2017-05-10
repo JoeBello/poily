@@ -1,32 +1,35 @@
 .footer {
   bottom: .5em;
-  color: colors(text, base);
   font-family: 'Raleway', Helvetica, Arial, sans-serif;
   position: fixed;
   right: .5em;
-  transition: color .5s;
 
-  &:hover {
-    color: colors(text, hover);
-    cursor: pointer;
-    transition: color .25s;
-  }
+  a {
+    color: colors(text, base);
+    outline: 0;
+    text-decoration: none;
+    transition: color .5s;
 
-  +.tooltip {
-    position: fixed;
-
-    .tooltip-inner {
-      background: colors(footer, base);
-      box-shadow: 0;
+    &:hover {
+      color: colors(text, hover);
+      transition: color .25s;
     }
+
+    + .tooltip {
+      background: colors(footer, base);
+
+      .tooltip-inner {
+        background: colors(footer, base);
+      }
+   }
   }
+
 }
 
 .footer-copyright {
   color: colors(text, hover);
   font-family: 'Raleway', Helvetica, Arial, sans-serif;
 }
-
 
 @media screen and (min-width: $screen-sm) {
   .footer {
