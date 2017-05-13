@@ -1,4 +1,4 @@
-function AppNavController() {
+function AppNavController($scope) {
   var ctrl = this;
 
   ctrl.navigate = function(source) {
@@ -8,6 +8,7 @@ function AppNavController() {
       }
     })
   };
+
 }
 
 module.exports = AppNavController;

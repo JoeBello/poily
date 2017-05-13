@@ -2,7 +2,6 @@ module.exports = {
   bindings: {
     appNav: '<',
     brand: '<',
-    navCollapsed: '<',
     onNavigate: '&',
     placeCount: '<',
     userNav: '<'

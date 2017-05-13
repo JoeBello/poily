@@ -17,7 +17,6 @@ function PlacesState($stateProvider, $urlRouterProvider) {
                 return error;
               });
           }
-
           return PlaceFactory.searchNewPlaces($transition$.params());
         }
       },

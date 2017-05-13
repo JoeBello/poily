@@ -1,4 +1,4 @@
-function PresetsController(PresetConstant, AppStorageService, $state) {
+function PresetsController(PresetConstant, AppStorageService, $scope, $state) {
   var ctrl = this;
 
   ctrl.$onInit = function() {
@@ -8,12 +8,12 @@ function PresetsController(PresetConstant, AppStorageService, $state) {
   }
 
   ctrl.presetSearch = function(event) {
-    var lastLocation = AppStorageService.getLastLocation();
-    var stateParams = {
-      location: lastLocation,
-      radius: 5,
-      type: event.preset.type
-    };
+    var lastLocation = AppStorageService.getLastLocation(),
+        stateParams = {
+          location: lastLocation,
+          radius: 5,
+          type: event.preset.type
+        };
 
     $state.go(event.preset.state, stateParams);
   }

@@ -14,16 +14,10 @@ function AppController(AppConstant, AppStorageService, $sce, $scope, $state) {
                         year + ' Joseph Bello</span>'
                       );
 
-    ctrl.navCollapsed = true;
-
     ctrl.placeCount = AppStorageService.getPlaceCount();
   }
 
-  $scope.$on('places_change', function(event, placeCount) {
-    ctrl.placeCount = placeCount;
-  });
-
-  ctrl.go = function(event) {
+  ctrl.navigate = function(event) {
     var lastLocation = AppStorageService.getLastLocation(),
         stateParams = {
           location: lastLocation,
@@ -33,6 +27,10 @@ function AppController(AppConstant, AppStorageService, $sce, $scope, $state) {
 
     $state.go(event.source.state, stateParams);
   }
+
+  $scope.$on('places_change', function(event, placeCount) {
+    ctrl.placeCount = placeCount;
+  });
 
 }
 
