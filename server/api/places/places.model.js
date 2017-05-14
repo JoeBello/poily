@@ -34,6 +34,7 @@ var parsePlaces = function(placesResponse) {
     }
 
     if (place.photos) {
+      returnPlace.attributions = place.photos[0].html_attributions[0];
       promises.push(
         placesPromise.imageFetch({
           maxwidth: 300,

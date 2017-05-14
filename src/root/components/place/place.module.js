@@ -5,6 +5,7 @@ var placesComponents = angular.module('components.places', [
   places: '/api/places?'
 })
 .filter('underscoreReplace', require('./underscoreReplace.filter'))
+.filter('trustHtml', require('./trustHtml.filter.js'))
 .factory('PlaceFactory', require('./place.factory'))
 .component('place', require('./place/place.component'))
 .component('places', require('./places/places.component'))
