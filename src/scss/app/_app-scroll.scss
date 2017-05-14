@@ -7,7 +7,7 @@
   transition: opacity $transition-off;
   z-index: 100;
 
-  &.active {
+  .active {
     opacity: 1;
     transition: color $transition-on, opacity $transition-on;
     visibility: visible;
@@ -23,7 +23,7 @@
     }
   }
 
-  &.inactive {
+  .inactive {
     opacity: 0;
     visibility: hidden;
   }
