@@ -5,46 +5,27 @@
   text-align: center;
 
   &:hover {
-    & .place-name {
+    .place-name {
       color: colors(text, hover);
       transition: color $transition-on;
     }
   }
 
-  &-name {
-    color: colors(text, head);
-    font-size: $font-size-larger;
-    line-height: 1.5;
-    transition: color $transition-off;
+  &-add:hover {
+    color: colors(text, hover);
+    transition: color $transition-on;
   }
 
-  &-image--wrapper {
-    width: 100%;
-    height: 125px;
-    overflow: hidden;
-
-    figcaption {
-      font-size: $font-size-smaller;
-      padding: .5em;
-      text-align: center;
-    }
-
-    a {
-      color: colors(text, base);
-      transition: color $transition-off;
-
-      &:hover {
-        color: colors(text, hover);
-        text-decoration: none;
-        transition: color $transition-on;
-      }
-    }
+  &-delete:hover {
+    color: colors(text, danger);
+    cursor: pointer;
+    transition: color $transition-on;
   }
 
   &-image {
-    margin: 0 auto;
-    max-height: 100px;
     display: block;
+    margin: 0 auto;
+    max-height: 100%;
   }
 
   &-image--absent {
@@ -60,10 +41,17 @@
     }
   }
 
-  &-hours,
-  &-rating,
-  &-vicinity {
-    margin: .5em 0;
+  &-image--wrapper {
+    height: 125px;
+    overflow: hidden;
+    width: 100%;
+  }
+
+  &-name {
+    color: colors(text, head);
+    font-size: $font-size-large;
+    line-height: 1.5;
+    transition: color $transition-off;
   }
 
   &-type {
@@ -89,15 +77,28 @@
     transition: color $transition-off;
   }
 
-  &-add:hover {
-    color: colors(text, hover);
-    transition: color $transition-on;
+  &-hours,
+  &-rating,
+  &-vicinity {
+    margin: .5em 0;
+    font-size: $font-size-base;
   }
 
-  &-delete:hover {
-    color: colors(text, danger);
-    cursor: pointer;
-    transition: color $transition-on;
+  figcaption {
+    font-size: $font-size-smaller;
+    padding: .5em;
+    text-align: center;
+
+    a {
+      color: colors(text, base);
+      transition: color $transition-off;
+
+      &:hover {
+        color: colors(text, hover);
+        text-decoration: none;
+        transition: color $transition-on;
+      }
+    }
   }
 
 }
@@ -110,18 +111,9 @@
     padding: 10px 0 0;
     text-align: left;
 
-    &-image {
-      margin: 0 auto;
-      max-height: 100px;
-    }
-
     &-image--wrapper {
       margin: 10px 0 0;
-      // overflow: hidden;
-
-      figcaption {
-        font-size: $font-size-smaller;
-      }
+      height: 125px;
     }
 
     &-name {

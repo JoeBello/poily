@@ -2,9 +2,11 @@
                 col-md-offset-1 col-lg-10 col-lg-offset-1">
   <div class="col-xs-10 col-xs-offset-1 col-sm-4 col-sm-offset-0 col-md-4
               col-lg-4">
-    <figure class="place-image--wrapper" ng-if="$ctrl.place.photo">
-      <img src="{{$ctrl.place.photo}}" class="place-image"
-        alt="A picture of a point of interest.">
+    <figure ng-if="$ctrl.place.photo">
+      <div class="place-image--wrapper">
+        <img src="{{$ctrl.place.photo}}" class="place-image"
+          alt="A picture of a point of interest.">
+      </div>
       <figcaption>
         Photo courtesy of
         <span ng-bind-html="$ctrl.place.attributions|trustHtml"></span>
