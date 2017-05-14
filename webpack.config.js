@@ -27,12 +27,6 @@ module.exports = function(env){
     module: {
       rules: [
         {test: /\.html$/, use: ['html-loader']},
-        {test: /\.css$/,
-          use: extractTextPlugin.extract({
-            fallback: 'style-loader',
-            use: 'css-loader'
-          })
-        },
         {test: /\.scss$/,
           use: extractTextPlugin.extract({
             fallback: 'style-loader',
@@ -42,7 +36,7 @@ module.exports = function(env){
         {test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/,
           use: "url-loader??name=[name].[ext]&publicPath=./&limit=10000&mimetype=application/font-woff"
         },
-        { test: /\.(ttf|eot|svg)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
+        { test: /\.(ttf|eot|svg|png)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
           use: "file-loader?name=[name].[ext]&publicPath=./"
         }
       ]
