@@ -2,23 +2,34 @@
   list-style: none;
   padding: 0;
 
-  li {
+  a {
+    color: colors(text, base);
     display: block;
-    padding: 15px;
+    outline: 0;
     position: relative;
+    transition: color $transition-off;
 
-    &:last-child {
-      border: 0;
+    &:hover,
+    &:focus {
+      color: colors(text, hover);
+      text-decoration: none;
+      transition: color $transition-on;
     }
+  }
+
+  button {
+    background: transparent;
+    border: 0;
+    bottom: 0;
+    color: colors(text, base);
+    padding: .5em;
+    position: absolute;
+    right: 0;
+    transition: color $transition-off;
   }
 
   form {
     position: relative;
-  }
-
-  label {
-    float: right;
-    visibility: hidden;
   }
 
   input {
@@ -43,29 +54,18 @@
     }
   }
 
-  button {
-    background: transparent;
-    border: 0;
-    bottom: 0;
-    color: colors(text, base);
-    padding: .5em;
-    position: absolute;
-    right: 0;
-    transition: color $transition-off;
+  label {
+    float: right;
+    visibility: hidden;
   }
 
-  a {
-    color: colors(text, base);
+  li {
     display: block;
-    outline: 0;
+    padding: 15px;
     position: relative;
-    transition: color $transition-off;
 
-    &:hover,
-    &:focus {
-      color: colors(text, hover);
-      text-decoration: none;
-      transition: color $transition-on;
+    &:last-child {
+      border: 0;
     }
   }
 }
@@ -76,13 +76,12 @@
   .location {
     list-style: none;
 
-    li {
-      display: inline-block;
-      padding: 0 15px;
+    a {
+      display: inline;
     }
 
-    label {
-      float: left;
+    button {
+      padding: .25em;
     }
 
     input {
@@ -91,12 +90,13 @@
       width: 10em;
     }
 
-    button {
-      padding: .25em;
+    label {
+      float: left;
     }
 
-    a {
-      display: inline;
+    li {
+      display: inline-block;
+      padding: 0 15px;
     }
   }
 }
