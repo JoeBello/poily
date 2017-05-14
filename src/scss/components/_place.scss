@@ -14,6 +14,24 @@
 
 .place-image--wrapper {
   width: 100%;
+
+  figcaption {
+    font-size: 8px;
+    padding: .5em;
+    position: relative;
+    text-align: center;
+    z-index: 20;
+  }
+
+  a {
+    color: colors(text, base);
+    transition: color .5s;
+
+    &:hover {
+      color: colors(text, hover);
+      text-decoration: none;
+    }
+  }
 }
 
 .place-image {
@@ -59,7 +77,7 @@
   position: absolute;
   right: 0;
   top: 0;
-  z-index: 99;
+  z-index: 19;
 }
 
 .place-add:hover {
@@ -76,7 +94,7 @@
   right: .5em;
   top: .25em;
   transition: color .5s;
-  z-index: 99;
+  z-index: 19;
 
   &:hover {
     color: colors(text, danger);
@@ -102,8 +120,11 @@
 
   .place-image--wrapper {
     margin: 10px 0 0;
-    max-height: 125px;
     overflow: hidden;
+
+    figcaption {
+      font-size: 10px;
+    }
   }
 
   .place-name {
