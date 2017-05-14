@@ -3,104 +3,103 @@
   margin-bottom: 50px;
   padding: 10px 0;
   text-align: center;
-}
-
-.place-name {
-  color: colors(text, head);
-  font-size: $font-size-large;
-  line-height: 1.5;
-  transition: color .5s;
-}
-
-.place-image--wrapper {
-  width: 100%;
-
-  figcaption {
-    font-size: 8px;
-    padding: .5em;
-    position: relative;
-    text-align: center;
-    z-index: 20;
-  }
-
-  a {
-    color: colors(text, base);
-    transition: color .5s;
-
-    &:hover {
-      color: colors(text, hover);
-      text-decoration: none;
-    }
-  }
-}
-
-.place-image {
-  margin: 0 auto;
-}
-
-.place-image--absent {
-  height: 100px;
-  position: relative;
-  width: 100%;
-
-  p {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 100%;
-  }
-}
-
-.place-hours,
-.place-rating,
-.place-vicinity {
-  margin: .5em 0;
-}
-
-.place-type {
-  margin: 0;
-  padding: 0;
-
-
-  li {
-    display: inline-block;
-    font-size: 8px;
-    list-style: none;
-    margin: 0 1em 0 0;
-    text-transform: uppercase;
-  }
-}
-
-.place-add {
-  bottom: 0;
-  left: 0;
-  position: absolute;
-  right: 0;
-  top: 0;
-  z-index: 19;
-}
-
-.place-add:hover {
-  cursor: pointer;
-
-  ~ .place-details .place-name {
-    color: colors(text, hover);
-    transition: color .25s;
-  }
-}
-
-.place-delete {
-  position: absolute;
-  right: .5em;
-  top: .25em;
-  transition: color .5s;
-  z-index: 19;
 
   &:hover {
+    & .place-name {
+      color: colors(text, hover);
+      transition: color $transition-on;
+    }
+  }
+
+  &-name {
+    color: colors(text, head);
+    font-size: $font-size-larger;
+    line-height: 1.5;
+    transition: color $transition-off;
+  }
+
+  &-image--wrapper {
+    width: 100%;
+    height: 125px;
+    overflow: hidden;
+
+    figcaption {
+      font-size: $font-size-smaller;
+      padding: .5em;
+      text-align: center;
+    }
+
+    a {
+      color: colors(text, base);
+      transition: color $transition-off;
+
+      &:hover {
+        color: colors(text, hover);
+        text-decoration: none;
+        transition: color $transition-on;
+      }
+    }
+  }
+
+  &-image {
+    margin: 0 auto;
+    max-height: 100px;
+    display: block;
+  }
+
+  &-image--absent {
+    height: 100px;
+    position: relative;
+    width: 100%;
+
+    p {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 100%;
+    }
+  }
+
+  &-hours,
+  &-rating,
+  &-vicinity {
+    margin: .5em 0;
+  }
+
+  &-type {
+    margin: 0;
+    padding: 0;
+
+
+    li {
+      display: inline-block;
+      font-size: $font-size-smaller;
+      list-style: none;
+      margin: 0 1em 0 0;
+      text-transform: uppercase;
+    }
+  }
+
+  &-add,
+  &-delete {
+    color: colors(text, base);
+    position: absolute;
+    right: .5em;
+    top: .25em;
+    transition: color $transition-off;
+  }
+
+  &-add:hover {
+    color: colors(text, hover);
+    transition: color $transition-on;
+  }
+
+  &-delete:hover {
     color: colors(text, danger);
     cursor: pointer;
-    transition: color .25s;
+    transition: color $transition-on;
   }
+
 }
 
 @media screen and (min-width: $screen-sm) {
@@ -110,41 +109,46 @@
     margin-bottom: 75px;
     padding: 10px 0 0;
     text-align: left;
-  }
 
-  .place-image {
-    margin: 0 auto;
-    max-height: 125px;
-    max-width: 100%;
-  }
-
-  .place-image--wrapper {
-    margin: 10px 0 0;
-    overflow: hidden;
-
-    figcaption {
-      font-size: 10px;
+    &-image {
+      margin: 0 auto;
+      max-height: 100px;
     }
-  }
 
-  .place-name {
-    font-size: $font-size-h4;
-    margin-top: 0;
-  }
+    &-image--wrapper {
+      margin: 10px 0 0;
+      // overflow: hidden;
 
-  .place-rating {
-    text-align: right;
-  }
-
-  .place-type {
-    margin: 15px 0 0;
-
-    li {
-      font-size: 10px;
-
-      &:first-child {
-        margin-left: 0;
+      figcaption {
+        font-size: $font-size-smaller;
       }
+    }
+
+    &-name {
+      font-size: $font-size-larger;
+      margin-top: 0;
+    }
+
+    &-rating {
+      text-align: right;
+    }
+
+    &-type {
+      margin: 15px 0 0;
+
+      li {
+        font-size: $font-size-smaller;
+
+        &:first-child {
+          margin-left: 0;
+        }
+      }
+    }
+
+    &-add,
+    &-delete {
+      right: 1em;
+      top: 1em;
     }
   }
 }
