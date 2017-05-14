@@ -5,7 +5,7 @@
   height: 30px;
   left: 0;
   position: fixed;
-  right: 0;
+  width: 100%;
 
   &-backdrop {
     background: url('../scss/app/powered-by-google.png') no-repeat center;
@@ -20,12 +20,15 @@
     bottom: 0;
     color: colors(text, head);
     font-size: $font-size-small;
-    left: 20%;
-    padding: .5em;
     position: absolute;
-    right: 20%;
     text-align: center;
     transition: bottom $transition-off;
+    width: 100%;
+
+    span {
+      padding: .5em;
+    }
+
   }
 
   a {
@@ -52,6 +55,7 @@
   }
 }
 
+
 @media screen and (min-width: $screen-md) {
   .footer {
     height: 45px;
@@ -62,13 +66,12 @@
       height: 45px;
     }
 
-    a:hover + .footer-copyright {
-      bottom: 45px;
+    &-copyright {
+      font-size: $font-size-base;
     }
 
-    &-copyright {
-      left: 40%;
-      right: 40%;
+    a:hover + .footer-copyright {
+      bottom: 45px;
     }
   }
 }
