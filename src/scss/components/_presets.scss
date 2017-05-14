@@ -2,7 +2,7 @@
   .presets {
     background-color: colors(presets, base);
     box-shadow: 0px 2px 3px 0px colors(presets, shadow);
-    font-size: 10px;
+    font-size: $font-size-small;
     height: 20px;
     left: 0;
     position: fixed;

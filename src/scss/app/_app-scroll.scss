@@ -1,21 +1,21 @@
 .app-scroll {
   bottom: 50%;
   color: colors(text, base);
-  font-size: 18px;
+  font-size: $font-size-large;
   position: fixed;
   right: .25em;
-  transition: opacity .5s;
+  transition: opacity $transition-off;
   z-index: 100;
 
   &.active {
     opacity: 1;
-    transition: color .5s, opacity .25s;
+    transition: color $transition-on, opacity $transition-on;
     visibility: visible;
 
     &:hover,
     &:focus:hover {
       color: colors(text, hover);
-      transition: color .25s;
+      transition: color $transition-on;
     }
 
     &:focus {
