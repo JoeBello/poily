@@ -1,16 +1,9 @@
 <section class="place col-xs-12 col-sm-10 col-sm-offset-1 col-md-10
                 col-md-offset-1 col-lg-10 col-lg-offset-1">
-  <div class="place-add" ng-click="$ctrl.selectPlace()"
-    ng-if="!$ctrl.place.saved"></div>
-  <div class="place-delete" ng-click="$ctrl.selectPlace()"
-    ng-if="$ctrl.place.saved"
-  >
-    X
-  </div>
   <div class="col-xs-10 col-xs-offset-1 col-sm-4 col-sm-offset-0 col-md-4
               col-lg-4">
     <figure class="place-image--wrapper" ng-if="$ctrl.place.photo">
-      <img src="{{$ctrl.place.photo}}" class="place-image img-responsive"
+      <img src="{{$ctrl.place.photo}}" class="place-image"
         alt="A picture of a point of interest.">
       <figcaption>
         Photo courtesy of
@@ -63,4 +56,13 @@
       </ul>
     </div>
   </div>
+  <a href=""
+    ng-class="{'place-add': !$ctrl.place.saved, 'place-delete':
+                $ctrl.place.saved}"
+    ng-click="$ctrl.selectPlace()"
+  >
+    <i class="glyphicon glyphicon-plus" ng-if="!$ctrl.place.saved"></i>
+    <i class="glyphicon glyphicon-remove" ng-if="$ctrl.place.saved"></i>
+  </a>
+
 </section>
