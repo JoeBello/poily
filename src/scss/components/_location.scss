@@ -28,18 +28,18 @@
     border-color: colors(borders, light);
     font-size: $font-size-large;
     text-align: center;
-    transition: border-color .5s;
+    transition: border-color $transition-off;
     width: 100%;
 
     &:focus {
       border-color: colors(borders, focus);
       outline: none;
-      transition: border-color .25s;
+      transition: border-color $transition-on;
     }
 
     &.ng-valid ~ button {
       color: colors(text, hover);
-      transition: color .25s;
+      transition: color $transition-on;
     }
   }
 
@@ -51,7 +51,7 @@
     padding: .5em;
     position: absolute;
     right: 0;
-    transition: color .5s;
+    transition: color $transition-off;
   }
 
   a {
@@ -59,13 +59,13 @@
     display: block;
     outline: 0;
     position: relative;
-    transition: color .5s;
+    transition: color $transition-off;
 
     &:hover,
     &:focus {
       color: colors(text, hover);
       text-decoration: none;
-      transition: color .25s;
+      transition: color $transition-on;
     }
   }
 }
