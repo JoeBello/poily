@@ -1,7 +1,7 @@
 var placesModel = require('./places.model');
 
-exports.getPlaces = function(req, res, next) {
-  placesModel.getPlaces(req.query)
+exports.get = function(req, res, next) {
+  placesModel.get(req.query)
   .then(function(places){
     res.send(places);
   })
@@ -9,3 +9,13 @@ exports.getPlaces = function(req, res, next) {
     next(error);
   });
 };
+
+exports.getOne = function(req, res, next) {
+  placesModel.getOne(req.params)
+  .then(function(place){
+    res.send(place);
+  })
+  .catch(function(error){
+    next(error);
+  })
+}

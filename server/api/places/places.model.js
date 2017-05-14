@@ -6,56 +6,10 @@ var NodeGeocoder = require('node-geocoder'),
       formatter: null
     }),
     GooglePlacesPromises = require('googleplaces-promises'),
-    placesPromise = new GooglePlacesPromises(process.env.GOOGLE_API_KEY);
+    placesPromise = new GooglePlacesPromises(process.env.GOOGLE_API_KEY),
+    parse = require('./places.model.parse');
 
-var parsePlaces = function(placesResponse) {
-  var placesData = {},
-      placesDetails = [],
-      places = placesResponse.results,
-      promises = [];
-
-  if (placesResponse.next_page_token) {
-    placesData.next_page_token = placesResponse.next_page_token;
-  }
-
-  placesDetails = places.map(function(place) {
-    var returnPlace = {};
-      returnPlace.name = place.name,
-      returnPlace.place_id = place.place_id,
-      returnPlace.types = place.types,
-      returnPlace.vicinity = place.vicinity
-
-    if (place.opening_hours) {
-      returnPlace.opening_hours = place.opening_hours;
-    }
-
-    if (place.rating) {
-      returnPlace.rating = place.rating;
-    }
-
-    if (place.photos) {
-      returnPlace.attributions = place.photos[0].html_attributions[0];
-      promises.push(
-        placesPromise.imageFetch({
-          maxwidth: 300,
-          photoreference: place.photos[0].photo_reference
-        })
-        .then(function(image) {
-          return returnPlace.photo = image;
-        })
-      );
-    }
-    return returnPlace;
-  });
-
-  return Promise.all(promises)
-    .then(function() {
-      placesData.places = placesDetails;
-      return placesData;
-    });
-};
-
-var geocodeLocation = function (location) {
+var geocodeRequest = function (location) {
   var searchLocation;
   var geocodeRequest = {
       address: ' ',
@@ -71,14 +25,14 @@ var geocodeLocation = function (location) {
     });
 };
 
-var getPlaces = function(placesQuery) {
+var getAllPlaces = function(placesQuery) {
   return new Promise(function(resolve, reject) {
     if (!placesQuery.location) {
       return reject('No location provided.');
     }
 
     if (placesQuery.location.length === 5) {
-      geocodeLocation(placesQuery.location)
+      geocodeRequest(placesQuery.location)
       .then(function(geocodeResponse) {
           return placesPromise.placeSearch({
             location: geocodeResponse,
@@ -89,11 +43,14 @@ var getPlaces = function(placesQuery) {
           });
       })
       .then(function(placesResponse) {
-        return parsePlaces(placesResponse)
+        return parse(placesResponse)
       })
       .then(function(parsedResults) {
         return resolve(parsedResults);
-      });
+      })
+      .catch(function(error) {
+        return reject(error);
+      })
     } else {
       placesPromise.placeSearch({
         location: placesQuery.location,
@@ -103,15 +60,32 @@ var getPlaces = function(placesQuery) {
         type: placesQuery.type || null
       })
       .then(function(placesResponse) {
-        return parsePlaces(placesResponse)
+        return parse(placesResponse)
       })
       .then(function(parsedResults) {
+        console.log(parsedResults);
         return resolve(parsedResults);
-      });
+      })
+      .catch(function(error) {
+        return reject(error);
+      })
     }
-
   });
 };
 
+var getOnePlace = function(placeQuery) {
+  return new Promise(function(resolve, reject) {
+    placesPromise.placeDetailsRequest({
+      placeid: placeQuery.id
+    })
+    .then(function(placesResponse){
+      // console.log(placesResponse);
+      return resolve(placesResponse);
+    });
+  })
+}
 
-module.exports.getPlaces = getPlaces;
+module.exports = {
+  get: getAllPlaces,
+  getOne: getOnePlace
+};
