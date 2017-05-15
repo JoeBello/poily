@@ -1,6 +1,6 @@
 module.exports = {
   bindings: {
-    copyright: '<'
+    copyrightDate: '<'
   },
   template: require('./app-footer.html'),
 };
