@@ -30,7 +30,7 @@ module.exports = function(_constructor) {
         returnObj.attributions = result.photos[0].html_attributions[0];
         promises.push(
           placesPromise.imageFetch({
-            maxwidth: 150,
+            maxwidth: 200,
             photoreference: result.photos[0].photo_reference
           })
           .then(function(image) {
