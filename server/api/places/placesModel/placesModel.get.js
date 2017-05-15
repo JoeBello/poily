@@ -37,15 +37,14 @@ module.exports = function(_constructor) {
           type: placesQuery.type || null
         })
         .then(function(placesResponse) {
-          return parse(placesResponse)
-        })
+          return this.parse(placesResponse)
+        }.bind(this))
         .then(function(parsedResults) {
-          console.log(parsedResults);
           return resolve(parsedResults);
         })
         .catch(function(error) {
           return reject(error);
-        })
+        });
       }
     }.bind(this));
   };
