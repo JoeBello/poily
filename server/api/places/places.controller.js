@@ -1,4 +1,4 @@
-var placesModel = require('./places.model');
+var placesModel = require('./placesModel/placesModel');
 
 exports.get = function(req, res, next) {
   placesModel.get(req.query)
