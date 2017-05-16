@@ -14,7 +14,7 @@
     "dev": "concurrently --kill-others \"npm run dev:server\" \"npm run webpack-server\"",
     "heroku-postbuild": "webpack --env=prod",
     "inspect": "node --inspect index.js",
-    "live": "NODE_ENV=prod node index.js",
+    "start": "NODE_ENV=prod node index.js",
     "prod:server": "NODE_ENV=prod nodemon index.js",
     "webpack-server": "webpack-dev-server --env=dev"
   },
