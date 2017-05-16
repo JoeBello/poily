@@ -6,8 +6,8 @@ var NodeGeocoder = require('node-geocoder'),
       formatter: null
     });
 
-module.exports = function(_constructor) {
-  _constructor.prototype.geocodeRequest = function(location) {
+module.exports = function geocodeRequestPrototype(_constructor) {
+  _constructor.prototype.geocodeRequest = function geocodeRequest(location) {
     var searchLocation;
     var geocodeRequest = {
         address: ' ',
