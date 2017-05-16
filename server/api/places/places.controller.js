@@ -1,6 +1,6 @@
 var placesModel = require('./placesModel/placesModel');
 
-exports.get = function(req, res, next) {
+exports.get = function get(req, res, next) {
   placesModel.get(req.query)
   .then(function(places){
     res.send(places);
@@ -10,8 +10,18 @@ exports.get = function(req, res, next) {
   });
 };
 
-exports.getOne = function(req, res, next) {
-  placesModel.getOne(req.params)
+exports.getCollection = function getCollection(req, res, next) {
+  placesModel.getCollection(req.query)
+  .then(function(collection) {
+    res.send(collection);
+  })
+  .catch(function(error) {
+    next(error);
+  });
+};
+
+exports.getOne = function getOne(req, res, next) {
+  placesModel.getOne(req.params.id)
   .then(function(place){
     res.send(place);
   })
