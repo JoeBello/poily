@@ -2,7 +2,7 @@ function AppController(AppConstant, AppStorageService, $sce, $scope, $state) {
   var ctrl = this;
 
   ctrl.$onInit = function onInit() {
-    angular.forEach(AppConstant, function forEachConstant(value, constant) {
+    angular.forEach(AppConstant, function eachAppConstant(value, constant) {
       ctrl[constant] = AppConstant[constant];
     });
 
