@@ -26,7 +26,7 @@ function PlacesController(PlaceFactory, $state) {
 
     lastSearch.pageToken = PlaceFactory.getNextPageToken();
 
-    PlaceFactory.searchNewPlaces(lastSearch)
+    PlaceFactory.getPlaces(lastSearch)
       .then(function(morePlaces) {
         ctrl.places = ctrl.places.concat(morePlaces);
       })
