@@ -60,13 +60,13 @@ function PlaceFactory($q, $http, $httpParamSerializer, API, AppStorageService,
   }
 
   function getPlaces(searchParams) {
-    if (!searchParams.radius) {
-      searchParams.radius = 30;
-    }
+    var queryParams = angular.copy(searchParams);
 
-    saveLastSearch(searchParams);
+    queryParams.radius = 30;
 
-    return $http.get(buildUrl('places', $httpParamSerializer(searchParams)))
+    saveLastSearch(queryParams);
+
+    return $http.get(buildUrl('places', $httpParamSerializer(queryParams)))
       .then(function(placesResponse) {
         return extractResults(placesResponse);
       })
