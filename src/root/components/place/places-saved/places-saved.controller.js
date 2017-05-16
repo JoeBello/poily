@@ -7,10 +7,12 @@ function PlacesSavedController(PlaceFactory) {
 
   ctrl.deleteAllPlaces = function deleteAllPlaces() {
     PlaceFactory.deleteAllPlaces();
+    ctrl.places = [];
   };
 
   ctrl.deletePlace = function deletePlace(event) {
-    return PlaceFactory.deletePlace(event.place);
+    PlaceFactory.deletePlace(event.place);
+    ctrl.places.splice(ctrl.places.indexOf(event.place), 1);
   };
 }
 

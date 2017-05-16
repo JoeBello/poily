@@ -8,11 +8,14 @@ function PlaceFactory($q, $http, $httpParamSerializer, API, AppStorageService,
   }
 
   function deleteAllPlaces() {
-    return AppStorageService.deleteAllPlaces();
+    AppStorageService.deleteAllPlaces();
   }
 
   function deletePlace(place) {
-    return AppStorageService.deletePlace(place);
+    AppStorageService.deletePlace({
+      id: place.place_id,
+      saved: true
+    });
   }
 
   function extractId(items) {
@@ -58,7 +61,7 @@ function PlaceFactory($q, $http, $httpParamSerializer, API, AppStorageService,
 
   function getPlaces(searchParams) {
     if (!searchParams.radius) {
-      searchParams.radius = 20;
+      searchParams.radius = 30;
     }
 
     saveLastSearch(searchParams);
@@ -95,15 +98,15 @@ function PlaceFactory($q, $http, $httpParamSerializer, API, AppStorageService,
   }
 
   function saveLastSearch(searchDetails) {
-    return AppStorageService.saveSearch(searchDetails);
+    AppStorageService.saveSearch(searchDetails);
   }
 
   function saveNextPageToken(token) {
-    return AppStorageService.saveNextPageToken(token);
+    AppStorageService.saveNextPageToken(token);
   }
 
   function savePlace(place) {
-    return AppStorageService.savePlace({
+    AppStorageService.savePlace({
       id: place.place_id,
       saved: true
     });

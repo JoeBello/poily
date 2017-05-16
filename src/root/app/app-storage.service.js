@@ -7,13 +7,13 @@ function AppStorageService($localStorage, $rootScope) {
     deleteAllPlaces: function deleteAllPlaces() {
       var places = $localStorage.Poily.places;
       places.splice(0, places.length);
-      return $rootScope.$broadcast('places_change', places.length);
+      $rootScope.$broadcast('places_change', places.length);
     },
 
     deletePlace: function deletePlace(place) {
       var places = $localStorage.Poily.places;
       places.splice(places.indexOf(place), 1);
-      return $rootScope.$broadcast('places_change', places.length);
+      $rootScope.$broadcast('places_change', places.length);
     },
 
     getLastLocation: function getLastLocation() {
@@ -57,26 +57,24 @@ function AppStorageService($localStorage, $rootScope) {
 
     init: function init() {
       if (!$localStorage.hasOwnProperty('Poily')) {
-        return $localStorage.$default({
+        $localStorage.$default({
           Poily: { lastSearch: { next_page_token: null }, places: [] }
         });
-      } else {
-        return $localStorage.Poily;
       }
     },
 
     saveNextPageToken: function saveNextPageToken(token) {
-      return $localStorage.Poily.lastSearch.next_page_token = token;
+      $localStorage.Poily.lastSearch.next_page_token = token;
     },
 
     saveSearch: function saveSearch(searchDetails) {
-      return $localStorage.Poily.lastSearch = searchDetails;
+      $localStorage.Poily.lastSearch = searchDetails;
     },
 
     savePlace: function savePlace(place) {
       var places = $localStorage.Poily.places;
       places.push(place);
-      return $rootScope.$broadcast('places_change', places.length);
+      $rootScope.$broadcast('places_change', places.length);
     }
 
   }
