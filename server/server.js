@@ -23,12 +23,6 @@ app.use(function (req, res, next) {
 
 config.env === 'production' ? app.use(helmet()) : noop();
 
-config.env === 'production' ? app.use(helmet.contentSecurityPolicy({
-                                        directives: {
-                                          defaultSrc: ["'self'"]
-                                        }
-                                      })) : noop();
-
 app.use(morgan('combined'));
 
 app.use(bodyParser.urlencoded({ extended: true }));
