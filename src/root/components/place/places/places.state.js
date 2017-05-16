@@ -18,7 +18,7 @@ function PlacesState($stateProvider, $urlRouterProvider) {
           return PlaceFactory.getPlaces($transition$.params());
         }
       },
-      url: '/?location&radius&type',
+      url: '/?location&type&radius',
       views: {
         main: {
           component: 'places',

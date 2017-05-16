@@ -17,7 +17,6 @@ function PresetsController(PresetConstant, AppStorageService, $scope, $state) {
 
     $state.go(event.preset.state, stateParams);
   }
-
 }
 
 module.exports = PresetsController;
