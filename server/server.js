@@ -9,13 +9,26 @@ var express = require('express'),
     noop = function(){},
     source = express.static('src')
 
+app.use(function (req, res, next) {
+  var secureUrl = 'https://www.poily.io';
+
+  if (config.env === 'production' &&
+      req.headers['x-forwarded-proto'] !== 'https') {
+    secureUrl = ['https://www.poily.io', req.url].join('');
+
+    res.redirect(secureUrl);
+  }
+
+  next();
+})
+
 config.env === 'production' ? app.use(helmet()) : noop();
 
 config.env === 'production' ? app.use(helmet.contentSecurityPolicy({
-                            directives: {
-                              defaultSrc: ["'self'"]
-                            }
-                          })) : noop();
+                                        directives: {
+                                          defaultSrc: ["'self'"]
+                                        }
+                                      })) : noop();
 
 app.use(morgan('combined'));
 
