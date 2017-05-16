@@ -3,7 +3,7 @@ function PlacesSavedState($stateProvider) {
     .state('saved', {
       parent: 'app',
       resolve: {
-        places: function(PlaceFactory) {
+        places: function placesResolve(PlaceFactory) {
           return PlaceFactory.getSavedPlaces();
         }
       },

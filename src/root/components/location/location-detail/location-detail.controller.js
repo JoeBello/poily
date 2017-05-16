@@ -1,7 +1,7 @@
 function LocationController($state, LocationFactory) {
   var ctrl = this;
 
-  ctrl.geoDirect = function() {
+  ctrl.geoDirect = function geoDirect() {
     LocationFactory.geolocate()
     .then(function(location) {
       $state.go('places', {
@@ -12,7 +12,7 @@ function LocationController($state, LocationFactory) {
     });
   };
 
-  ctrl.searchLocation = function(event) {
+  ctrl.searchLocation = function searchLocation(event) {
     if (!event.location) {
       return ctrl.geoDirect();
     }

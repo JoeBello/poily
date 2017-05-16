@@ -1,7 +1,7 @@
 function LocationController() {
   var ctrl = this;
 
-  ctrl.zipLocate = function() {
+  ctrl.zipLocate = function zipLocate() {
     ctrl.onLocate({
       $event: {
         location: ctrl.location
@@ -9,7 +9,7 @@ function LocationController() {
     });
   }
 
-  ctrl.geolocate = function() {
+  ctrl.geolocate = function geoLocate() {
     ctrl.onLocate({
       $event: {
         location: false

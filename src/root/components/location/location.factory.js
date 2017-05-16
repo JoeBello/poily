@@ -2,7 +2,7 @@ function LocationFactory($window, $q) {
   var geocoder;
 
   if ($window.navigator.geolocation) {
-    geocoder = function() {
+    geocoder = function geocoder() {
       var deferred = $q.defer(),
           geocoderOptions = {
             enableHighAccuracy: true,
@@ -53,10 +53,13 @@ function LocationFactory($window, $q) {
     }
 
     return geocoder()
-      .then(function(geocoderResponse) {
+      .then(function (geocoderResponse) {
         var coords = geocoderResponse.position.coords,
             coordinates = coords.latitude + ',' + coords.longitude;
         return coordinates;
+      })
+      .catch(function(error) {
+        return error;
       });
   }
 

@@ -1,7 +1,7 @@
 function PlacesController(PlaceFactory, $state) {
   var ctrl = this;
 
-  ctrl.$onInit = function() {
+  ctrl.$onInit = function onInit() {
     ctrl.state = {};
 
     if (ctrl.places.error) {
@@ -17,27 +17,11 @@ function PlacesController(PlaceFactory, $state) {
 
   };
 
-  ctrl.savePlace = function(event) {
-    var place = {
-          name: event.place.name,
-          vicinity: event.place.vicinity,
-          types: event.place.types,
-          saved: true
-        };
-
-    if (event.place.opening_hours) {
-      place.opening_hours = {};
-      place.opening_hours.open_now = event.place.opening_hours.open_now;
-    }
-
-    if (event.place.photo) {
-      place.photo = event.place.photo;
-    }
-
-    PlaceFactory.savePlace(place);
+  ctrl.savePlace = function savePlace(event) {
+    PlaceFactory.savePlace(event.place);
   };
 
-  ctrl.nextPlaces = function() {
+  ctrl.nextPlaces = function nextPlaces() {
     var lastSearch = PlaceFactory.getLastSearch();
 
     lastSearch.pageToken = PlaceFactory.getNextPageToken();

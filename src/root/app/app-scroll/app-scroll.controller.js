@@ -2,9 +2,11 @@ function AppScrollController($anchorScroll, $scope, $window) {
   var ctrl = this,
       win = angular.element($window);
 
-  ctrl.active = false;
-
-  win.on('scroll', function(event) {
+  ctrl.$onInit = function onInit() {
+    ctrl.active = false;
+  }
+  
+  win.on('scroll', function onScroll(event) {
     if (event.pageY > 400) {
       ctrl.active = true;
     } else {
@@ -14,7 +16,7 @@ function AppScrollController($anchorScroll, $scope, $window) {
     $scope.$applyAsync();
   })
 
-  ctrl.top = function() {
+  ctrl.top = function top() {
     $anchorScroll('top');
   }
 }

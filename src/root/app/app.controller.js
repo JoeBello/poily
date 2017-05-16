@@ -1,8 +1,8 @@
 function AppController(AppConstant, AppStorageService, $sce, $scope, $state) {
   var ctrl = this;
 
-  ctrl.$onInit = function() {
-    angular.forEach(AppConstant, function(value, constant) {
+  ctrl.$onInit = function onInit() {
+    angular.forEach(AppConstant, function forEachConstant(value, constant) {
       ctrl[constant] = AppConstant[constant];
     });
 
@@ -13,7 +13,7 @@ function AppController(AppConstant, AppStorageService, $sce, $scope, $state) {
     ctrl.placeCount = AppStorageService.getPlaceCount();
   }
 
-  ctrl.navigate = function(event) {
+  ctrl.navigate = function navigate(event) {
     var lastLocation = AppStorageService.getLastLocation(),
         stateParams = {
           location: lastLocation,
@@ -24,7 +24,7 @@ function AppController(AppConstant, AppStorageService, $sce, $scope, $state) {
     $state.go(event.source.state, stateParams);
   }
 
-  $scope.$on('places_change', function(event, placeCount) {
+  $scope.$on('places_change', function placesChangeHandler(event, placeCount) {
     ctrl.placeCount = placeCount;
   });
 

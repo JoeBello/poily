@@ -2,6 +2,8 @@ var placesComponents = angular.module('components.places', [
   'ui.router'
 ])
 .constant('API', {
+  one: '/api/places/',
+  collection: '/api/places/collection?',
   places: '/api/places?'
 })
 .filter('underscoreReplace', require('./underscoreReplace.filter'))

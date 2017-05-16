@@ -3,8 +3,8 @@ function PlaceFactory($q, $http, $httpParamSerializer, API, AppStorageService,
 
   AppStorageService.init();
 
-  function buildUrl(searchParams) {
-    return API['places'].concat($httpParamSerializer(searchParams));
+  function buildUrl(endpoint, params) {
+    return API[endpoint].concat(params);
   }
 
   function deleteAllPlaces() {
@@ -15,9 +15,21 @@ function PlaceFactory($q, $http, $httpParamSerializer, API, AppStorageService,
     return AppStorageService.deletePlace(place);
   }
 
+  function extractId(items) {
+    var ids = [];
+
+    items.forEach(function(item) {
+      ids.push(item.id);
+    });
+
+    return ids;
+  }
+
   function extractResults(responseObject) {
-    AppStorageService.saveNextPageToken(responseObject.data.next_page_token);
-    return responseObject.data.places;
+    if (responseObject.data.next_page_token) {
+      AppStorageService.saveNextPageToken(responseObject.data.next_page_token);
+    }
+    return responseObject.data.results;
   }
 
   function getLastSearch() {
@@ -28,8 +40,58 @@ function PlaceFactory($q, $http, $httpParamSerializer, API, AppStorageService,
     return AppStorageService.getNextPageToken();
   }
 
+  function getOnePlace(place) {
+    var id = extractId(place);
+
+    return $http.get(buildUrl('one', id))
+      .then(function(placesResponse) {
+        return extractResults(placesResponse);
+      })
+      .then(function(results) {
+        results[0].saved = true;
+        return results;
+      })
+      .catch(function(error) {
+        return { error: error };
+      });
+  }
+
+  function getPlaces(searchParams) {
+    if (!searchParams.radius) {
+      searchParams.radius = 20;
+    }
+
+    saveLastSearch(searchParams);
+
+    return $http.get(buildUrl('places', $httpParamSerializer(searchParams)))
+      .then(function(placesResponse) {
+        return extractResults(placesResponse);
+      })
+  }
+
   function getSavedPlaces() {
-    return AppStorageService.getSavedPlaces();
+    var ids,
+        places = AppStorageService.getSavedPlaces();
+
+    if (places.length === 1) {
+      return getOnePlace(places);
+    }
+
+    ids = extractId(places);
+
+    return $http.get(buildUrl('collection', $httpParamSerializer(ids)))
+      .then(function(placesResponse) {
+        return extractResults(placesResponse);
+      })
+      .then(function(results) {
+        results.forEach(function(result) {
+          result.saved = true;
+        });
+        return results;
+      })
+      .catch(function(error) {
+        return { error: error };
+      });
   }
 
   function saveLastSearch(searchDetails) {
@@ -41,25 +103,12 @@ function PlaceFactory($q, $http, $httpParamSerializer, API, AppStorageService,
   }
 
   function savePlace(place) {
-    return AppStorageService.savePlace(place);
+    return AppStorageService.savePlace({
+      id: place.place_id,
+      saved: true
+    });
   }
 
-  function searchNewPlaces(searchParams) {
-
-    if (!searchParams.radius) {
-      searchParams.radius = 50;
-    }
-
-    saveLastSearch(searchParams);
-
-    return $http.get(buildUrl(searchParams))
-      .then(function(placesResponse) {
-        return extractResults(placesResponse);
-      })
-      .catch(function(error) {
-        return { error: error };
-      });
-  }
 
 
   return {
@@ -69,7 +118,7 @@ function PlaceFactory($q, $http, $httpParamSerializer, API, AppStorageService,
     getNextPageToken: getNextPageToken,
     getSavedPlaces: getSavedPlaces,
     savePlace: savePlace,
-    searchNewPlaces: searchNewPlaces
+    getPlaces: getPlaces
   };
 
 }
