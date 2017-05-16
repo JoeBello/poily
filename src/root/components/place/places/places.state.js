@@ -5,19 +5,17 @@ function PlacesState($stateProvider, $urlRouterProvider) {
     .state('places', {
       parent: 'app',
       resolve: {
-        places: function($transition$, LocationFactory, PlaceFactory) {
+        places: function placesResolve($transition$, LocationFactory,
+                                        PlaceFactory) {
           if (!$transition$.params().location) {
             return LocationFactory.geolocate()
               .then(function(coordinates) {
                 var searchParams = angular.copy($transition$.params());
                 searchParams.location = coordinates;
-                return PlaceFactory.searchNewPlaces(searchParams);
-              })
-              .catch(function(error) {
-                return error;
+                return PlaceFactory.getPlaces(searchParams);
               });
           }
-          return PlaceFactory.searchNewPlaces($transition$.params());
+          return PlaceFactory.getPlaces($transition$.params());
         }
       },
       url: '/?location&radius&type',

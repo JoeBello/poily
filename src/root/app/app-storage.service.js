@@ -1,23 +1,23 @@
 function AppStorageService($localStorage, $rootScope) {
   return {
-    deleteStorage: function() {
-      delete $localStorage.Placer;
+    deleteStorage: function deleteStorage() {
+      delete $localStorage.Poily;
     },
 
-    deleteAllPlaces: function() {
-      var places = $localStorage.Placer.places;
+    deleteAllPlaces: function deleteAllPlaces() {
+      var places = $localStorage.Poily.places;
       places.splice(0, places.length);
       return $rootScope.$broadcast('places_change', places.length);
     },
 
-    deletePlace: function(place) {
-      var places = $localStorage.Placer.places;
+    deletePlace: function deletePlace(place) {
+      var places = $localStorage.Poily.places;
       places.splice(places.indexOf(place), 1);
       return $rootScope.$broadcast('places_change', places.length);
     },
 
-    getLastLocation: function() {
-      var location = $localStorage.Placer.lastSearch.location || null,
+    getLastLocation: function getLastLocation() {
+      var location = $localStorage.Poily.lastSearch.location || null,
           errorObject = {
             error: '',
             source: 'AppStorageService.getLastLocation'
@@ -37,45 +37,44 @@ function AppStorageService($localStorage, $rootScope) {
         console.log(error);
         return null;
       }
-
     },
 
-    getLastSearch: function() {
-      return $localStorage.Placer.lastSearch;
+    getLastSearch: function getLastSearch() {
+      return $localStorage.Poily.lastSearch;
     },
 
-    getNextPageToken: function() {
-      return $localStorage.Placer.lastSearch.next_page_token || null;
+    getNextPageToken: function getNextPageToken() {
+      return $localStorage.Poily.lastSearch.next_page_token || null;
     },
 
-    getPlaceCount: function() {
-      return $localStorage.Placer.places.length;
+    getPlaceCount: function getPlaceCount() {
+      return $localStorage.Poily.places.length;
     },
 
-    getSavedPlaces: function() {
-      return $localStorage.Placer.places;
+    getSavedPlaces: function getSavedPlaces() {
+      return $localStorage.Poily.places;
     },
 
-    init: function() {
-      if (!$localStorage.hasOwnProperty('Placer')) {
+    init: function init() {
+      if (!$localStorage.hasOwnProperty('Poily')) {
         return $localStorage.$default({
-          Placer: { lastSearch: { next_page_token: null }, places: [] }
+          Poily: { lastSearch: { next_page_token: null }, places: [] }
         });
       } else {
-        return $localStorage.Placer;
+        return $localStorage.Poily;
       }
     },
 
-    saveNextPageToken: function(token) {
-      return $localStorage.Placer.lastSearch.next_page_token = token;
+    saveNextPageToken: function saveNextPageToken(token) {
+      return $localStorage.Poily.lastSearch.next_page_token = token;
     },
 
-    saveSearch: function(searchDetails) {
-      return $localStorage.Placer.lastSearch = searchDetails;
+    saveSearch: function saveSearch(searchDetails) {
+      return $localStorage.Poily.lastSearch = searchDetails;
     },
 
-    savePlace: function(place) {
-      var places = $localStorage.Placer.places;
+    savePlace: function savePlace(place) {
+      var places = $localStorage.Poily.places;
       places.push(place);
       return $rootScope.$broadcast('places_change', places.length);
     }

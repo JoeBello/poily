@@ -1,15 +1,15 @@
 function PlacesSavedController(PlaceFactory) {
   var ctrl = this;
 
-  ctrl.$onInit = function() {
+  ctrl.$onInit = function onInit() {
     ctrl.hasSavedPlaces = ctrl.places.length > 0;
   };
 
-  ctrl.deleteAllPlaces = function() {
+  ctrl.deleteAllPlaces = function deleteAllPlaces() {
     PlaceFactory.deleteAllPlaces();
   };
 
-  ctrl.deletePlace = function(event) {
+  ctrl.deletePlace = function deletePlace(event) {
     return PlaceFactory.deletePlace(event.place);
   };
 }
