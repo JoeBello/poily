@@ -55,7 +55,8 @@ function LocationFactory($window, $q) {
     return geocoder()
       .then(function (geocoderResponse) {
         var coords = geocoderResponse.position.coords,
-            coordinates = coords.latitude + ',' + coords.longitude;
+            coordinates = coords.latitude.toFixed(3) + ',' +
+                          coords.longitude.toFixed(3);
         return coordinates;
       })
       .catch(function(error) {
