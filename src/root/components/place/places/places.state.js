@@ -10,8 +10,10 @@ function PlacesState($stateProvider, $urlRouterProvider) {
           if (!$transition$.params().location) {
             return LocationFactory.geolocate()
               .then(function(coordinates) {
-                var searchParams = angular.copy($transition$.params());
-                searchParams.location = coordinates;
+                var searchParams = {
+                  location: coordinates,
+                  type: $transition$.params().type || ''
+                };
                 return PlaceFactory.getPlaces(searchParams);
               });
           }
