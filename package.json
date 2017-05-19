@@ -16,6 +16,7 @@
     "inspect": "node --inspect index.js",
     "start": "NODE_ENV=prod node index.js",
     "prod:server": "NODE_ENV=prod nodemon index.js",
+    "webpack": "webpack",
     "webpack-server": "webpack-dev-server --env=dev"
   },
   "dependencies": {
