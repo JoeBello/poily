@@ -26,18 +26,33 @@ module.exports = function(env){
     },
     module: {
       rules: [
-        {test: /\.html$/, use: ['html-loader']},
+        {test: /\.html$/, use: ['html-loader?interpolate=require']},
         {test: /\.scss$/,
           use: extractTextPlugin.extract({
             fallback: 'style-loader',
             use: ['css-loader', 'sass-loader']
           })
         },
-        {test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/,
-          use: "url-loader??name=[name].[ext]&publicPath=./&limit=10000&mimetype=application/font-woff"
+        {test: /\.woff?(\?v=[0-9]\.[0-9]\.[0-9])?$/,
+          use: "url-loader?name=[name].[ext]&publicPath=./&limit=50000&mimetype=application/font-woff"
         },
-        { test: /\.(ttf|eot|svg|png)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
-          use: "file-loader?name=[name].[ext]&publicPath=./"
+        {test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/,
+          use: "url-loader?name=[name].[ext]&publicPath=./&limit=50000&mimetype=application/font-woff2"
+        },
+        { test: /\.(ttf)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
+          use: "url-loader?name=[name].[ext]&publicPath=./&limit=50000&mimetype=application/octet-stream"
+        },
+        { test: /\.(eot)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
+          use: "file-loader?name=[name].[ext]&mimetype=application/vnd.ms-fontobject"
+        },
+        { test: /\.(jpg|)$/,
+          use: "url-loader?name=[name].[ext]&limit=50000&mimetype=image/jpeg"
+        },
+        { test: /\.(png)$/,
+          use: "url-loader?name=[name].[ext]&limit=50000&mimetype=image/png"
+        },
+        { test: /\.(svg)$/,
+          use: "url-loader?name=[name].[ext]&limit=50000&mimetype=image/svg+xml"
         }
       ]
     },
