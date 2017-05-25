@@ -58,9 +58,6 @@ function LocationFactory($window, $q) {
             coordinates = coords.latitude.toFixed(3) + ',' +
                           coords.longitude.toFixed(3);
         return coordinates;
-      })
-      .catch(function(error) {
-        return error;
       });
   }
 
