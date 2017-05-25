@@ -16,6 +16,7 @@ function AppController(AppConstant, AppStorageService, $sce, $scope, $state) {
   ctrl.navigate = function navigate(event) {
     var lastLocation = AppStorageService.getLastLocation(),
         stateParams = {
+          error: null,
           location: lastLocation,
           radius: null,
           type: null
