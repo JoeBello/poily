@@ -5,6 +5,7 @@ function LocationController($state, LocationFactory) {
     LocationFactory.geolocate()
     .then(function(location) {
       $state.go('places', {
+        error: null,
         location: location,
         radius: null,
         type: null
@@ -23,6 +24,7 @@ function LocationController($state, LocationFactory) {
     }
 
     $state.go('places', {
+      error: null,
       location: event.location,
       radius: null,
       type: null
