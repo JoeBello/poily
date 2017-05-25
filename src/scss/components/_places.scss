@@ -1,19 +1,26 @@
-.places-next {
-  color: colors(text, base);
-  padding: 1em;
-
-  &:focus,
-  &:hover {
-    text-decoration: none;
+.places {
+  &-error {
+    font-size: $font-size-large;
+    padding: 2em 0;
   }
 
-  &:hover,
-  &:hover:focus {
-    color: colors(text, hover);
-  }
-
-  &:focus {
+  &-next {
     color: colors(text, base);
-  }
+    padding: 1em;
 
+    &:focus,
+    &:hover {
+      text-decoration: none;
+    }
+
+    &:hover,
+    &:hover:focus {
+      color: colors(text, hover);
+    }
+
+    &:focus {
+      color: colors(text, base);
+    }
+
+  }
 }

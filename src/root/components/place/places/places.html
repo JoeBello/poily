@@ -1,19 +1,15 @@
 <div class="col-xs-10 col-xs-offset-1 col-sm-12 col-sm-offset-0 col-md-10
             col-md-offset-1 col-lg-10 col-lg-offset-1">
-    <span ng-if="$ctrl.state.error">
-      <p class="text-center" ng-if="$ctrl.error.source === 'geocoder'">
-        Sorry, we were unable to get your location. Try searching
-        for places with a location.
-      </p>
-    </span>
-  <p class="text-center" ng-hide="$ctrl.hasPlaces" ng-if="$ctrl.state.success">
-    Sorry, there were no places found that fit your criteria.
-  </p>
 
+  <p class="places-error text-center" ng-if="$ctrl.error.source === 'geocoder'">
+    We were unable to get your location. Try entering your location instead.
+  </p>
+  <p class="text-center" ng-hide="$ctrl.hasPlaces" ng-if="$ctrl.state.success">
+    There were no places found that fit your criteria.
+  </p>
   <div class="row" ng-if="$ctrl.hasPlaces" ng-repeat="place in $ctrl.places">
     <place place="place" on-select="$ctrl.savePlace($event)"></place>
   </div>
-
   <div class="row" ng-if="$ctrl.hasPlaces && $ctrl.hasPageToken">
     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 text-center">
       <a class="places-next" href="" ng-click="$ctrl.nextPlaces()">
