@@ -4,20 +4,33 @@ function PlacesState($stateProvider, $urlRouterProvider) {
   $stateProvider
     .state('places', {
       parent: 'app',
+      params: {
+        error: null
+      },
       resolve: {
         places: function placesResolve($transition$, LocationFactory,
                                         PlaceFactory) {
-          if (!$transition$.params().location) {
+          var params = $transition$.params();
+
+          if (params.error) {
+            return params.error;
+          }
+
+          if (params.location) {
+            return PlaceFactory.getPlaces(params);
+          } else {
             return LocationFactory.geolocate()
               .then(function(coordinates) {
                 var searchParams = {
                   location: coordinates,
-                  type: $transition$.params().type || ''
+                  type: params.type || ''
                 };
                 return PlaceFactory.getPlaces(searchParams);
+              })
+              .catch(function(error) {
+                return error;
               });
           }
-          return PlaceFactory.getPlaces($transition$.params());
         }
       },
       url: '/?location&type&radius',
