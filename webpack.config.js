@@ -12,6 +12,7 @@ module.exports = function(env){
       vendors: [
         'angular',
         'angular-animate',
+        'angular-loading-bar',
         'angular-ui-bootstrap',
         '@uirouter/angularjs',
         'ngstorage-webpack'

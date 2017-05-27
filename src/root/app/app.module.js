@@ -1,6 +1,7 @@
 var common = angular.module('common', [
-  'ui.router',
-  'ngStorage'
+  'angular-loading-bar',
+  'ngStorage',
+  'ui.router'
 ])
 .constant('AppConstant', require('./app.constant'))
 .factory('AppStorageService', require('./app-storage.service'))
