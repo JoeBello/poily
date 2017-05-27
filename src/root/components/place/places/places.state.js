@@ -1,12 +1,15 @@
 function PlacesState($stateProvider, $urlRouterProvider) {
-  $urlRouterProvider.otherwise('/');
+  $urlRouterProvider.otherwise('/')
 
   $stateProvider
     .state('places', {
-      parent: 'app',
       params: {
-        error: null
+        error: null,
+        location: null,
+        type: null,
+        radius: null
       },
+      parent: 'app',
       resolve: {
         places: function placesResolve($transition$, LocationFactory,
                                         PlaceFactory) {
@@ -33,7 +36,7 @@ function PlacesState($stateProvider, $urlRouterProvider) {
           }
         }
       },
-      url: '/?location&type&radius',
+      url: '/',
       views: {
         main: {
           component: 'places',
