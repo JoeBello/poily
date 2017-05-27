@@ -4,8 +4,7 @@ function AppState($locationProvider, $stateProvider) {
   $stateProvider
     .state('app', {
       abstract: true,
-      component: 'app',
-      url: ''
+      component: 'app'
     });
 }
 

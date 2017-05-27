@@ -7,7 +7,9 @@ var express = require('express'),
     hpp = require('hpp'),
     morgan = require('morgan'),
     noop = function(){},
-    source = express.static('src')
+    path = require('path'),
+    source = path.resolve(path.dirname(require.main.filename), 'src'),
+    staticSource = express.static('src');
 
 app.use(function (req, res, next) {
   
@@ -30,14 +32,12 @@ app.use(bodyParser.json());
 
 config.env === 'production' ? app.use(hpp()) : noop();
 
-app.use(source);
+app.use(staticSource);
 
 app.use('/api', api);
 
-app.use(function(req, res, next){
-  var err = new Error('Not found');
-  err.status = 404;
-  next(err);
-})
+app.all('/*', function(req, res, next) {
+  res.sendFile('index.html', {root: source});
+});
 
 module.exports = app;
