@@ -1,5 +1,7 @@
-function AppState($locationProvider, $stateProvider) {
+function AppState($locationProvider, $stateProvider, cfpLoadingBarProvider) {
   $locationProvider.html5Mode(true);
+
+  cfpLoadingBarProvider.includeSpinner = false;
 
   $stateProvider
     .state('app', {

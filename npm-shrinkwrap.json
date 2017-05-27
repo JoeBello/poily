@@ -85,6 +85,11 @@
       "resolved": "https://registry.npmjs.org/angular-animate/-/angular-animate-1.6.4.tgz",
       "dev": true
     },
+    "angular-loading-bar": {
+      "version": "0.9.0",
+      "from": "angular-loading-bar@latest",
+      "resolved": "https://registry.npmjs.org/angular-loading-bar/-/angular-loading-bar-0.9.0.tgz"
+    },
     "angular-ui-bootstrap": {
       "version": "2.5.0",
       "from": "angular-ui-bootstrap@>=2.5.0 <3.0.0",

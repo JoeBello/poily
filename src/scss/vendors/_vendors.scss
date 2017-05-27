@@ -2,3 +2,5 @@ $icon-font-path: '~bootstrap-sass/assets/fonts/bootstrap/';
 @import '~bootswatch/cyborg/variables';
 @import '~bootstrap-sass/assets/stylesheets/bootstrap';
 @import '~bootswatch/cyborg/bootswatch';
+@import 'loading-bar';
+@import 'loading-bar-custom';
