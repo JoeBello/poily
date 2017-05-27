@@ -7,6 +7,7 @@
   &-next {
     color: colors(text, base);
     padding: 1em;
+    transition: color $transition-off;
 
     &:focus,
     &:hover {
@@ -16,10 +17,12 @@
     &:hover,
     &:hover:focus {
       color: colors(text, hover);
+      transition: color $transition-on;
     }
 
     &:focus {
       color: colors(text, base);
+      transition: color $transition-off;
     }
 
   }
