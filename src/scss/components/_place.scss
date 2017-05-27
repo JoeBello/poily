@@ -13,13 +13,24 @@
 
   &-add:hover {
     color: colors(text, hover);
+    cursor: pointer;
     transition: color $transition-on;
+
+    &:focus {
+      color: colors(text, hover);
+      transition: color $transition-on;
+    }
   }
 
   &-delete:hover {
     color: colors(text, danger);
     cursor: pointer;
     transition: color $transition-on;
+
+    &:focus {
+      color: colors(text, danger);
+      transition: color $transition-on;
+    }
   }
 
   &-image {
@@ -76,6 +87,16 @@
     right: .5em;
     top: .25em;
     transition: color $transition-off;
+
+    &:focus,
+    &:hover {
+      text-decoration: none;
+    }
+
+    &:focus {
+      color: colors(text, base);
+      transition: color $transition-off;
+    }
   }
 
   &-hours,
@@ -98,6 +119,18 @@
         color: colors(text, hover);
         text-decoration: none;
         transition: color $transition-on;
+
+        &:focus {
+          color: colors(text, hover);
+          text-decoration: none;
+          transition: color $transition-on;
+        }
+      }
+
+      &:focus {
+        color: colors(text, base);
+        text-decoration: none;
+        transition: color $transition-off;
       }
     }
   }
