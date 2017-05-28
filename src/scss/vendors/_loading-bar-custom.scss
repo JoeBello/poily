@@ -2,8 +2,11 @@
 
 #loading-bar .bar {
   background: colors(loading-bar, base);
-  box-shadow: colors(loading-bar, base) 1px 0 6px 1px;
   top: 50px;
+}
+
+#loading-bar .peg {
+  box-shadow: colors(loading-bar, base) 1px 0 6px 1px;
 }
 
 @media screen and (min-width: $screen-sm) {
