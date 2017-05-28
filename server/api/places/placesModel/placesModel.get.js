@@ -14,7 +14,7 @@ module.exports = function getPrototype(_constructor) {
         .then(function(geocodeResponse) {
             return placesPromise.placeSearch({
               location: geocodeResponse,
-              pagetoken: placesQuery.pageToken || null,
+              pagetoken: placesQuery.next_page_token || null,
               // convert miles to meters
               radius: placesQuery.radius * 1609.34,
               type: placesQuery.type || null
@@ -32,7 +32,7 @@ module.exports = function getPrototype(_constructor) {
       } else {
         placesPromise.placeSearch({
           location: placesQuery.location,
-          pagetoken: placesQuery.pageToken || null,
+          pagetoken: placesQuery.next_page_token || null,
           // convert miles to meters
           radius: placesQuery.radius * 1609.344,
           type: placesQuery.type || null
