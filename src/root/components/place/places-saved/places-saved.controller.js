@@ -1,9 +1,9 @@
 function PlacesSavedController(PlaceFactory) {
   var ctrl = this;
 
-  ctrl.$onInit = function onInit() {
-    ctrl.hasSavedPlaces = ctrl.places.length > 0;
-  };
+  ctrl.hasSavedPlaces = function hasSavedPLaces() {
+    return ctrl.places.length > 0;
+  }
 
   ctrl.deleteAllPlaces = function deleteAllPlaces() {
     PlaceFactory.deleteAllPlaces();
