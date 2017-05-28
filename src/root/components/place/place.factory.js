@@ -29,14 +29,21 @@ function PlaceFactory($q, $http, $httpParamSerializer, API, AppStorageService,
   }
 
   function extractResults(responseObject) {
-    if (responseObject.data.next_page_token) {
-      AppStorageService.saveNextPageToken(responseObject.data.next_page_token);
-    }
+    var pageToken = responseObject.data.next_page_token || null;
+    AppStorageService.saveNextPageToken(pageToken);
     return responseObject.data.results;
   }
 
   function getLastSearch() {
     return AppStorageService.getLastSearch();
+  }
+
+  function getMorePlaces() {
+    var lastSearch = this.getLastSearch(),
+        pageToken = this.getNextPageToken();
+
+    return getPlaces(lastSearch, pageToken);
+
   }
 
   function getNextPageToken() {
@@ -59,15 +66,16 @@ function PlaceFactory($q, $http, $httpParamSerializer, API, AppStorageService,
       });
   }
 
-  function getPlaces(searchParams) {
+  function getPlaces(searchParams, pageToken) {
     var queryParams = {
       location: searchParams.location,
       type: searchParams.type || '',
-      radius: 30
+      radius: 30,
+      next_page_token: pageToken || null
     };
 
     saveLastSearch(searchParams);
-    
+
     return $http.get(buildUrl('places', $httpParamSerializer(queryParams)))
       .then(function(placesResponse) {
         return extractResults(placesResponse);
@@ -120,6 +128,7 @@ function PlaceFactory($q, $http, $httpParamSerializer, API, AppStorageService,
     deleteAllPlaces: deleteAllPlaces,
     deletePlace: deletePlace,
     getLastSearch: getLastSearch,
+    getMorePlaces: getMorePlaces,
     getNextPageToken: getNextPageToken,
     getSavedPlaces: getSavedPlaces,
     savePlace: savePlace,

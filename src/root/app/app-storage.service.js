@@ -44,7 +44,7 @@ function AppStorageService($localStorage, $rootScope) {
     },
 
     getNextPageToken: function getNextPageToken() {
-      return $localStorage.Poily.lastSearch.next_page_token || null;
+      return $localStorage.Poily.next_page_token;
     },
 
     getPlaceCount: function getPlaceCount() {
@@ -58,13 +58,17 @@ function AppStorageService($localStorage, $rootScope) {
     init: function init() {
       if (!$localStorage.hasOwnProperty('Poily')) {
         $localStorage.$default({
-          Poily: { lastSearch: { next_page_token: null }, places: [] }
+          Poily: { next_page_token: null, lastSearch: { }, places: [] }
         });
       }
     },
 
     saveNextPageToken: function saveNextPageToken(token) {
-      $localStorage.Poily.lastSearch.next_page_token = token;
+      $localStorage.Poily.next_page_token = null;
+
+      if (token) {
+        $localStorage.Poily.next_page_token = token;
+      }
     },
 
     saveSearch: function saveSearch(searchDetails) {

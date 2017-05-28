@@ -12,9 +12,10 @@ function PlacesController(PlaceFactory, $state) {
     }
 
     ctrl.hasPlaces = ctrl.places.length > 0;
+  };
 
-    ctrl.hasPageToken = PlaceFactory.getNextPageToken() !== null;
-
+  ctrl.hasPageToken = function hasPageToken() {
+    return PlaceFactory.getNextPageToken() !== null;
   };
 
   ctrl.savePlace = function savePlace(event) {
@@ -22,11 +23,7 @@ function PlacesController(PlaceFactory, $state) {
   };
 
   ctrl.nextPlaces = function nextPlaces() {
-    var lastSearch = PlaceFactory.getLastSearch();
-
-    lastSearch.pageToken = PlaceFactory.getNextPageToken();
-
-    PlaceFactory.getPlaces(lastSearch)
+    PlaceFactory.getMorePlaces()
       .then(function(morePlaces) {
         ctrl.places = ctrl.places.concat(morePlaces);
       })
