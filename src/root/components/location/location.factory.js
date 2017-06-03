@@ -7,7 +7,7 @@ function LocationFactory($window, $q) {
           geocoderOptions = {
             enableHighAccuracy: true,
             maximumAge: 0,
-            timeout: 4000
+            timeout: 5000
           },
           geocoderTimeout = setTimeout(geocoderError, 4000);
 

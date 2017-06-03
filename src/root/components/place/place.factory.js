@@ -1,28 +1,27 @@
-function PlaceFactory($q, $http, $httpParamSerializer, API, AppStorageService,
-                        $rootScope) {
-
-  AppStorageService.init();
+function PlaceFactory($http, $httpParamSerializer, API, AppService,
+                      $localStorage, $rootScope) {
 
   function buildUrl(endpoint, params) {
     return API[endpoint].concat(params);
   }
 
   function deleteAllPlaces() {
-    AppStorageService.deleteAllPlaces();
+    var places = $localStorage.Poily.place.placesSaved;
+    places.splice(0, places.length);
+    $rootScope.$broadcast('saved_count', places.length);
   }
 
   function deletePlace(place) {
-    AppStorageService.deletePlace({
-      id: place.place_id,
-      saved: true
-    });
+    var places = $localStorage.Poily.place.placesSaved;
+    places.splice(places.indexOf(place), 1);
+    $rootScope.$broadcast('saved_count', places.length);
   }
 
   function extractId(items) {
     var ids = [];
 
     items.forEach(function(item) {
-      ids.push(item.id);
+      ids.push(item.place_id);
     });
 
     return ids;
@@ -30,24 +29,19 @@ function PlaceFactory($q, $http, $httpParamSerializer, API, AppStorageService,
 
   function extractResults(responseObject) {
     var pageToken = responseObject.data.next_page_token || null;
-    AppStorageService.saveNextPageToken(pageToken);
+    saveNextPageToken(pageToken);
     return responseObject.data.results;
   }
 
-  function getLastSearch() {
-    return AppStorageService.getLastSearch();
-  }
-
   function getMorePlaces() {
-    var lastSearch = this.getLastSearch(),
-        pageToken = this.getNextPageToken();
+    var lastSearch = $localStorage.Poily.lastSearch,
+        pageToken = getNextPageToken();
 
     return getPlaces(lastSearch, pageToken);
-
   }
 
   function getNextPageToken() {
-    return AppStorageService.getNextPageToken();
+    return $localStorage.Poily.place.next_page_token;
   }
 
   function getOnePlace(place) {
@@ -70,11 +64,11 @@ function PlaceFactory($q, $http, $httpParamSerializer, API, AppStorageService,
     var queryParams = {
       location: searchParams.location,
       type: searchParams.type || '',
-      radius: 30,
+      radius: 25,
       next_page_token: pageToken || null
     };
 
-    saveLastSearch(searchParams);
+    saveLastSearch(queryParams);
 
     return $http.get(buildUrl('places', $httpParamSerializer(queryParams)))
       .then(function(placesResponse) {
@@ -84,7 +78,7 @@ function PlaceFactory($q, $http, $httpParamSerializer, API, AppStorageService,
 
   function getSavedPlaces() {
     var ids,
-        places = AppStorageService.getSavedPlaces();
+        places = $localStorage.Poily.place.placesSaved;
 
     if (places.length === 1) {
       return getOnePlace(places);
@@ -107,19 +101,34 @@ function PlaceFactory($q, $http, $httpParamSerializer, API, AppStorageService,
       });
   }
 
+  function init() {
+    AppService.init();
+
+    if (!$localStorage.Poily.hasOwnProperty('place')) {
+      $localStorage.Poily.place = {
+        next_page_token: null,
+        placesSaved: []
+      }
+    }
+  }
+
   function saveLastSearch(searchDetails) {
-    AppStorageService.saveSearch(searchDetails);
+    $localStorage.Poily.lastSearch = searchDetails;
   }
 
   function saveNextPageToken(token) {
-    AppStorageService.saveNextPageToken(token);
+    $localStorage.Poily.place.next_page_token = null;
+
+    if (token) {
+      $localStorage.Poily.place.next_page_token = token;
+    }
   }
 
   function savePlace(place) {
-    AppStorageService.savePlace({
-      id: place.place_id,
-      saved: true
-    });
+    var places = $localStorage.Poily.place.placesSaved;
+    places.push(place);
+    $rootScope.$broadcast('saved_count', places.length);
+
   }
 
 
@@ -127,10 +136,10 @@ function PlaceFactory($q, $http, $httpParamSerializer, API, AppStorageService,
   return {
     deleteAllPlaces: deleteAllPlaces,
     deletePlace: deletePlace,
-    getLastSearch: getLastSearch,
     getMorePlaces: getMorePlaces,
     getNextPageToken: getNextPageToken,
     getSavedPlaces: getSavedPlaces,
+    init: init,
     savePlace: savePlace,
     getPlaces: getPlaces
   };

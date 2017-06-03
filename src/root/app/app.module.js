@@ -4,7 +4,7 @@ var common = angular.module('common', [
   'ui.router'
 ])
 .constant('AppConstant', require('./app.constant'))
-.factory('AppStorageService', require('./app-storage.service'))
+.factory('AppService', require('./app.service'))
 .directive('autoCollapse', require('./app-nav/auto-collapse.directive'))
 .component('app', require('./app.component'))
 .component('appNav', require('./app-nav/app-nav.component'))

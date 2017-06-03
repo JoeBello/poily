@@ -1,6 +1,6 @@
 function LocationController($state, LocationFactory) {
   var ctrl = this;
-    
+
   ctrl.geoDirect = function geoDirect() {
     LocationFactory.geolocate()
     .then(function(location) {
