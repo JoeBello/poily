@@ -1,4 +1,4 @@
-function AppController(AppConstant, AppStorageService, $sce, $scope, $state) {
+function AppController(AppConstant, AppService, $sce, $scope, $state) {
   var ctrl = this;
 
   ctrl.$onInit = function onInit() {
@@ -6,26 +6,20 @@ function AppController(AppConstant, AppStorageService, $sce, $scope, $state) {
       ctrl[constant] = AppConstant[constant];
     });
 
-    AppStorageService.init();
+    AppService.init();
 
     ctrl.copyrightDate = new Date().getFullYear();
 
-    ctrl.placeCount = AppStorageService.getPlaceCount();
+    ctrl.placeCount = AppService.getPlaceCount();
   }
 
   ctrl.navigate = function navigate(event) {
-    var lastLocation = AppStorageService.getLastLocation(),
-        stateParams = {
-          error: null,
-          location: lastLocation,
-          radius: null,
-          type: null
-        };
+    var stateParams = AppService.getLastSearch() || {};
 
     $state.go(event.source.state, stateParams);
   }
 
-  $scope.$on('places_change', function placesChangeHandler(event, placeCount) {
+  $scope.$on('saved_count', function placesChangeHandler(event, placeCount) {
     ctrl.placeCount = placeCount;
   });
 

@@ -11,6 +11,8 @@ function PlacesController(PlaceFactory, $state) {
       ctrl.state.success = true;
     }
 
+    PlaceFactory.init();
+
     ctrl.hasPlaces = ctrl.places.length > 0;
   };
 

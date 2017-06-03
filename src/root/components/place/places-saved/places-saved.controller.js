@@ -1,6 +1,10 @@
 function PlacesSavedController(PlaceFactory) {
   var ctrl = this;
 
+  ctrl.$onInit = function onInit() {
+    PlaceFactory.init();
+  };
+  
   ctrl.hasSavedPlaces = function hasSavedPLaces() {
     return ctrl.places.length > 0;
   }
