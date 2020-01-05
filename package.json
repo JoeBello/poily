@@ -14,8 +14,9 @@
     "dev": "concurrently --kill-others \"npm run dev:server\" \"npm run webpack-server\"",
     "heroku-postbuild": "webpack --env=prod",
     "inspect": "node --inspect index.js",
-    "start": "NODE_ENV=prod node index.js",
     "prod:server": "NODE_ENV=prod nodemon index.js",
+    "release": "standard-version",
+    "start": "NODE_ENV=prod node index.js",
     "webpack": "webpack",
     "webpack-server": "webpack-dev-server --env=dev"
   },
@@ -52,6 +53,7 @@
     "q": "^1.5.0",
     "rimraf": "^2.6.0",
     "sass-loader": "^6.0.2",
+    "standard-version": "^7.0.1",
     "style-loader": "^0.13.1",
     "url-loader": "^0.5.7",
     "webpack": "^2.2.1"
