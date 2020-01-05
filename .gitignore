@@ -10,3 +10,6 @@ npm-debug.log
 
 # Mac OS X metadata files
 .DS_Store
+
+# Project-related notes
+notes.md
