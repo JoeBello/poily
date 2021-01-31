@@ -13,5 +13,3 @@ Poily is built with
 - UI-Bootstrap
 - Express.js
 - Node.js
-
-## Where can I find [Poily](https://www.poily.io)?
